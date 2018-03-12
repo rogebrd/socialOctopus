@@ -9,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
+import java.util.LinkedHashMap;
 
 public class Search {
 
@@ -16,7 +17,7 @@ public class Search {
     public static final String name = "name";
     public static final String profilePicUrl = "profilePicsLink";
 
-    public String post(String term, Context context){
+    public String post(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
@@ -24,13 +25,20 @@ public class Search {
         logger.log("Creating Connection...\n");
         connection = new RDSConnection();
 
+        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
+
+        String term = postBody.get("term");
+
         try {
             logger.log("Connecting...\n");
             connection.connect();
 
+            logger.log("Verifying...\n");
+            EncryptionManager.verify(connection, body);
+
             logger.log("Querying...\n");
             //query for search
-            ResultSet res = connection.SELECT("SELECT * FROM Utility.users u,Utlity.settings s WHERE u.userId = s.userId AND (u.userId LIKE '%" + term + "%' OR u.name LIKE '%" + term + "%')");
+            ResultSet res = connection.SELECT("SELECT * FROM Utility.users u,Utility.settings s WHERE u.userId = s.userId AND (u.userId LIKE '%" + term + "%' OR u.name LIKE '%" + term + "%')");
 
             logger.log("Formatting...\n");
             //Format results
@@ -67,4 +75,5 @@ public class Search {
 
         return results;
     }
+
 }

@@ -25,9 +25,6 @@ public class User {
             logger.log("Connecting...\n");
             connection.connect();
 
-            //validate
-            EncryptionManager.decrypt(id);
-
             //TODO write query
             ResultSet res = connection.SELECT("");
 
@@ -59,9 +56,6 @@ public class User {
         try {
             logger.log("Connecting...\n");
             connection.connect();
-
-            //validate
-            EncryptionManager.decrypt(id);
 
             //get update queries
             JSONObject queries = formatUserUpdates(id);

@@ -25,9 +25,6 @@ public class Tokens {
             logger.log("Connecting...\n");
             connection.connect();
 
-            //validate
-            EncryptionManager.decrypt(id);
-
             //query to get tokens
             ResultSet res = connection.SELECT("SELECT * FROM tokens WHERE userId=" + id);
 

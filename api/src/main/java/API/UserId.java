@@ -25,9 +25,6 @@ public class UserId {
             logger.log("Connecting...\n");
             connection.connect();
 
-            //validate
-            EncryptionManager.decrypt(id);
-
             //select
             ResultSet res = connection.SELECT("SELECT * FROM users WHERE userId=" + id);
 

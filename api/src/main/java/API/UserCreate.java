@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 public class UserCreate {
 
     public void post(Context context){
+
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
@@ -25,9 +26,6 @@ public class UserCreate {
         try {
             logger.log("Connecting...\n");
             connection.connect();
-
-            //validate
-            EncryptionManager.decrypt(id);
 
             //check if userExists
             ResultSet res = connection.SELECT("SELECT * FROM users WHERE userId=" + id);
