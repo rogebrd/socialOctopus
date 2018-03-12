@@ -5,14 +5,16 @@ import Connection.RDSConnection;
 import Security.EncryptionManager;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
+import java.util.UUID;
 
 public class UserLogin {
 
-    public int post(Object body, Context context){
+    public String post(Object body, Context context){
 
         DatabaseConnection connection;
 
@@ -23,8 +25,10 @@ public class UserLogin {
 
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>) body;
 
-        String deviceId = "";
+        String token = UUID.randomUUID().toString();
         int status = -1;
+
+        JSONObject results = new JSONObject();
 
         try {
             logger.log("Connecting...\n");
@@ -44,13 +48,18 @@ public class UserLogin {
             if(!res.next()){
                 //INVALID LOGIN
                 logger.log("Invalid Login...\n");
+
                 status = 0;
+
+                throw new Exception("Invalid Login");
             }else{
                 logger.log("Updating Login Info...\n");
-                if(connection.UPDATE("UPDATE Utility.users SET deviceId='" + deviceId + "', loginStatus=1 WHERE userId='" + id + "'") == 0){
+                if(connection.UPDATE("UPDATE Utility.users SET token='" + token + "' WHERE userId='" + id + "'") == 0){
                     logger.log("Update Query Failed...\n");
-                    //FAILED
+
                     status = -1;
+                    //FAILED
+                    throw new Exception("Update Query Failed");
                 }else{
                     logger.log("Login Success...\n");
                     //SUCCESS
@@ -61,13 +70,18 @@ public class UserLogin {
             logger.log("Disconnecting...\n");
             connection.disconnect();
 
-            return (status);
+            results.put("status", status);
+            results.put("token", token);
+
+            return (results.toJSONString());
 
         }catch(Exception e){
             logger.log("ERROR: " + e.getMessage() + "\n");
+
+            results.put("status", status);
+            results.put("message", e.getMessage());
+
+            return (results.toJSONString());
         }
-
-        return (status);
-
     }
 }

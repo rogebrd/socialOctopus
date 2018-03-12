@@ -1,16 +1,22 @@
 package Security;
 
+import Connection.DatabaseConnection;
+
+import java.sql.ResultSet;
+
 public class EncryptionManager {
 
-    public static String encrypt(String value){
-        //TODO
+    public static String encrypt(DatabaseConnection dbc, String token){
+        try {
+            ResultSet res = dbc.SELECT("SELECT userId FROM Utlity.users WHERE token='" + token + "'");
 
-        return value;
-    }
+            if(res.next()){
+                return (res.getString("userId"));
+            }
+        }catch(Exception e){
 
-    public static String decrypt(String value){
-        //TODO
+        }
 
-        return value;
+        return ("");
     }
 }
