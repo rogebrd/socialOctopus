@@ -5,45 +5,71 @@ import Connection.RDSConnection;
 import Security.EncryptionManager;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
+import java.util.LinkedHashMap;
 
 public class UserCreate {
 
-    public void post(Context context){
-
+    public String post(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
 
         logger.log("Creating Connection...\n");
-        connection = new RDSConnection("user", "password");
+        connection = new RDSConnection();
 
-        String id = "TODO";
-        String password = "TODO";
-        String name =  "TODO";
+        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
+
+        String id = "";
+        String password = "";
+        String name =  "";
+        int status = 0;
+        JSONObject results = new JSONObject();
 
         try {
             logger.log("Connecting...\n");
             connection.connect();
 
+            logger.log("Verifying...\n");
+            EncryptionManager.verify(connection, body);
+
+            logger.log("Getting Input...\n");
+            //validate
+            id = postBody.get("username");
+            password = postBody.get("password");
+            name = postBody.get("name");
+
+
             //check if userExists
-            ResultSet res = connection.SELECT("SELECT * FROM users WHERE userId=" + id);
+            int i = connection.INSERT("INSERT INTO Utility.users(userId,password,name) VALUES('" + id +"','" + password+"','" + name+"')");
+            // check if insert statement is successful
+            if (i==0) {
+                throw new Exception("Username Already Exists!");
 
-            //check size
-            //TODO
-            int size = 0;
+            } else {
+                status = 1;
 
-            if(size == 0) {
-                //create info if size = 0
-                connection.INSERT("INSERT INTO users (userId, password, name) VALUES (" + id + "," + password + "," + name + ")");
             }
+
+
+            results.put("status",status);
+            results.put("Message","Account Creation Successful!");
+
+
+
 
             logger.log("Disconnecting...\n");
             connection.disconnect();
 
         }catch(Exception e){
             logger.log("ERROR: " + e.getMessage() + "\n");
+            results.put("status",status);
+            results.put("Message",e.getMessage());
         }
+
+        return (results.toJSONString());
+
     }
 }

@@ -23,7 +23,7 @@ public class UserLogin {
         logger.log("Creating Connection...\n");
         connection = new RDSConnection();
 
-        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>) body;
+        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
         String token = UUID.randomUUID().toString();
         int status = -1;
@@ -33,6 +33,9 @@ public class UserLogin {
         try {
             logger.log("Connecting...\n");
             connection.connect();
+
+            logger.log("Verifying...\n");
+            EncryptionManager.verify(connection, body);
 
             logger.log("Getting Input...\n");
             //validate

@@ -8,22 +8,28 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
+import java.util.LinkedHashMap;
 
 public class Tokens {
 
-    public String get(Context context){
+    public String get(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
 
         logger.log("Creating Connection...\n");
-        connection = new RDSConnection("user", "password");
+        connection = new RDSConnection();
+
+        //LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
         String id = "TODO";
 
         try {
             logger.log("Connecting...\n");
             connection.connect();
+
+            logger.log("Verifying...\n");
+            EncryptionManager.verify(connection, body);
 
             //query to get tokens
             ResultSet res = connection.SELECT("SELECT * FROM tokens WHERE userId=" + id);

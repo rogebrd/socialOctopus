@@ -5,48 +5,75 @@ import Connection.RDSConnection;
 import Security.EncryptionManager;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
+import java.util.LinkedHashMap;
 
+
+// get user's public information for a third party
 public class UserId {
-
-    public String get(Context context){
+    
+    public String post(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
 
         logger.log("Creating Connection...\n");
-        connection = new RDSConnection("user", "password");
+        connection = new RDSConnection();
+        String userId = "";
+        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
+        int status = 0;
 
-        String id = "TODO";
 
         try {
             logger.log("Connecting...\n");
             connection.connect();
 
-            //select
-            ResultSet res = connection.SELECT("SELECT * FROM users WHERE userId=" + id);
+            logger.log("Verifying...\n");
+            EncryptionManager.verify(connection, body);
 
-            //format
-            JSONObject formattedResults = formatUser(res);
+            logger.log("Getting Input...\n");
+            userId = postBody.get("username");
+
+            logger.log("Querying...\n");
+            //query for search
+            ResultSet res = connection.SELECT("SELECT * FROM Utility.users u,Utility.settings s, Utility WHERE u.userId = s.userId AND (u.userId LIKE '%" + term + "%' OR u.name LIKE '%" + term + "%')");
+
+            logger.log("Formatting...\n");
+            //Format results
+            JSONObject formattedResults = formatSearch(res);
 
             logger.log("Disconnecting...\n");
             connection.disconnect();
 
-            //return results
+            logger.log(formattedResults.toJSONString());
+
             return (formattedResults.toJSONString());
 
         }catch(Exception e){
             logger.log("ERROR: " + e.getMessage() + "\n");
-        }
 
-        return ("");
+            return ("{}");
+        }
     }
 
-    private JSONObject formatUser(ResultSet res){
-        //TODO
+    private JSONObject formatSearch(ResultSet res) throws Exception {
+        JSONObject results = new JSONObject();
 
-        return null;
+        JSONArray people = new JSONArray();
+        while(res.next()){
+            JSONObject person = new JSONObject();
+
+            person.put(userId, res.getString(userId));
+            person.put(name, res.getString(name));
+            person.put(profilePicUrl, res.getString(profilePicUrl));
+
+            people.add(person);
+        }
+        results.put("results", people);
+
+        return results;
     }
 }

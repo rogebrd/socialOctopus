@@ -8,22 +8,28 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
+import java.util.LinkedHashMap;
 
 public class User {
 
-    public String get(Context context){
+    public String get(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
 
         logger.log("Creating Connection...\n");
-        connection = new RDSConnection("user", "password");
+        connection = new RDSConnection();
+
+        //LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
         String id = "TODO";
 
         try {
             logger.log("Connecting...\n");
             connection.connect();
+
+            logger.log("Verifying...\n");
+            EncryptionManager.verify(connection, body);
 
             //TODO write query
             ResultSet res = connection.SELECT("");
@@ -43,7 +49,7 @@ public class User {
         return ("");
     }
 
-    public String post(Context context){
+    public String post(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
@@ -51,11 +57,16 @@ public class User {
         logger.log("Creating Connection...\n");
         connection = new RDSConnection("user", "password");
 
+        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
+
         String id = "TODO";
 
         try {
             logger.log("Connecting...\n");
             connection.connect();
+
+            logger.log("Verifying...\n");
+            EncryptionManager.verify(connection, body);
 
             //get update queries
             JSONObject queries = formatUserUpdates(id);
