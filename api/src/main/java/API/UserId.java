@@ -14,8 +14,11 @@ import java.util.LinkedHashMap;
 
 // get user's public information for a third party
 public class UserId {
+    public static final String UserId = "userId";
+    public static final String Name = "name";
+    public static final String ProfilePicUrl = "profilePicsLink";
     
-    public String post(Object body, Context context){
+    public String get(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
@@ -32,18 +35,28 @@ public class UserId {
             connection.connect();
 
             logger.log("Verifying...\n");
+
+            // Encryption manager return the (given the access token) user with the input access token and user id
+
             EncryptionManager.verify(connection, body);
 
             logger.log("Getting Input...\n");
-            userId = postBody.get("username");
+          //  userId = postBody.get("username");
 
-            logger.log("Querying...\n");
+            // user ID is hard coded for now
+            userId = "bradrogers";
+
+            logger.log("Querying... User table and Setting table\n");
             //query for search
-            ResultSet res = connection.SELECT("SELECT * FROM Utility.users u,Utility.settings s, Utility WHERE u.userId = s.userId AND (u.userId LIKE '%" + term + "%' OR u.name LIKE '%" + term + "%')");
+            ResultSet res1 = connection.SELECT("SELECT * FROM Utility.users u, Utility.settings s WHERE s.userId = u.userId AND (u.userId = '"+ userId+"');");
+
+
+           logger.log("Querying... accounts table");
+           ResultSet res2 = connection.SELECT("SELECT * FROM Utility.accounts where userId = '"+ userId+"' and visibility = 1;");
 
             logger.log("Formatting...\n");
             //Format results
-            JSONObject formattedResults = formatSearch(res);
+            JSONObject formattedResults = formatSearch(res1,res2);
 
             logger.log("Disconnecting...\n");
             connection.disconnect();
@@ -59,20 +72,32 @@ public class UserId {
         }
     }
 
-    private JSONObject formatSearch(ResultSet res) throws Exception {
-        JSONObject results = new JSONObject();
+    private JSONObject formatSearch(ResultSet res1, ResultSet res2) throws Exception {
+            JSONObject results = new JSONObject();
 
-        JSONArray people = new JSONArray();
-        while(res.next()){
+            JSONArray Profile = new JSONArray();
+
             JSONObject person = new JSONObject();
 
-            person.put(userId, res.getString(userId));
-            person.put(name, res.getString(name));
-            person.put(profilePicUrl, res.getString(profilePicUrl));
 
-            people.add(person);
-        }
-        results.put("results", people);
+                person.put(UserId, res1.getString("userId"));
+                person.put(Name, res1.getString("name"));
+                person.put(ProfilePicUrl, res1.getString("profilePicUrl"));
+                person.put("Quotes", res1.getString("Quotes"));
+
+                Profile.add(person);
+
+                while (res2.next()) {
+                    JSONObject socialMedia = new JSONObject();
+                    socialMedia.put("type", res2.getString("type"));
+                    socialMedia.put("socialMediaID", res2.getString("socialMediaID"));
+
+                    Profile.add(socialMedia);
+                }
+
+                results.put("results", Profile);
+
+
 
         return results;
     }
