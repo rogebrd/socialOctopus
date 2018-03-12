@@ -17,20 +17,15 @@ public class Search {
         LambdaLogger logger = context.getLogger();
 
         logger.log("Creating Connection...\n");
-        connection = new RDSConnection("user", "password");
-
-        String id = "TODO";
+        connection = new RDSConnection();
 
         try {
             logger.log("Connecting...\n");
             connection.connect();
 
-            //validate
-            EncryptionManager.decrypt(id);
-
             //query for search
             //TODO update select query
-            ResultSet res = connection.SELECT("SELECT * FROM users WHERE CONTAINS(userId," + term + ")");
+            ResultSet res = connection.SELECT("SELECT * FROM users WHERE userId LIKE '%" + term + "%'");
 
             //Format results
             JSONObject formattedResults = formatSearch(res);

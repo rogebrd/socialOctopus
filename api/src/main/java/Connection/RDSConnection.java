@@ -10,15 +10,20 @@ public class RDSConnection
 {
 	//Connection URL Variables
 	private static final String CONNECTION_DRIVER = "mysql";
-	private static final String CONNECTION_HOST_NAME = "";
+	private static final String CONNECTION_HOST_NAME = "socialoctopus.coleyajwgg9h.us-east-2.rds.amazonaws.com";
 	private static final String CONNECTION_PORT = "3306";
-	private static final String CONNECTION_DB_NAME = "";
+	private static final String CONNECTION_DB_NAME = "Utility";
 
 	//RDSConnection Variables
 	private Connection connection;
 
 	private String username;
 	private String password;
+
+	public RDSConnection(){
+		this.username = "root";
+		this.password = "password";
+	}
 
 	public RDSConnection(String username, String password)
 	{
