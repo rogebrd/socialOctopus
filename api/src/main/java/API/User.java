@@ -72,6 +72,7 @@ public class User {
             logger.log("Verifying...\n");
            id =  EncryptionManager.verify(connection, body);
 
+
             //get update queries
           //  String userID= postBody.get("userId");
             logger.log("Processing user request ... \n");
@@ -104,10 +105,10 @@ public class User {
 
             if (connection.UPDATE("UPDATE Utility.users SET name = '"+ name+"' where userId = '" + id+"'") == 0) {
                 status = 0;
-                throw new Exception("social octopus display name update failed");
+                throw new Exception("social octopus display name update failed userId is " + id );
             }
-            if (connection.UPDATE("UPDATE Utility.settings SET profilePicsLink = '"+ profilePic + "', SET Quotes = '"+ Quotes
-                    +"', SET viewPreference ='"+ viewPreference+"' where userId = '" + id+"'") == 0) {
+            if (connection.UPDATE("UPDATE Utility.settings SET profilePicsLink = '"+ profilePic + "', Quotes = '"+ Quotes
+                    +"', viewPreference ='"+ viewPreference+"' where userId = '" + id+"'") == 0) {
                 status = 0;
                 throw new Exception("user setting table update failed ");
             }
@@ -126,7 +127,7 @@ public class User {
 
             logger.log("Update User social media account in database... \n");
 
-            if (connection.UPDATE("UPDATE Utility.accounts SET type ='"+ type+"' , SET client_ID ='" + client_id+ "', SET client_secret ='" + client_secret+"' , SET access_token ='"+ access_token+"' , SET access_secret = '"+access_secret+"', SET visibility = "+view+", set socialMediaID ='"+ socialMediaID+"' where userId = '" + id+"'") == 0) {
+            if (connection.UPDATE("UPDATE Utility.accounts SET type ='"+ type+"' , client_id ='" + client_id+ "', client_secret ='" + client_secret+"' , access_token ='"+ access_token+"' , access_secret = '"+access_secret+"', visibility = "+view+", socialMediaID ='"+ socialMediaID+"' where userId = '" + id+"'") == 0) {
                 status = 0;
                 throw new Exception("social media account update failed ");
             }
