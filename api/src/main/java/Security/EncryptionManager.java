@@ -11,7 +11,7 @@ public class EncryptionManager {
             LinkedHashMap<String, Object> postBody = (LinkedHashMap<String, Object>) body;
             String token = ((LinkedHashMap<String, String>)postBody.get("headers")).get("SOToken");
 
-            ResultSet res = dbc.SELECT("SELECT userId FROM Utlity.users WHERE token='" + token + "'");
+            ResultSet res = dbc.SELECT("SELECT userId FROM Utility.users WHERE token='" + token + "'");
 
             if(res.next()){
                 return (res.getString("userId"));

@@ -53,6 +53,19 @@ public class UserCreate {
 
             }
 
+            // create instance in setting database and account database
+
+           if (connection.INSERT("INSERT INTO Utility.accounts(userId) VALUES('" + id +"')")==0) {
+                throw new Exception ("account database instance creation failed");
+
+           }
+
+            if (connection.INSERT("INSERT INTO Utility.settings(userId) VALUES('" + id +"')")==0) {
+                throw new Exception ("settings database instance creation failed");
+
+            }
+
+
 
             results.put("status",status);
             results.put("Message","Account Creation Successful!");
