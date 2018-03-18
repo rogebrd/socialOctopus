@@ -1,3 +1,21 @@
+18Mar2018:
+- updated base app UI colors
+- updated post page
+- updated home page
+- added Twitter Posting Provider
+
+Home Page:
+- adjusted header items alignment
+
+Post Page:
+- must have text and toggle enabled to be able to post
+
+Twitter Post Provider:
+- created
+- will perform the posting to twitter function using user token (NOT TESTED)
+- user must be authorized (!)
+- currently only posting text is implemented
+
 6Mar2018:
 - base app UI style created
 - from home page: swipe to left to go to post page
