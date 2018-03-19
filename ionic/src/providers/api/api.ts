@@ -29,29 +29,25 @@ export class ApiProvider {
   }
 
   apiGet(endpoint){
-
-    this.http.get(this.api_url + endpoint, {
-      headers: new HttpHeaders().set('SOToken', this.token).append("Content-Type", "application/json")
-    })
-    .subscribe(response => {
-      this.response = response;
-      console.log(response);
-    });
-
-    return (this.response);
-    
+    return new Promise(resolve =>
+      this.http.get(this.api_url + endpoint, {
+        headers: new HttpHeaders().set('SOToken', this.token).append("Content-Type", "application/json")
+      })
+      .subscribe(response => {
+        resolve(response);
+      })
+    );
   }
 
   apiPost(endpoint, body){
+    return new Promise(resolve =>
     this.http.post(this.api_url + endpoint, body, {
       headers: new HttpHeaders().set('SOToken', this.token).append("Content-Type", "application/json")
     })
     .subscribe(response => {
-      this.response = response;
-      console.log(response);
-    });
-
-    return (this.response);
+      resolve(response);
+    })
+  );
   }
 
 }

@@ -13,21 +13,24 @@ export class LoginPage {
   responseData : any;
   userData = {"username": "", "password": ""}
 
+  private creds: any;
+
   constructor(private api: ApiProvider, public navCtrl: NavController) {
   }
 
   login(){
+    let response = this.api.apiPost('auth/login', this.userData)
+    .then(data => {
+      console.log(data);
+      let parsed = JSON.parse(data.toString());
+      if(parsed.status == 1){
+        this.api.setToken(parsed.token);
+        
+        this.navCtrl.push(SuccessPage);
+      }
+    });
+
     
-    let response = this.api.apiPost('auth/login', this.userData);
-
-    console.log(this.userData);
-    console.log(response);
-
-    if(response.status = 1){
-      this.api.setToken(response.token);
-      
-      this.navCtrl.push(SuccessPage);
-    }
     
   }
 
