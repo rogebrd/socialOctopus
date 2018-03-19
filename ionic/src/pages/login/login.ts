@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { SignupPage } from '../signup/signup';
 import { SearchPage } from '../search/search';
+import { ApiProvider } from '../../providers/api/api';
 
 @Component({
   selector: 'page-login',
@@ -10,18 +11,21 @@ import { SearchPage } from '../search/search';
 })
 export class LoginPage {
   responseData : any;
-  userData = {"usernId": "", "password": ""}
-  constructor(public navCtrl: NavController) {
+  userData = {"username": "", "password": ""}
+  constructor(private api: ApiProvider, public navCtrl: NavController) {
   }
-  goToSuccess(params){
-    if (!params) params = {};
-    console.log(this.userData);
-    this.navCtrl.push(SuccessPage);
-  }goToSignup(params){
-    if (!params) params = {};
+
+  login(){
+
+    let response = this.api.apiPost('auth/login', this.userData);
+
+    if(response.status = 1){
+      this.api.setToken(response.token);
+      this.navCtrl.push(SuccessPage);
+    }
+  }
+
+  goToSignup(){
     this.navCtrl.push(SignupPage);
-  }goToSearch(params){
-    if (!params) params = {};
-    this.navCtrl.push(SearchPage);
   }
 }

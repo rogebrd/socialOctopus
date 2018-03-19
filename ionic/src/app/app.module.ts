@@ -10,8 +10,7 @@ import {HttpModule } from '@angular/http';
 import { SearchresultsPage } from '../pages/searchresults/searchresults';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-import { SearchServiceProvider } from '../providers/search-service/search-service';
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [
@@ -39,8 +38,7 @@ import { SearchServiceProvider } from '../providers/search-service/search-servic
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider,
-    SearchServiceProvider,
+    ApiProvider,
    
   ]
 })
