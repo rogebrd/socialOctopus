@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -10,17 +11,20 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-  private token = "";
-  private config = {headers: {
-    "SOToken": this.token,
-    "Content-Type": "application/json"
-  }}
+  private token = "rogers";
+  private config: Headers = new Headers({'SOToken': this.token,
+  'Content-Type': 'application/json'
+  });
+  private opt: RequestOptions
 
-  private response = {};
+  //config.set('SOToken', "rogers");
+  //config.ammend('Content-Type', 'application/json');
+
+  private response: any = {};
 
   private api_url = "https://xmaxktjmo0.execute-api.us-east-2.amazonaws.com/beta/";
 
-  constructor(public http: HttpClient) {
+  constructor(public http: Http) {
     console.log('Hello ApiProvider Provider');
   }
 
@@ -30,7 +34,9 @@ export class ApiProvider {
 
   apiGet(endpoint){
 
-    this.http.get(this.api_url + endpoint, this.config)
+    this.http.get(this.api_url + endpoint, new RequestOptions({
+      headers: this.config
+    }))
     .subscribe(response => {
       this.response = response;
     });
@@ -39,7 +45,9 @@ export class ApiProvider {
   }
 
   apiPost(endpoint, body){
-    this.http.post(this.api_url + endpoint, body, this.config)
+    this.http.post(this.api_url + endpoint, body, new RequestOptions({
+      headers: this.config
+    }))
     .subscribe(response => {
       this.response = response;
     });
