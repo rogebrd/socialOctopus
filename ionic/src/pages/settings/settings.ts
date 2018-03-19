@@ -48,7 +48,7 @@ export class SettingsPage {
       access_secret: "",
       visibility: ""
     };
-    
+
     if(this.settings.visibility){
       postBody.visibility = "1";
     }else{
@@ -56,7 +56,7 @@ export class SettingsPage {
     }
 
     console.log(postBody);
-
+    /*
     let config = {headers: {
       "SOToken": "rogers",
       "Content-Type": "application/json",
@@ -67,6 +67,7 @@ export class SettingsPage {
     .subscribe(response => {
       console.log(response);
     });
+    */
   }
 
 }
