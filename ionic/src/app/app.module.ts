@@ -6,8 +6,9 @@ import { LoginPage } from '../pages/login/login';
 import { SearchPage } from '../pages/search/search';
 import { SignupPage } from '../pages/signup/signup';
 import { SuccessPage } from '../pages/success/success';
-import {HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { SearchresultsPage } from '../pages/searchresults/searchresults';
+import { SettingsPage} from '../pages/settings/settings';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
@@ -19,7 +20,8 @@ import { ApiProvider } from '../providers/api/api';
     SearchPage,
     SignupPage,
     SuccessPage,
-    SearchresultsPage
+    SearchresultsPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule, HttpModule,
@@ -32,7 +34,8 @@ import { ApiProvider } from '../providers/api/api';
     SearchPage,
     SignupPage,
     SuccessPage,
-    SearchresultsPage
+    SearchresultsPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
