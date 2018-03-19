@@ -24,7 +24,8 @@ import { ApiProvider } from '../providers/api/api';
     SettingsPage
   ],
   imports: [
-    BrowserModule, HttpModule,
+    BrowserModule, 
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

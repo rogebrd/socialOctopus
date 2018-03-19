@@ -12,17 +12,20 @@ import { ApiProvider } from '../../providers/api/api';
 export class LoginPage {
   responseData : any;
   userData = {"username": "", "password": ""}
+
   constructor(private api: ApiProvider, public navCtrl: NavController) {
   }
 
   login(){
-
+    
     let response = this.api.apiPost('auth/login', this.userData);
 
     if(response.status = 1){
       this.api.setToken(response.token);
+      console.log(response);
       this.navCtrl.push(SuccessPage);
     }
+    
   }
 
   goToSignup(){

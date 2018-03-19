@@ -15,12 +15,13 @@ export class SignupPage {
   }
 
   goToSuccess(){
-    
+    /*
     let response = this.api.apiPost('auth/create/', this.userData);
     
     if(response.status == 1){
       console.log(response.Message);
       this.navCtrl.push(SuccessPage);
     }
+    */
   }
 }
