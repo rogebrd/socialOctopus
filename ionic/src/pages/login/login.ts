@@ -20,9 +20,11 @@ export class LoginPage {
     
     let response = this.api.apiPost('auth/login', this.userData);
 
+    console.log(response);
+
     if(response.status = 1){
       this.api.setToken(response.token);
-      console.log(response);
+      
       this.navCtrl.push(SuccessPage);
     }
     

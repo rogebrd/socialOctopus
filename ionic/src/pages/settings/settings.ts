@@ -17,7 +17,16 @@ import "rxjs/add/operator/map";
 })
 export class SettingsPage {
 
-  public settings = {};
+  public settings = {
+    name: "",
+    profilePicUrl: "",
+    quotes: "",
+    viewPreference: "1",
+    type: "",
+    socialMediaID: "",
+    socialMediaPassword: "",
+    visibility: "" 
+  };
 
   constructor(private http: Http, public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -29,16 +38,17 @@ export class SettingsPage {
   updateSettings(){
     console.log("submitted");
     console.log(this.settings);
-    let postBody = {};
+    let postBody = {
+      name: this.settings.name,
+      profilePicUrl: this.settings.profilePicUrl,
+      quotes: this.settings.quotes,
+      viewPreference: this.settings.viewPreference,
+      type: this.settings.type,
+      access_token: "",
+      access_secret: "",
+      visibility: ""
+    };
     
-    postBody.name = this.settings.name;
-    postBody.profilePicUrl = this.settings.propic;
-    postBody.quotes = this.settings.quotes;
-    postBody.viewPreference = "1";
-    
-    postBody.type = this.settings.type;
-    postBody.socialMediaID = this.settings.username;
-    postBody.socialMediaPassword = this.settings.password;
     if(this.settings.visibility){
       postBody.visibility = "1";
     }else{
