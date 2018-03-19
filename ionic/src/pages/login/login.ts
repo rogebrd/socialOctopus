@@ -20,6 +20,7 @@ export class LoginPage {
     
     let response = this.api.apiPost('auth/login', this.userData);
 
+    console.log(this.userData);
     console.log(response);
 
     if(response.status = 1){

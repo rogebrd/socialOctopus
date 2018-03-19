@@ -7,6 +7,7 @@ import { SearchPage } from '../pages/search/search';
 import { SignupPage } from '../pages/signup/signup';
 import { SuccessPage } from '../pages/success/success';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { SearchresultsPage } from '../pages/searchresults/searchresults';
 import { SettingsPage} from '../pages/settings/settings';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,6 +27,7 @@ import { ApiProvider } from '../providers/api/api';
   imports: [
     BrowserModule, 
     HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
