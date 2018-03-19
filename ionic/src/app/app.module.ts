@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 import { SearchPage } from '../pages/search/search';
 import { SignupPage } from '../pages/signup/signup';
 import { SuccessPage } from '../pages/success/success';
@@ -17,6 +18,7 @@ import { ApiProvider } from '../providers/api/api';
   declarations: [
     MyApp,
     LoginPage,
+    HomePage,
     SearchPage,
     SignupPage,
     SuccessPage,
@@ -32,6 +34,7 @@ import { ApiProvider } from '../providers/api/api';
   entryComponents: [
     MyApp,
     LoginPage,
+    HomePage,
     SearchPage,
     SignupPage,
     SuccessPage,
