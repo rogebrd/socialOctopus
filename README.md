@@ -1,3 +1,15 @@
+
+To run: 
+npm install ionic
+
+// then go to the inoic directory
+type in command line:
+ionic lab
+
+
+
+
+
 18Mar2018:
 - updated base app UI colors
 - updated post page
