@@ -1,4 +1,3 @@
 # socialOctopus
 
-see this shared documents in social octopus file in google drive. It gives detailed instructions
-https://docs.google.com/document/d/1uF-PoTZts46N7FzjEeEZbSR8ifVCpeBRDF_LZwZw4Oc/edit?usp=sharing
+Hey Brad could you please delete this branch. I added new styling but can't push it to this branch so I pushed all working code with new styling to the branch AllHookedUpwithNewStyling branch. Please check out that branch thanks. 
