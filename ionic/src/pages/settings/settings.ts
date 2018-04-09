@@ -45,12 +45,14 @@ export class SettingsPage {
       postBody.visibility = "0";
     }
 
+
+
     console.log(postBody);
 
-    let config = {headers: {
+    let config = new Headers ({
       "SOToken": "rogers",
       "Content-Type": "application/json",
-    }}
+    });
 
     this.http.post("https://xmaxktjmo0.execute-api.us-east-2.amazonaws.com/beta/user", postBody, config)
       .map(response => response.json())
