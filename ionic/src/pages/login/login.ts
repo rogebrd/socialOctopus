@@ -4,6 +4,7 @@ import { SuccessPage } from '../success/success';
 import { SignupPage } from '../signup/signup';
 import { SearchPage } from '../search/search';
 import { ApiProvider } from '../../providers/api/api';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-login',
@@ -26,7 +27,7 @@ export class LoginPage {
       if(parsed.status == 1){
         this.api.setToken(parsed.token);
         
-        this.navCtrl.push(SuccessPage);
+        this.navCtrl.push(HomePage);
       }
     });
 
