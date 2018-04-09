@@ -54,7 +54,7 @@ export class SettingsPage {
       "Content-Type": "application/json",
     });
 
-    this.http.post("https://xmaxktjmo0.execute-api.us-east-2.amazonaws.com/beta/user", postBody, config)
+    this.http.post("https://xmaxktjmo0.execute-api.us-east-2.amazonaws.com/beta/user", postBody, {headers: config})
       .map(response => response.json())
       .subscribe(response => {
         console.log(response);

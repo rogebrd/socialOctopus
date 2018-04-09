@@ -9,7 +9,7 @@
 
 
 
-<ion-content>
+<ion-content >
   <button ion-item (click)='expandAll();' >
     Expanded / Minimized Toggle
   </button>
@@ -33,12 +33,12 @@
       </button>
 
 
-      <ion-card-content>
+      <ion-card-content >
         <p [hidden] = "!post.expand"> {{post.text}}</p>
 
         <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>
 
-        <ion-row [hidden] = "!post.expand">
+        <ion-row [hidden] = "!post.expand" >
           <ion-col>
             <button (click)="likePost(post)" ion-button icon-left clear small>
               <ion-icon name="thumbs-up"></ion-icon>
