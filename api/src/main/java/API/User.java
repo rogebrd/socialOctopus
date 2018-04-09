@@ -87,6 +87,7 @@ public class User {
             String socialMediaID= postBody.get("socialMediaID");
             String socialMediaPassword= postBody.get("socialMediaPassword");
             String visibility = postBody.get("visibility");
+
             if (profilePic == null ||
                     Quotes == null ||
                     name== null ||

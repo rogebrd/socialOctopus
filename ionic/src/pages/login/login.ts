@@ -3,7 +3,9 @@ import { NavController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { SignupPage } from '../signup/signup';
 import { SearchPage } from '../search/search';
+import { HomePage } from '../home/home';
 import { ApiProvider } from '../../providers/api/api';
+
 
 @Component({
   selector: 'page-login',
@@ -16,6 +18,7 @@ export class LoginPage {
   private creds: any;
 
   constructor(private api: ApiProvider, public navCtrl: NavController) {
+   // temporary
   }
 
   login(){
@@ -25,13 +28,13 @@ export class LoginPage {
       let parsed = JSON.parse(data.toString());
       if(parsed.status == 1){
         this.api.setToken(parsed.token);
-        
+
         this.navCtrl.push(SuccessPage);
       }
     });
 
-    
-    
+
+
   }
 
   goToSignup(){

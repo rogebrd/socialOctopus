@@ -53,13 +53,21 @@ public class Search {
 
         }catch(Exception e){
             logger.log("ERROR: " + e.getMessage() + "\n");
+            JSONObject results = new JSONObject();
+            results.put("status",0);
+            results.put("Error: ",e.getMessage());
 
-            return ("{}");
+            return results.toJSONString();
         }
     }
 
     private JSONObject formatSearch(ResultSet res) throws Exception {
         JSONObject results = new JSONObject();
+        if (res==null) {
+             results.put("status",0);
+             return results;
+        }
+        results.put("status",1);
 
         JSONArray people = new JSONArray();
         while(res.next()){
