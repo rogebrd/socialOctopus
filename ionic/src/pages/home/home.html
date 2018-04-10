@@ -21,7 +21,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding (swipeleft)="swipeLeftEvent($event)">
+<ion-content padding (swipeleft)="swipeLeftEvent($event)" padding (swipeRight) ="swipeRightEvent($event)">
   <ion-list>
     <ion-card *ngFor="let post of posts">
       <!--	<button myitem (click)='handleClick(post);' </button>-->

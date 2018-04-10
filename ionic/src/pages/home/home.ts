@@ -46,6 +46,10 @@ export class HomePage {
     this.navCtrl.push(PostPage);
   }
 
+  swipeRightEvent(event){
+    this.navCtrl.pop();
+  }
+
   expandAll(){
 
     this.expanded = !this.expanded;
