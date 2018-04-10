@@ -1,23 +1,31 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import {TwitPostProvider} from "../../providers/twit-post/twit-post";
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-/**
- * Generated class for the PostPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
   selector: 'page-post',
   templateUrl: 'post.html',
 })
+
 export class PostPage {
 
+  postText: string = '';
+  private postForm : FormGroup;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public isToggled: boolean = false) {
+              public twitPostProvider: TwitPostProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
+              private formBuilder: FormBuilder) {
+
+    this.postForm = this.formBuilder.group({
+      postText: ['', Validators.required],
+    });
+  }
+
+  logForm() {
+    console.log(this.postForm.value)
   }
 
   ionViewDidLoad() {
@@ -28,18 +36,17 @@ export class PostPage {
       this.navCtrl.pop();
   }
 
-  submitPost(){
-    let alert = this.alertCtrl.create({
-      title: 'Testing Post!',
-      subTitle: 'This popup means that you successfully tweeted!',
-      buttons: ['OK']
+  postT(){
+    this.twitPostProvider.postTweet(this.postText);
+    // this.success();
+  }
+
+  success(){
+    let toast = this.toastCtrl.create({
+      message: 'Success!',
+      duration: 1500
     });
-    alert.present();
+    toast.present();
   }
-
-  notify(){
-    this.isToggled = true;
-  }
-
 
 }

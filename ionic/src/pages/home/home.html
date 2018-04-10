@@ -1,20 +1,20 @@
 <ion-header>
   <ion-navbar>
 
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar padding-top="16px" (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
       <ion-item *ngFor="let item of items">
         {{ item }}
       </ion-item>
     </ion-list>
 
-    <ion-buttons start>
+    <ion-buttons start padding-bottom="16px">
       <button ion-button icon-only>
         <ion-icon name="expand"></ion-icon>
       </button>
     </ion-buttons>
 
-    <ion-buttons end>
+    <ion-buttons end padding-bottom="16px">
       <button ion-button icon-only>
         <ion-icon name="options"></ion-icon>
       </button>
@@ -26,7 +26,7 @@
 <ion-content padding (swipeleft)="swipeLeftEvent($event)">
 
   <ion-list>
-    <ion-item>
+    <ion-item no-lines>
       <ion-avatar item-start>
         <img src="img/avatar-cher.png">
       </ion-avatar>
