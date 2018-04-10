@@ -1,6 +1,25 @@
-# socialOctopus
+# Social Octopus
+##### UW Madison CS506 - Software Engineering Spring 2018 Project
+##### Brad Rogers, Ruite Guo, Jess Liu, Joey Kraker, Rob Johnson, Julian Pakdel
 
-Now this branch contains all hooked up working code. HomePage is not updated and it's still the work done last time we meet at March 18 Sunday. So if people working on the code the feed part, please copy and paste your new work to this exisiting code frame works. Please refer https://docs.google.com/document/d/1uF-PoTZts46N7FzjEeEZbSR8ifVCpeBRDF_LZwZw4Oc/edit?usp=sharing this document for detailed updates and what has been done to this code. You might run into the issue of running the code, but the resolving method has been specified in the documents. If you use your UW-Madison Email account to log in your google drive you will be able to see this document withohut requesting access. Let me know if you have more questions. 
+### Build Instructions
 
-Thanks
-Ruite 
+Building the project is relatively simple; you must have ionic installed on the computer you are using and then check out the tagged 'iteration_2' code.  Once this has been done, cd into the ionic directory and run 'ionic lab' to start a local server to test the code in a local browser.  'ionic lab' allows you to see the application in a prepackaged iOS, Android, or Windows emulator.  If you wish to view the application natively in the browser, run 'ionic serve'.  
+
+```sh
+$ mkdir socialOctopus
+$ git clone 
+$ cd socialOctopus/ionic
+$ ionic lab
+```
+
+Once open, you can register for an account, and login and play around with the features
+
+Note: You must manually add an account from the edit user page (Swipe Right)
+
+If you would prefer to skip this step and use a test account we have created, you can login with the following credentials: 
+
+    Username: test
+    Password: test
+
+This account already has all supported accounts linked and has been the account used to test all functionality.
