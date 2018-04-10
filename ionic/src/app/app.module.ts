@@ -15,6 +15,9 @@ import { SettingsPage} from '../pages/settings/settings';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
+import { TwitterService } from 'ng2-twitter';
+import {PostPage} from "../pages/post/post";
+import {TwitPostProvider} from "../providers/twit-post/twit-post";
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { ApiProvider } from '../providers/api/api';
     SearchresultsPage,
     SettingsPage,
     HomePage,
-    TestingPage
+    TestingPage,
+    PostPage
   ],
   imports: [
     BrowserModule,
@@ -45,13 +49,17 @@ import { ApiProvider } from '../providers/api/api';
     SearchresultsPage,
     SettingsPage,
     HomePage,
-    TestingPage
+    TestingPage,
+    PostPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
+    TwitterService,
+    TwitPostProvider,
+    {provide: Boolean, useValue: false},
 
   ]
 })
