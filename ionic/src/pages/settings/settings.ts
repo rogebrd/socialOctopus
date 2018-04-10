@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import "rxjs/add/operator/map";
+import { ApiProvider } from '../../providers/api/api';
+import { SuccessPage } from '../success/success';
 
 /**
  * Generated class for the SettingsPage page.
@@ -19,7 +21,7 @@ export class SettingsPage {
 
   public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":""};
 
-  constructor(private http: Http, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -49,16 +51,20 @@ export class SettingsPage {
 
     console.log(postBody);
 
-    let config = new Headers ({
-      "SOToken": "rogers",
-      "Content-Type": "application/json",
-    });
+    let response = this.api.apiPost('user', postBody)
+      .then(data => {
+        console.log(data);
+        let str = data.toString();
+       if(str==='update successful'){
+         //
+        console.log(str);
 
-    this.http.post("https://xmaxktjmo0.execute-api.us-east-2.amazonaws.com/beta/user", postBody, {headers: config})
-      .map(response => response.json())
-      .subscribe(response => {
-        console.log(response);
+       }
+
       });
+
+
+
   }
 
 }

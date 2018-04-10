@@ -24,6 +24,7 @@ export class SignupPage {
           this.api.setToken(parsed.token);
 
           this.navCtrl.push(SuccessPage);
+
         }
       });
 
