@@ -5,7 +5,9 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { SearchPage } from '../pages/search/search';
 import { SignupPage } from '../pages/signup/signup';
+import { TestingPage } from '../pages/testing/testing';
 import { SuccessPage } from '../pages/success/success';
+import { HomePage } from '../pages/home/home';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchresultsPage } from '../pages/searchresults/searchresults';
@@ -14,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import { HomePage } from '../home/home';
+
 
 @NgModule({
   declarations: [
@@ -24,10 +27,11 @@ import { HomePage } from '../home/home';
     SuccessPage,
     SearchresultsPage,
     SettingsPage,
-    HomePage
+    HomePage,
+    TestingPage
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     HttpModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp)
@@ -41,14 +45,15 @@ import { HomePage } from '../home/home';
     SuccessPage,
     SearchresultsPage,
     SettingsPage,
-    HomePage
+    HomePage,
+    TestingPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
-   
+
   ]
 })
 export class AppModule {}

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import "rxjs/add/operator/map";
+import { ApiProvider } from '../../providers/api/api';
+import { SuccessPage } from '../success/success';
 
 /**
  * Generated class for the SettingsPage page.
@@ -17,18 +19,9 @@ import "rxjs/add/operator/map";
 })
 export class SettingsPage {
 
-  public settings = {
-    name: "",
-    profilePicUrl: "",
-    quotes: "",
-    viewPreference: "1",
-    type: "",
-    socialMediaID: "",
-    socialMediaPassword: "",
-    visibility: "" 
-  };
+  public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":""};
 
-  constructor(private http: Http, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -38,36 +31,40 @@ export class SettingsPage {
   updateSettings(){
     console.log("submitted");
     console.log(this.settings);
-    let postBody = {
-      name: this.settings.name,
-      profilePicUrl: this.settings.profilePicUrl,
-      quotes: this.settings.quotes,
-      viewPreference: this.settings.viewPreference,
-      type: this.settings.type,
-      access_token: "",
-      access_secret: "",
-      visibility: ""
-    };
+    let postBody = {"name":"","profilePicUrl":"","quotes":"","viewPreference":"","type":"","socialMediaID":"","socialMediaPassword":"","visibility":""};
 
+    postBody.name = this.settings.name;
+    postBody.profilePicUrl = this.settings.propic;
+    postBody.quotes = this.settings.quotes;
+    postBody.viewPreference = "1";
+
+    postBody.type = this.settings.type;
+    postBody.socialMediaID = this.settings.username;
+    postBody.socialMediaPassword = this.settings.password;
     if(this.settings.visibility){
       postBody.visibility = "1";
     }else{
       postBody.visibility = "0";
     }
 
-    console.log(postBody);
-    /*
-    let config = {headers: {
-      "SOToken": "rogers",
-      "Content-Type": "application/json",
-    }}
 
-    this.http.post("https://xmaxktjmo0.execute-api.us-east-2.amazonaws.com/beta/user", postBody, config)
-    .map(response => response.json())
-    .subscribe(response => {
-      console.log(response);
-    });
-    */
+
+    console.log(postBody);
+
+    let response = this.api.apiPost('user', postBody)
+      .then(data => {
+        console.log(data);
+        let str = data.toString();
+       if(str==='update successful'){
+         //
+        console.log(str);
+
+       }
+
+      });
+
+
+
   }
 
 }
