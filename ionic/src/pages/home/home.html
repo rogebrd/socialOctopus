@@ -1,18 +1,30 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      The Feed
-    </ion-title>
+    <ion-searchbar padding-top="16px" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let item of items">
+        {{ item }}
+      </ion-item>
+    </ion-list>
+
+    <ion-buttons end padding-bottom="16px">
+      <button ion-button icon-only (click)='expandAll();' >
+        <ion-icon name="expand"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end padding-bottom="16px">
+      <button ion-button icon-only>
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 
 
-<ion-content >
-  <button ion-item (click)='expandAll();' >
-    Expanded / Minimized Toggle
-  </button>
+<ion-content padding (swipeleft)="swipeLeftEvent($event)">
   <ion-list>
     <ion-card *ngFor="let post of posts">
       <!--	<button myitem (click)='handleClick(post);' </button>-->
@@ -61,4 +73,5 @@
 
     </ion-card>
   </ion-list>
+
 </ion-content>
