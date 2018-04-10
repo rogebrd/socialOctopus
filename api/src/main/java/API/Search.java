@@ -63,11 +63,6 @@ public class Search {
 
     private JSONObject formatSearch(ResultSet res) throws Exception {
         JSONObject results = new JSONObject();
-        if (res==null) {
-             results.put("status",0);
-             return results;
-        }
-        results.put("status",1);
 
         JSONArray people = new JSONArray();
         while(res.next()){
@@ -79,6 +74,13 @@ public class Search {
 
             people.add(person);
         }
+
+        if(people.size() == 0){
+            results.put("status",0);
+        }else{
+            results.put("status",1);
+        }
+
         results.put("results", people);
 
         return results;
