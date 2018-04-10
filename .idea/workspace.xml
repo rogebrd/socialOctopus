@@ -65,6 +65,14 @@
               <item name="socialOctopus" type="462c0819:PsiDirectoryNode" />
               <item name="ionic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="socialOctopus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="socialOctopus" type="462c0819:PsiDirectoryNode" />
+              <item name="ionic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="providers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -103,12 +111,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523391832378</updated>
-      <workItem from="1523391836783" duration="608000" />
+      <workItem from="1523391836783" duration="812000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="608000" />
+    <option name="totallyTimeSpent" value="812000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="707" extended-state="0" />
