@@ -50,6 +50,10 @@ export class HomePage {
     this.navCtrl.pop();
   }
 
+  getItems(event){
+    console.log("Something entered in search bar")
+  }
+
   expandAll(){
 
     this.expanded = !this.expanded;
