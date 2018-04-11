@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { PostPage } from '../post/post';
+import {SettingsPage} from "../settings/settings";
 
 @Component({
   selector: 'page-home',
@@ -48,6 +49,10 @@ export class HomePage {
 
   swipeRightEvent(event){
     this.navCtrl.pop();
+  }
+
+  goToSettings() {
+    this.navCtrl.push(SettingsPage);
   }
 
   getItems(event){
