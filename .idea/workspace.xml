@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="" />
+    <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -23,7 +25,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ionic/src/pages/home/home.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="855">
@@ -35,34 +37,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ionic/src/pages/settings/settings.html">
+      <file leaf-file-name="tumblrpost.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ionic/src/providers/tumblrpost/tumblrpost.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ionic/src/pages/settings/settings.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="32" selection-end-column="3" />
+            <state relative-caret-position="240">
+              <caret line="16" column="77" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ionic/src/providers/api/api.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-              <folding>
-                <element signature="e#0#62#0" expanded="true" />
+                <element signature="e#0#50#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,6 +67,7 @@
         <option value="$PROJECT_DIR$/ionic/src/pages/search/search.ts" />
         <option value="$PROJECT_DIR$/ionic/src/pages/settings/settings.html" />
         <option value="$PROJECT_DIR$/ionic/src/pages/settings/settings.ts" />
+        <option value="$PROJECT_DIR$/ionic/src/providers/tumblrpost/tumblrpost.ts" />
       </list>
     </option>
   </component>
@@ -139,16 +121,15 @@
               <item name="socialOctopus" type="462c0819:PsiDirectoryNode" />
               <item name="ionic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="providers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socialOctopus" type="b2602c69:ProjectViewProjectNode" />
               <item name="socialOctopus" type="462c0819:PsiDirectoryNode" />
               <item name="ionic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="settings" type="462c0819:PsiDirectoryNode" />
+              <item name="providers" type="462c0819:PsiDirectoryNode" />
+              <item name="tumblrpost" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="socialOctopus" type="b2602c69:ProjectViewProjectNode" />
@@ -194,12 +175,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523391832378</updated>
-      <workItem from="1523391836783" duration="5372000" />
+      <workItem from="1523391836783" duration="6379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5372000" />
+    <option name="totallyTimeSpent" value="6379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="707" extended-state="0" />
@@ -261,15 +242,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionic/src/providers/tumblrpost/tumblrpost.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ionic/src/providers/twit-post/twit-post.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-11">
@@ -313,16 +285,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionic/src/providers/api/api.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ionic/src/pages/search/search.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
@@ -340,17 +302,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionic/src/pages/settings/settings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ionic/src/pages/home/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionic/src/pages/settings/settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -364,12 +326,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ionic/src/providers/api/api.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ionic/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="57" column="18" lean-forward="true" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionic/src/providers/tumblrpost/tumblrpost.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="77" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
