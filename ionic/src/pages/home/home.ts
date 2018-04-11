@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { LoginPage } from "../login/login";
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -74,7 +76,8 @@ export class HomePage {
 
   }
 
-
-
+  logout(){
+    this.navCtrl.push(LoginPage);
+  }
 
 }
