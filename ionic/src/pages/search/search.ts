@@ -32,4 +32,9 @@ export class SearchPage {
     this.navCtrl.push(SearchresultsPage);
     //this.responseData = result;
   }
+
+  swipeRightEvent(event){
+    this.navCtrl.pop();
+  }
+
 }
