@@ -1,41 +1,32 @@
 <ion-header>
+
   <ion-navbar>
-
-    <ion-buttons end padding-right="20px">
-      <button ion-button icon-only (click)='goToSettingsPage();' >
-        <ion-icon name="cog"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons end padding-right="20px">
-      <button ion-button icon-only (click)='expandAll();' >
-        <ion-icon name="expand"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons end padding-right="20px">
-      <button ion-button icon-only (click)='goToSearchPage();' >
-        <ion-icon name="search"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons end padding-right="20px">
-      <button ion-button icon-only (click)='goToProfilePage();'>
-        <ion-icon name="person"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons end padding-right="20px">
-      <button ion-button icon-only>
-        <ion-icon name="options"></ion-icon>
-      </button>
-    </ion-buttons>
-    <!--<ion-buttons end padding-right="20px">-->
-      <!--<button ion-button icon-only (click)='goToPostPage()'>-->
-        <!--<ion-icon name="add-circle"></ion-icon>-->
-      <!--</button>-->
-    <!--</ion-buttons>-->
-
+    <ion-title>userProfile</ion-title>
   </ion-navbar>
+
 </ion-header>
 
-<ion-content padding (swipeleft)="swipeLeftEvent($event)" padding (swipeRight) ="swipeRightEvent($event)">
+
+<ion-content padding>
+
+  <div class="box blue" align="center" >
+    <div><p> </p></div>
+    <button id="signup-button1" style="background-color: #d5f2f2">
+      <div align="center"> <ion-avatar > <img src="assets/img/phelps.png" style="border:2px solid white; border-radius:120px;width:120px ;height: auto;" /></ion-avatar></div>
+      <div style ="font-size:20px" align="center"> <p>{{name}}</p> </div>
+      <div style ="font-size:15px" align="center"> <p>username: {{uname}}</p> </div>
+    </button>
+
+    <div  align="center"><p>{{quote}}<p> </div>
+  </div>
+
+
+
+
+
+  <button ion-item (click)='expandAll();' >
+    Expanded / Minimized Toggle
+  </button>
   <ion-list>
     <ion-card *ngFor="let post of posts">
       <!--	<button myitem (click)='handleClick(post);' </button>-->
@@ -83,12 +74,11 @@
       </ion-card-content>
 
     </ion-card>
+
+
+
   </ion-list>
 
+
+
 </ion-content>
-
-
-appName:any;
-quotes:any;
-picsURL:any;
-uID:any;

@@ -1,39 +1,31 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-//import { PostPage } from '../post/post';
-import {SettingsPage} from "../settings/settings";
-import {SearchPage} from "../search/search";
-import { UserProfilePage } from '../user-profile/user-profile';
 
+/**
+ * Generated class for the ViewProfilePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-view-profile',
+  templateUrl: 'view-profile.html',
 })
-export class HomePage {
-
-  appName:any;
-  quotes:any;
-  picsURL:any;
-  uID:any;
-
+export class ViewProfilePage {
   posts: any;
   noPhoto: 'style="display: none;"';
   itemExpandHeight: number = 200;
   expanded: boolean = false;
-
+  name = "Michael Phelps";
+  uname = "";
+  quote = "Life is like a box of chocolates";
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-
-    this.appName = navParams.get('appName');
-    this.quotes = navParams.get('quotes');
-    this.picsURL = navParams.get('picsURL');
-    this.uID = navParams.get('uID');
-
-    console.log(this.appName);
-    console.log(this.quotes);
-
-
+    this.name = navParams.get('name');
+    this.uname = navParams.get('uid');
     this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
 
         this.posts = data;
@@ -59,35 +51,9 @@ export class HomePage {
     );
   }
 
-  // swipeLeftEvent(event) {
-  //   this.navCtrl.push(PostPage);
-  // }
-
-  swipeRightEvent(event){
-    this.navCtrl.pop();
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ViewProfilePage');
   }
-
-  goToSettingsPage() {
-    this.navCtrl.push(SettingsPage);
-  }
-
-  goToSearchPage() {
-    this.navCtrl.push(SearchPage);
-  }
-  goToProfilePage() {
-
-    this.navCtrl.push(UserProfilePage,{appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.uID } );
-
-  }
-
-  // goToPostPage() {
-  //   this.navCtrl.push(PostPage);
-  // }
-
-  getItems(event){
-    console.log("Something entered in search bar")
-  }
-
   expandAll(){
 
     this.expanded = !this.expanded;
@@ -96,7 +62,6 @@ export class HomePage {
       this.posts[i].expand = this.expanded;
     }
   }
-
   expandItem(post){
     console.log("Yep");
     console.log(post.expand);
@@ -117,6 +82,5 @@ export class HomePage {
     console.log(post);
 
   }
-
 
 }

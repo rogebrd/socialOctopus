@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ViewProfilePage } from '../view-profile/view-profile';
 
 /**
  * Generated class for the SearchresultsPage page.
@@ -75,8 +76,10 @@ export class SearchresultsPage {
 
   ionViewDidLoad() {
     //console.log("hello");
+  }
 
+  goToViewProfilePage(i){
+    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i]});
   }
 
 }
-

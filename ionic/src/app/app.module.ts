@@ -16,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { ViewProfilePage } from '../pages/view-profile/view-profile';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
     SettingsPage,
     HomePage,
     TestingPage,
-    UserProfilePage
+    UserProfilePage,
+  ViewProfilePage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
     SettingsPage,
     HomePage,
     TestingPage,
-    UserProfilePage
+    UserProfilePage,
+    ViewProfilePage
   ],
   providers: [
     StatusBar,

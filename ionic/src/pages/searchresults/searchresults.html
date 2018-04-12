@@ -12,7 +12,7 @@
   <ion-list>
     <ion-card *ngFor="let name of names; let i = index;">
       <!--	<button myitem (click)='handleClick(post);' </button>-->
-      <button  ion-item>
+      <button (click)='goToViewProfilePage(i)' ion-item>
 
         <ion-avatar item-left >
 

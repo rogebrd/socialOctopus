@@ -33,7 +33,7 @@ export class LoginPage {
         input.term = this.userData.username;
 
         this.retrieveUserInfo();
-        this.navCtrl.push(HomePage);
+
 
       }
     });
@@ -49,10 +49,13 @@ export class LoginPage {
         //console.log(data);
 
         let parsed = JSON.parse(data.toString());
-        let status = 0;
-        status = parsed.status
+        //let status = 0;
+      //  status = parsed.status
 
         console.log(data.toString());
+
+       // console.log(parsed.results.Quotes);
+        this.navCtrl.push(HomePage,{appName:parsed.results[0].name,quotes:parsed.results[0].Quotes,picsURL:parsed.results[0].profilePicsLink,uID:parsed.results[0].userID });
 
       });
 

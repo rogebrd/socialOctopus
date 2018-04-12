@@ -16,10 +16,20 @@ import { HomePage } from '../home/home';
   templateUrl: 'user-profile.html',
 })
 export class UserProfilePage {
+  appName:any;
+  quotes:any;
+  picsURL:any;
+  uID:any;
 
-  name = "Jon Snow";
-  quote = "Life is like a box of chocolates";
+  name = this.appName;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log('in user profile page now');
+    console.log(navParams.get('quotes'));
+    this.appName = navParams.get('appName');
+    this.quotes = navParams.get('quotes');
+    this.picsURL = navParams.get('picsURL');
+    this.uID = navParams.get('uID');
   }
 
   ionViewDidLoad() {
