@@ -5,9 +5,6 @@ import 'rxjs/add/operator/map';
 import { PostPage } from '../post/post';
 import {SettingsPage} from "../settings/settings";
 import {SearchPage} from "../search/search";
-//import { PostPage } from '../post/post';
-import {SettingsPage} from "../settings/settings";
-import {SearchPage} from "../search/search";
 import { UserProfilePage } from '../user-profile/user-profile';
 
 @Component({
@@ -27,6 +24,8 @@ export class HomePage {
   expanded: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+    //this.api.setToken(navParams.get('token'));
+
 
     this.appName = navParams.get('appName');
     this.quotes = navParams.get('quotes');

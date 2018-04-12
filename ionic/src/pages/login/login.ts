@@ -55,7 +55,7 @@ export class LoginPage {
         console.log(data.toString());
 
        // console.log(parsed.results.Quotes);
-        this.navCtrl.push(HomePage,{appName:parsed.results[0].name,quotes:parsed.results[0].Quotes,picsURL:parsed.results[0].profilePicsLink,uID:parsed.results[0].userID });
+        this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:parsed.results[0].name,quotes:parsed.results[0].Quotes,picsURL:parsed.results[0].profilePicsLink,uID:parsed.results[0].userID });
 
       });
 

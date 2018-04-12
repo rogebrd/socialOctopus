@@ -32,7 +32,7 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SettingsPage,
     HomePage,
     TestingPage,
-    PostPage
+    PostPage,
     UserProfilePage,
   ViewProfilePage
   ],
@@ -53,7 +53,7 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SettingsPage,
     HomePage,
     TestingPage,
-    PostPage
+    PostPage,
     UserProfilePage,
     ViewProfilePage
   ],

@@ -26,6 +26,7 @@
         <ion-icon name="add-circle"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons end padding-right="20px">
       <button ion-button icon-only (click)='goToProfilePage();'>
         <ion-icon name="person"></ion-icon>
       </button>
@@ -45,54 +46,7 @@
 </ion-header>
 
 <ion-content padding (swipeleft)="swipeLeftEvent($event)" padding (swipeRight) ="swipeRightEvent($event)">
-  <ion-list>
-    <ion-card *ngFor="let post of posts">
-      <!--	<button myitem (click)='handleClick(post);' </button>-->
-      <button (click)="expandItem(post)" ion-item>
-
-        <ion-avatar item-left >
-
-          <img [src]="post.user.profile_image_url">
-
-        </ion-avatar >
-        <ion-avatar item-right>
-          <img [src]="post.platformPic">
-        </ion-avatar>
-        <h1>{{post.user.name}}</h1>
-        <h2>{{post.user.screen_name}}</h2>
-
-
-      </button>
-
-
-      <ion-card-content >
-        <p [hidden] = "!post.expand"> {{post.text}}</p>
-
-        <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>
-
-        <ion-row [hidden] = "!post.expand" >
-          <ion-col>
-            <button (click)="likePost(post)" ion-button icon-left clear small>
-              <ion-icon name="thumbs-up"></ion-icon>
-              <div>{{post.user.favourites_count}} Likes</div>
-            </button>
-          </ion-col>
-          <ion-col  [hidden] = "!post.expand">
-            <button (click)="commentPost(post)" ion-button icon-left clear small>
-              <ion-icon name="text"></ion-icon>
-              <div>{{post.retweet_count}} Comments</div>
-            </button>
-          </ion-col>
-          <ion-col center text-center [hidden] = "!post.expand">
-            <ion-note>
-              <!--		{{post.date}} -->
-            </ion-note>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-
-    </ion-card>
-  </ion-list>
+  
 
 </ion-content>
 
