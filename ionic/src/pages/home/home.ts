@@ -67,8 +67,8 @@ export class HomePage {
     getFeed(){
       let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
-        console.log(JSON.parse(data));
-        this.posts = JSON.parse(data);
+        console.log(data);
+        this.posts = data;
         this.processFeed();
       });
    //      this.http.get('../assets/textResponse.json').map(res => res.json()).subscribe(data => {
@@ -82,17 +82,6 @@ export class HomePage {
    //  }
    //  );
     }
-
-
- 
-  	expandAll(){
-    
-       this.expanded = !this.expanded;
-
-      for(let i = 0; i<= this.posts.length - 1; i++){
-        this.posts[i].expand = this.expanded;
-      }
-  	}
 
     processFeed(){
       for(let i = 0; i<= this.posts.length - 1; i++){
@@ -109,27 +98,6 @@ export class HomePage {
         } 
        
       }
-    }
-
-    expandItem(post){
-      console.log("Yep");
-      console.log(post.expand);
-      console.log(post.content);
-      post.expand = !post.expand;
-      console.log(post.expand);
-
-    }
-
-    likePost(post) {
-      console.log("I like this post");
-      console.log(post);
-
-    }
-
-    commentPost(post) {
-      console.log("I comment on this post.");
-      console.log(post);
-
     }
   
   swipeLeftEvent(event) {
