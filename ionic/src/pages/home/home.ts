@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Http } from '@angular/http';
 import { ApiProvider } from '../../providers/api/api';
 import 'rxjs/add/operator/map';
 
@@ -15,28 +16,27 @@ export class HomePage {
   expanded: boolean = false;
   twitterFeedEndpoint: '';
 
-  constructor(public navCtrl: NavController, private api: ApiProvider) {
-/*
-  this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
-
-        this.posts = data;
-        console.log("worked");
-        processFeed();
-
-    },
-    err => {
-        console.log("Oops!");
-    }
-    );
-*/ 
+  constructor(public navCtrl: NavController, private api: ApiProvider, public http: Http) {
+        this.getFeed();
   	}
 
     getFeed(){
       let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
-        this.posts = data;
+        console.log(JSON.parse(data));
+        this.posts = JSON.parse(data);
         this.processFeed();
       });
+   //      this.http.get('../assets/textResponse.json').map(res => res.json()).subscribe(data => {
+   //       console.log(data);
+   //      this.posts = data;
+   //      this.processFeed();
+
+   // },
+   //  err => {
+   //      console.log("Oops!");
+   //  }
+   //  );
     }
 
 

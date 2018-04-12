@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      The Feed
+      Feed
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -20,23 +20,23 @@ Expanded / Minimized Toggle
         
              <ion-avatar item-left >
           
-          <img [src]="post.user.profile_image_url">
+          <img [src]="post.user.profile_image_url"> <!-- PROFILE IMAGE -->
           
             </ion-avatar >
         <ion-avatar item-right>
-          <img [src]="post.platformPic">
+          <img [src]="post.platformPic"> <!-- TWITTER LOGO -->
         </ion-avatar>
-  			<h1>{{post.user.name}}</h1>
-  			<h2>{{post.user.screen_name}}</h2>
+  			<h1>{{post.user.name}}</h1>  <!-- NAME OF ACCOUNT ex; Rob Johnson -->
+  			<h2>{{post.user.screen_name}}</h2> <!-- HANDLE OF ACCOUNT ex: @robjohn808 -->
          
      
           </button>
             
 
   			<ion-card-content>
-  				<p [hidden] = "!post.expand"> {{post.text}}</p>
+  				<p [hidden] = "!post.expand"> {{post.text}}</p> <!-- TWEET TEXT -->
 
-  	 <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'> 
+  	 <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>  <!-- TWEET PHOTO -->
 
   			<ion-row [hidden] = "!post.expand">
   			  <ion-col>
