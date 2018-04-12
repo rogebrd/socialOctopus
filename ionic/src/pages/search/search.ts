@@ -27,8 +27,6 @@ export class SearchPage {
       }
     });
 
-
-
     this.navCtrl.push(SearchresultsPage);
     //this.responseData = result;
   }

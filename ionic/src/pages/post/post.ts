@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
-import {TwitPostProvider} from "../../providers/twit-post/twit-post";
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ApiProvider } from '../../providers/api/api';
 
 
 @IonicPage()
@@ -12,15 +12,32 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 export class PostPage {
 
-  postText: string = '';
+  input = {"status": ""};
+  // status: string = '';
   private postForm : FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public twitPostProvider: TwitPostProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
-              private formBuilder: FormBuilder) {
+              public toggleStatus: boolean, private toastCtrl: ToastController, private formBuilder: FormBuilder,
+              private api: ApiProvider) {
 
     this.postForm = this.formBuilder.group({
-      postText: ['', Validators.required],
+      input: ['', Validators.required],
+    });
+  }
+
+  postToTwitter(params){
+    if (!params) params = {};
+    console.log(this.input);
+
+    let response = this.api.apiPost('social/twitter/post', this.input).then(data => {
+      console.log(data);
+      let parsed = JSON.parse(data.toString());
+      if(parsed.people != null) {
+        //  this.api.setToken(parsed.token);
+        console.log(parsed.people);
+        this.success();
+        console.log('Posted status as' + this.input);
+      }
     });
   }
 
@@ -34,12 +51,6 @@ export class PostPage {
 
   swipeRightEvent(event){
       this.navCtrl.pop();
-  }
-
-  postToTwitter(){
-    this.twitPostProvider.postTweet(this.postText);
-    this.success();
-    console.log('Posted status as' + this.postText);
   }
 
   success(){
