@@ -36,9 +36,10 @@ export class PostPage {
       this.navCtrl.pop();
   }
 
-  postT(){
+  postToTwitter(){
     this.twitPostProvider.postTweet(this.postText);
     this.success();
+    console.log('Posted status as' + this.postText);
   }
 
   success(){
