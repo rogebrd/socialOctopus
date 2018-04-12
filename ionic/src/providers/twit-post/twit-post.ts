@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { TwitterService } from 'ng2-twitter';
 import 'rxjs/add/operator/map';
 
 
@@ -11,30 +10,12 @@ export class TwitPostProvider {
   consumerKey = 'vRoF2UprgZJTPQRzOrANtVsiF';
   consumerSecret = 'FpTcb4QiqPTA70vZ00S1ysV7JqV8QJBzQ1EjTtzEom5mwk4LWu';
 
-  constructor(private twitter: TwitterService) {
+  constructor() {
     console.log('Hello TwitPostProvider Provider');
   }
 
-  //setTokens(token, tokenSecret) {
-  //  this.token = token;
-  //  this.tokenSecret = tokenSecret;
-  //}
-
-  postTweet(text) {
-    return this.twitter.post(
-      'https://api.twitter.com/1.1/statuses/update.json',
-      {
-        status: text
-      },
-      {
-        consumerKey: this.consumerKey,
-        consumerSecret: this.consumerSecret
-      },
-      {
-        token: this.token,
-        tokenSecret: this.tokenSecret
-      }
-    )
-      .map(res => res.json());
+  postTweet(text){
+    console.log(text)
   }
+
 }

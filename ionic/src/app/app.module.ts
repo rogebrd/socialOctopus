@@ -15,7 +15,6 @@ import { SettingsPage} from '../pages/settings/settings';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
-import { TwitterService } from 'ng2-twitter';
 import {PostPage} from "../pages/post/post";
 import {TwitPostProvider} from "../providers/twit-post/twit-post";
 
@@ -57,7 +56,6 @@ import {TwitPostProvider} from "../providers/twit-post/twit-post";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
-    TwitterService,
     TwitPostProvider,
     {provide: Boolean, useValue: false},
 
