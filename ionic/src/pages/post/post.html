@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>New Post</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding (swipeRight) ="swipeRightEvent($event)">
+
+  <ion-list>
+
+    <ion-item no-lines>
+      <form [formGroup]="postForm" (ngSubmit)="logForm()">
+        <ion-item>
+          <ion-textarea rows="10" maxLength="280" placeholder="Write something..." clearInput formControlName="postText">
+          </ion-textarea>
+        </ion-item>
+      </form>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-icon name="logo-twitter" item-start></ion-icon>
+      <ion-label>Share on Twitter</ion-label>
+      <ion-toggle color="coral" [(ngModel)]="toggleStatus" checked="true"></ion-toggle>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="logo-instagram" item-start></ion-icon>
+      <ion-label>Share on Instagram</ion-label>
+      <ion-toggle disabled="" color="coral"></ion-toggle>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="logo-facebook" item-start></ion-icon>
+      <ion-label>Share on Facebook</ion-label>
+      <ion-toggle disabled="" color="coral"></ion-toggle>
+    </ion-item>
+
+    <button ion-button color="coral" full type="submit" [disabled]="!postForm.valid || !toggleStatus" (click)="postToTwitter()">
+      Post!
+    </button>
+
+  </ion-list>
+
+
+</ion-content>

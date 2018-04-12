@@ -6,7 +6,9 @@ import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { SearchPage } from '../pages/search/search';
 import { SignupPage } from '../pages/signup/signup';
+import { TestingPage } from '../pages/testing/testing';
 import { SuccessPage } from '../pages/success/success';
+import { HomePage } from '../pages/home/home';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchresultsPage } from '../pages/searchresults/searchresults';
@@ -15,6 +17,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import { SocialApiProvider } from '../providers/social-api/social-api';
+import {PostPage} from "../pages/post/post";
+import {TwitPostProvider} from "../providers/twit-post/twit-post";
+import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { ViewProfilePage } from '../pages/view-profile/view-profile';
+
 
 @NgModule({
   declarations: [
@@ -25,10 +32,15 @@ import { SocialApiProvider } from '../providers/social-api/social-api';
     SignupPage,
     SuccessPage,
     SearchresultsPage,
-    SettingsPage
+    SettingsPage,
+    HomePage,
+    TestingPage,
+    PostPage,
+    UserProfilePage,
+  ViewProfilePage
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     HttpModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp)
@@ -42,7 +54,12 @@ import { SocialApiProvider } from '../providers/social-api/social-api';
     SignupPage,
     SuccessPage,
     SearchresultsPage,
-    SettingsPage
+    SettingsPage,
+    HomePage,
+    TestingPage,
+    PostPage,
+    UserProfilePage,
+    ViewProfilePage
   ],
   providers: [
     StatusBar,
@@ -50,7 +67,8 @@ import { SocialApiProvider } from '../providers/social-api/social-api';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
     SocialApiProvider,
-   
+    TwitPostProvider,
+    {provide: Boolean, useValue: false},
   ]
 })
 export class AppModule {}

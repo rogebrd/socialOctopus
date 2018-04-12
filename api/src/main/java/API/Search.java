@@ -53,8 +53,11 @@ public class Search {
 
         }catch(Exception e){
             logger.log("ERROR: " + e.getMessage() + "\n");
+            JSONObject results = new JSONObject();
+            results.put("status",0);
+            results.put("Error: ",e.getMessage());
 
-            return ("{}");
+            return results.toJSONString();
         }
     }
 
@@ -71,6 +74,13 @@ public class Search {
 
             people.add(person);
         }
+
+        if(people.size() == 0){
+            results.put("status",0);
+        }else{
+            results.put("status",1);
+        }
+
         results.put("results", people);
 
         return results;
