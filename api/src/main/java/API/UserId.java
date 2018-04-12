@@ -7,6 +7,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import sun.awt.image.ImageWatched;
 
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
@@ -26,10 +27,10 @@ public class UserId {
         logger.log("Creating Connection...\n");
         connection = new RDSConnection();
         String userId = "";
-        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
+        LinkedHashMap<String, String> pathParams = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("pathParams"));
         int status = 0;
 
-
+        userId = pathParams.get("id");
         try {
             logger.log("Connecting...\n");
             connection.connect();
@@ -44,7 +45,6 @@ public class UserId {
           //  userId = postBody.get("username");
 
             // user ID is hard coded for now
-            userId = "bradrogers";
 
             logger.log("Querying... User table and Setting table\n");
             //query for search
@@ -73,31 +73,30 @@ public class UserId {
     }
 
     private JSONObject formatSearch(ResultSet res1, ResultSet res2) throws Exception {
-            JSONObject results = new JSONObject();
+        JSONObject results = new JSONObject();
 
-            JSONArray Profile = new JSONArray();
+        JSONArray Profile = new JSONArray();
 
-            JSONObject person = new JSONObject();
+        JSONObject person = new JSONObject();
 
+        res1.next();
 
-                person.put(UserId, res1.getString("userId"));
-                person.put(Name, res1.getString("name"));
-                person.put(ProfilePicUrl, res1.getString("profilePicUrl"));
-                person.put("Quotes", res1.getString("Quotes"));
+        person.put(UserId, res1.getString("userId"));
+        person.put(Name, res1.getString("name"));
+        person.put(ProfilePicUrl, res1.getString("profilePicsLink"));
+        person.put("Quotes", res1.getString("Quotes"));
 
-                Profile.add(person);
+        Profile.add(person);
 
-                while (res2.next()) {
-                    JSONObject socialMedia = new JSONObject();
-                    socialMedia.put("type", res2.getString("type"));
-                    socialMedia.put("socialMediaID", res2.getString("socialMediaID"));
+        while (res2.next()) {
+            JSONObject socialMedia = new JSONObject();
+            socialMedia.put("type", res2.getString("type"));
+            socialMedia.put("socialMediaID", res2.getString("socialMediaID"));
 
-                    Profile.add(socialMedia);
-                }
+            Profile.add(socialMedia);
+        }
 
-                results.put("results", Profile);
-
-
+        results.put("results", Profile);
 
         return results;
     }

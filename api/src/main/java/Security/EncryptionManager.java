@@ -16,7 +16,7 @@ public class EncryptionManager {
             if(res.next()){
                 return (res.getString("userId"));
             }else {
-                return ("bradrogers");
+                throw new Exception("Authentication Failed");
             }
     }
 }
