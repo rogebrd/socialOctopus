@@ -17,6 +17,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import {PostPage} from "../pages/post/post";
 import {TwitPostProvider} from "../providers/twit-post/twit-post";
+import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { ViewProfilePage } from '../pages/view-profile/view-profile';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import {TwitPostProvider} from "../providers/twit-post/twit-post";
     HomePage,
     TestingPage,
     PostPage
+    UserProfilePage,
+  ViewProfilePage
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,8 @@ import {TwitPostProvider} from "../providers/twit-post/twit-post";
     HomePage,
     TestingPage,
     PostPage
+    UserProfilePage,
+    ViewProfilePage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,84 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>userProfile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="box blue" align="center" >
+    <div><p> </p></div>
+    <button id="signup-button1" style="background-color: #d5f2f2">
+      <div align="center"> <ion-avatar > <img src="assets/img/phelps.png" style="border:2px solid white; border-radius:120px;width:120px ;height: auto;" /></ion-avatar></div>
+      <div style ="font-size:20px" align="center"> <p>{{name}}</p> </div>
+      <div style ="font-size:15px" align="center"> <p>username: {{uname}}</p> </div>
+    </button>
+
+    <div  align="center"><p>{{quote}}<p> </div>
+  </div>
+
+
+
+
+
+  <button ion-item (click)='expandAll();' >
+    Expanded / Minimized Toggle
+  </button>
+  <ion-list>
+    <ion-card *ngFor="let post of posts">
+      <!--	<button myitem (click)='handleClick(post);' </button>-->
+      <button (click)="expandItem(post)" ion-item>
+
+        <ion-avatar item-left >
+
+          <img [src]="post.user.profile_image_url">
+
+        </ion-avatar >
+        <ion-avatar item-right>
+          <img [src]="post.platformPic">
+        </ion-avatar>
+        <h1>{{post.user.name}}</h1>
+        <h2>{{post.user.screen_name}}</h2>
+
+
+      </button>
+
+
+      <ion-card-content >
+        <p [hidden] = "!post.expand"> {{post.text}}</p>
+
+        <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>
+
+        <ion-row [hidden] = "!post.expand" >
+          <ion-col>
+            <button (click)="likePost(post)" ion-button icon-left clear small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{post.user.favourites_count}} Likes</div>
+            </button>
+          </ion-col>
+          <ion-col  [hidden] = "!post.expand">
+            <button (click)="commentPost(post)" ion-button icon-left clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>{{post.retweet_count}} Comments</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center [hidden] = "!post.expand">
+            <ion-note>
+              <!--		{{post.date}} -->
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+
+    </ion-card>
+
+
+
+  </ion-list>
+
+
+
+</ion-content>
