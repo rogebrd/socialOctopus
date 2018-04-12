@@ -8,7 +8,6 @@ import { SearchPage } from '../pages/search/search';
 import { SignupPage } from '../pages/signup/signup';
 import { TestingPage } from '../pages/testing/testing';
 import { SuccessPage } from '../pages/success/success';
-import { HomePage } from '../pages/home/home';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchresultsPage } from '../pages/searchresults/searchresults';

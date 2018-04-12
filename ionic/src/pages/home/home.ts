@@ -24,7 +24,7 @@ export class HomePage {
   picsURL:any;
   uID:any;
 
-  constructor(public navCtrl: NavController, private api: ApiProvider, public http: Http) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private api: ApiProvider, public http: Http) {
         this.getFeed();
     
     //this.api.setToken(navParams.get('token'));
