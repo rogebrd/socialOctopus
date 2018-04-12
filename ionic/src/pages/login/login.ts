@@ -28,11 +28,36 @@ export class LoginPage {
       let parsed = JSON.parse(data.toString());
       if(parsed.status == 1){
         this.api.setToken(parsed.token);
-        
-        this.navCtrl.push(HomePage);
+
+        let input = {"term": ""};
+        input.term = this.userData.username;
+
+        this.retrieveUserInfo();
+
 
       }
     });
+
+  }
+
+
+  retrieveUserInfo() {
+
+
+
+      let response = this.api.apiGet('user/'+this.userData.username).then(data => {
+        //console.log(data);
+
+        let parsed = JSON.parse(data.toString());
+        //let status = 0;
+      //  status = parsed.status
+
+        console.log(data.toString());
+
+       // console.log(parsed.results.Quotes);
+        this.navCtrl.push(HomePage,{appName:parsed.results[0].name,quotes:parsed.results[0].Quotes,picsURL:parsed.results[0].profilePicsLink,uID:parsed.results[0].userID });
+
+      });
 
 
 
@@ -42,3 +67,6 @@ export class LoginPage {
     this.navCtrl.push(SignupPage);
   }
 }
+
+
+

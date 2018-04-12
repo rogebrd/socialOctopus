@@ -7,6 +7,7 @@ import { HomePage } from '../home/home';
 import { SettingsPage } from '../settings/settings'
 import { LoginPage } from '../login/login'
 import { ApiProvider } from '../../providers/api/api';
+import { UserProfilePage } from '../user-profile/user-profile';
 
 
 /**
@@ -46,5 +47,7 @@ export class TestingPage {
   goToSearchPage () {
     this.navCtrl.push(SearchPage);
   }
-
+  goToUserPage () {
+    this.navCtrl.push(UserProfilePage );
+  }
 }
