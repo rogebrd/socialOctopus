@@ -60,6 +60,10 @@ export class HomePage {
     this.navCtrl.push(SearchPage);
   }
 
+  goToPostPage() {
+    this.navCtrl.push(PostPage);
+  }
+
   getItems(event){
     console.log("Something entered in search bar")
   }
