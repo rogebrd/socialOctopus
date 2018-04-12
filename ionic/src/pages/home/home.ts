@@ -13,7 +13,7 @@ import { UserProfilePage } from '../user-profile/user-profile';
   templateUrl: 'home.html'
 })
 export class HomePage {
-	posts: any;
+	posts: Array<object>;
   noPhoto: 'style="display: none;"';
   itemExpandHeight: number = 200;
   expanded: boolean = false;
@@ -68,8 +68,8 @@ export class HomePage {
       let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
         console.log(JSON.parse(data));
-        this.posts = JSON.parse(data);
-        this.processFeed();
+        //this.posts = JSON.parse(data);
+        //this.processFeed();
       });
    //      this.http.get('../assets/textResponse.json').map(res => res.json()).subscribe(data => {
    //       console.log(data);
