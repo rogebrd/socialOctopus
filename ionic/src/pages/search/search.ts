@@ -8,6 +8,8 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class SearchPage {
   input = {"term": ""};
+  results;
+
   constructor(private api: ApiProvider, public navCtrl: NavController) {
     // temporary
   }
@@ -15,21 +17,20 @@ export class SearchPage {
     if (!params) params = {};
 
     console.log(this.input);
+    if (this.input.term!=  ""){
+      let response = this.api.apiPost('search', this.input).then(data => {
+        //console.log(data);
+        this.results = data;
+        let parsed = JSON.parse(data.toString());
+        let status = 0;
+        status = parsed.status
+        console.log(data.toString());
+        this.navCtrl.push(SearchresultsPage, {results: data.toString(), status: status});
+      });
+    }
 
-    let response = this.api.apiPost('search', this.input).then(data => {
-      console.log(data);
-      let parsed = JSON.parse(data.toString());
-      if(parsed.people != null){
-      //  this.api.setToken(parsed.token);
-        console.log(parsed.people);
-
-    //    this.navCtrl.push(SuccessPage);
-      }
-    });
 
 
-
-    this.navCtrl.push(SearchresultsPage);
     //this.responseData = result;
   }
 }

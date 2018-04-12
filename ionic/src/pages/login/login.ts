@@ -28,11 +28,33 @@ export class LoginPage {
       let parsed = JSON.parse(data.toString());
       if(parsed.status == 1){
         this.api.setToken(parsed.token);
-        
+
+        let input = {"term": ""};
+        input.term = this.userData.username;
+
+        this.retrieveUserInfo();
         this.navCtrl.push(HomePage);
 
       }
     });
+
+  }
+
+
+  retrieveUserInfo() {
+
+
+
+      let response = this.api.apiGet('user/'+this.userData.username).then(data => {
+        //console.log(data);
+
+        let parsed = JSON.parse(data.toString());
+        let status = 0;
+        status = parsed.status
+
+        console.log(data.toString());
+
+      });
 
 
 
@@ -42,3 +64,6 @@ export class LoginPage {
     this.navCtrl.push(SignupPage);
   }
 }
+
+
+
