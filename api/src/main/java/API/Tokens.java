@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 
 public class Tokens {
 
+    @Deprecated
     public String get(Object body, Context context){
         DatabaseConnection connection;
 
@@ -50,6 +51,7 @@ public class Tokens {
         return ("");
     }
 
+    @Deprecated
     private JSONObject formatTokens(ResultSet res){
         //TODO
 
