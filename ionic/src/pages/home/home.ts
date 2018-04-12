@@ -18,6 +18,7 @@ export class HomePage {
   itemExpandHeight: number = 200;
   expanded: boolean = false;
   twitterFeedEndpoint: '';
+  apiError: number = 0;
   
   appName:any;
   quotes:any;
@@ -67,9 +68,16 @@ export class HomePage {
     getFeed(){
       let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
-        console.log(JSON.parse(data));
-        //this.posts = JSON.parse(data);
-        //this.processFeed();
+        if(data[0] == 'E'){
+          this.apiError = 1;
+          console.log('API ERROR DETECTED');
+        }
+        else{
+          console.log(JSON.parse(data));
+          this.posts = JSON.parse(data);
+          this.processFeed();
+        }
+        
       });
    //      this.http.get('../assets/textResponse.json').map(res => res.json()).subscribe(data => {
    //       console.log(data);
