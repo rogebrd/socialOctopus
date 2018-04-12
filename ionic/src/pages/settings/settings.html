@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding (swipeRight) ="swipeRightEvent($event)">
   <form (ngSubmit)="updateSettings()">
     <ion-item>
       <ion-label>Name:</ion-label>

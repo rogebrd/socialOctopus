@@ -28,6 +28,10 @@ export class SettingsPage {
     console.log('ionViewDidLoad SettingsPage');
   }
 
+  swipeRightEvent(event){
+    this.navCtrl.pop();
+  }
+
   updateSettings(){
     console.log("submitted");
     console.log(this.settings);

@@ -33,4 +33,9 @@ export class SearchPage {
 
     //this.responseData = result;
   }
+
+  swipeRightEvent(event){
+    this.navCtrl.pop();
+  }
+
 }

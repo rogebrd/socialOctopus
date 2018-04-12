@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { PostPage } from '../post/post';
+import {SettingsPage} from "../settings/settings";
+import {SearchPage} from "../search/search";
 //import { PostPage } from '../post/post';
 import {SettingsPage} from "../settings/settings";
 import {SearchPage} from "../search/search";
@@ -59,9 +62,10 @@ export class HomePage {
     );
   }
 
-  // swipeLeftEvent(event) {
-  //   this.navCtrl.push(PostPage);
-  // }
+
+   swipeLeftEvent(event) {
+     this.navCtrl.push(PostPage);
+   }
 
   swipeRightEvent(event){
     this.navCtrl.pop();
@@ -80,9 +84,10 @@ export class HomePage {
 
   }
 
-  // goToPostPage() {
-  //   this.navCtrl.push(PostPage);
-  // }
+   goToPostPage() {
+     this.navCtrl.push(PostPage);
+   }
+
 
   getItems(event){
     console.log("Something entered in search bar")

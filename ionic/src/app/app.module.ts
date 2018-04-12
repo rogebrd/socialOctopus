@@ -15,6 +15,8 @@ import { SettingsPage} from '../pages/settings/settings';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
+import {PostPage} from "../pages/post/post";
+import {TwitPostProvider} from "../providers/twit-post/twit-post";
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { ViewProfilePage } from '../pages/view-profile/view-profile';
 
@@ -30,6 +32,7 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SettingsPage,
     HomePage,
     TestingPage,
+    PostPage
     UserProfilePage,
   ViewProfilePage
   ],
@@ -50,6 +53,7 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SettingsPage,
     HomePage,
     TestingPage,
+    PostPage
     UserProfilePage,
     ViewProfilePage
   ],
@@ -58,6 +62,8 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
+    TwitPostProvider,
+    {provide: Boolean, useValue: false},
 
   ]
 })
