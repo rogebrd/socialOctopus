@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { PostPage } from '../post/post';
 import {SettingsPage} from "../settings/settings";
+import {SearchPage} from "../search/search";
 
 @Component({
   selector: 'page-home',
@@ -51,8 +52,12 @@ export class HomePage {
     this.navCtrl.pop();
   }
 
-  goToSettings() {
+  goToSettingsPage() {
     this.navCtrl.push(SettingsPage);
+  }
+
+  goToSearchPage() {
+    this.navCtrl.push(SearchPage);
   }
 
   getItems(event){
