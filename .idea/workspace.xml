@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/ionic/src/pages/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/ionic/src/pages/home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ionic/src/pages/home/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ionic/src/pages/home/home.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ionic/src/pages/search/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/ionic/src/pages/search/search.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,20 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ionic/src/pages/home/home.html">
+      <file leaf-file-name="search.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ionic/src/pages/search/search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+            <state relative-caret-position="45">
+              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ionic/src/pages/home/home.ts">
+      <file leaf-file-name="search.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ionic/src/pages/search/search.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="63" column="32" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
+            <state relative-caret-position="556">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -49,7 +48,6 @@
         <option value="$PROJECT_DIR$/ionic/src/pages/home/home.scss" />
         <option value="$PROJECT_DIR$/ionic/src/theme/variables.scss" />
         <option value="$PROJECT_DIR$/ionic/src/pages/post/post.ts" />
-        <option value="$PROJECT_DIR$/ionic/src/pages/search/search.html" />
         <option value="$PROJECT_DIR$/ionic/src/pages/search/search.ts" />
         <option value="$PROJECT_DIR$/ionic/src/pages/settings/settings.html" />
         <option value="$PROJECT_DIR$/ionic/src/pages/settings/settings.ts" />
@@ -58,6 +56,7 @@
         <option value="$PROJECT_DIR$/ionic/src/providers/twit-post/twit-post.ts" />
         <option value="$PROJECT_DIR$/ionic/src/pages/home/home.ts" />
         <option value="$PROJECT_DIR$/ionic/src/pages/home/home.html" />
+        <option value="$PROJECT_DIR$/ionic/src/pages/search/search.html" />
       </list>
     </option>
   </component>
@@ -189,12 +188,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523391832378</updated>
-      <workItem from="1523391836783" duration="7567000" />
+      <workItem from="1523391836783" duration="7674000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7567000" />
+    <option name="totallyTimeSpent" value="7674000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="707" extended-state="0" />
@@ -262,23 +261,6 @@
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ionic/src/pages/search/search.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ionic/src/pages/search/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="113" selection-start-line="17" selection-start-column="113" selection-end-line="17" selection-end-column="113" />
         </state>
       </provider>
     </entry>
@@ -367,6 +349,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionic/src/pages/search/search.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionic/src/pages/search/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
         </state>
       </provider>
     </entry>

@@ -1,21 +1,24 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
+      Search Page
     </ion-title>
-    <form id="search-form8">
-      <ion-item id="search-input10">
-        <ion-label floating>
-          Search
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="input.term" name = "term"></ion-input>
-      </ion-item>
-    </form>
-    <button id="search-button5" ion-button color="secondary" block on-click="goSearch()">
-      go
-    </button>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page4" style="background-color:#f0ffff;" padding (swipeRight) ="swipeRightEvent($event)">
+
+  <form id="search-form8">
+    <ion-item id="search-input10">
+      <ion-label floating>
+        Search
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="input.term" name = "term"></ion-input>
+    </ion-item>
+  </form>
+  <button id="search-button5" ion-button color="secondary" block on-click="goSearch()">
+    go
+  </button>
+
   <img src="assets/img/PZG5FrbjRmiy7xVyFMyq_2a10410ce245411ac98632bc6bb1e773.png" style="display:block;width:50%;height:auto;margin-left:auto;margin-right:auto;" />
 
 </ion-content>
