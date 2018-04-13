@@ -111,7 +111,7 @@ public class TwitterPost {
 
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
-        String term = postBody.get("status");
+        String status = postBody.get("status");
 
         try {
             logger.log("Connecting...\n");
@@ -122,7 +122,7 @@ public class TwitterPost {
 
             logger.log("Posting...\n");
             // update the user's status
-            twitter.updateStatus(term);
+            twitter.updateStatus(status);
 
             logger.log("Disconnecting...\n");
             connection.disconnect();
