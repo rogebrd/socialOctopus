@@ -28,27 +28,27 @@ export class ViewProfilePage {
     this.uname = navParams.get('uid');
     this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
 
-        this.posts = data;
-        console.log("worked");
-        for(let i = 0; i<= this.posts.length - 1; i++){
-          this.posts[i].platformPic = '/assets/imgs/twitter.png';
-          //    this.posts[i].date = this.calculateSince(this.posts[i].created_at);
-          this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
-          if (typeof this.posts[i].entities.media !== 'undefined'){
-            this.posts[i].hasPhoto = true;
-            this.posts[i].photo = this.posts[i].entities.media[0].media_url;
-          }
-          else{
-            this.posts[i].hasPhoto = false;
-            this.posts[i].photo = null;
-          }
-
+      this.posts = data;
+      console.log("worked");
+      for(let i = 0; i<= this.posts.length - 1; i++){
+        this.posts[i].platformPic = '/assets/imgs/twitter.png';
+        //    this.posts[i].date = this.calculateSince(this.posts[i].created_at);
+        this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
+        if (typeof this.posts[i].entities.media !== 'undefined'){
+          this.posts[i].hasPhoto = true;
+          this.posts[i].photo = this.posts[i].entities.media[0].media_url;
         }
-      },
-      err => {
-        console.log("Oops!");
+        else{
+          this.posts[i].hasPhoto = false;
+          this.posts[i].photo = null;
+        }
+
       }
-    );
+    },
+    err => {
+      console.log("Oops!");
+    }
+  );
   }
 
   ionViewDidLoad() {
@@ -82,5 +82,5 @@ export class ViewProfilePage {
     console.log(post);
 
   }
-
+  
 }

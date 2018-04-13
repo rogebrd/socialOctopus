@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-  private token = "";
+  private token = "rogers";
 
   //config.set('SOToken', "rogers");
   //config.ammend('Content-Type', 'application/json');
@@ -26,10 +26,6 @@ export class ApiProvider {
 
   setToken(token){
     this.token = token;
-  }
-
-  getToken(){
-    return (this.token);
   }
 
   apiGet(endpoint){

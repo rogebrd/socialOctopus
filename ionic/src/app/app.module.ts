@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
-import { HomePage } from '../pages/home/home';
 import { SearchPage } from '../pages/search/search';
 import { SignupPage } from '../pages/signup/signup';
 import { TestingPage } from '../pages/testing/testing';
 import { SuccessPage } from '../pages/success/success';
+import { ViewProfilePage } from '../pages/view-profile/view-profile';
+import { HomePage } from '../pages/home/home';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchresultsPage } from '../pages/searchresults/searchresults';
@@ -15,18 +16,14 @@ import { SettingsPage} from '../pages/settings/settings';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
-import { SocialApiProvider } from '../providers/social-api/social-api';
-import {PostPage} from "../pages/post/post";
-import {TwitPostProvider} from "../providers/twit-post/twit-post";
 import { UserProfilePage } from '../pages/user-profile/user-profile';
-import { ViewProfilePage } from '../pages/view-profile/view-profile';
+import { TestSuiteProvider } from '../providers/test-suite/test-suite';
 
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    HomePage,
     SearchPage,
     SignupPage,
     SuccessPage,
@@ -34,9 +31,8 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SettingsPage,
     HomePage,
     TestingPage,
-    PostPage,
     UserProfilePage,
-  ViewProfilePage
+    ViewProfilePage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +44,6 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
   entryComponents: [
     MyApp,
     LoginPage,
-    HomePage,
     SearchPage,
     SignupPage,
     SuccessPage,
@@ -56,7 +51,6 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SettingsPage,
     HomePage,
     TestingPage,
-    PostPage,
     UserProfilePage,
     ViewProfilePage
   ],
@@ -65,9 +59,8 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
-    SocialApiProvider,
-    TwitPostProvider,
-    {provide: Boolean, useValue: false},
+    TestSuiteProvider,
+
   ]
 })
 export class AppModule {}

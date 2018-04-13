@@ -12,23 +12,23 @@
   <div class="box blue" align="center" >
     <div><p> </p></div>
     <button id="signup-button1" style="background-color: #d5f2f2">
-      <div align="center"> <ion-avatar > <img src="assets/img/phelps.png" style="border:2px solid white; border-radius:120px;width:120px ;height: auto;" /></ion-avatar></div>
-      <div style ="font-size:20px" align="center"> <p>{{name}}</p> </div>
-      <div style ="font-size:15px" align="center"> <p>username: {{uname}}</p> </div>
+<div align="center"> <ion-avatar > <img src="assets/img/phelps.png" style="border:2px solid white; border-radius:120px;width:120px ;height: auto;" /></ion-avatar></div>
+  <div style ="font-size:20px" align="center"> <p>{{name}}</p> </div>
+  <div style ="font-size:15px" align="center"> <p>username: {{uname}}</p> </div>
     </button>
 
     <div  align="center"><p>{{quote}}<p> </div>
-  </div>
+ </div>
 
 
 
 
 
-  <button ion-item (click)='expandAll();' >
-    Expanded / Minimized Toggle
-  </button>
+ <button ion-item (click)='expandAll();' >
+  Expanded / Minimized Toggle
+</button>
   <ion-list>
-    <ion-card *ngFor="let post of posts">
+   <ion-card *ngFor="let post of posts">
       <!--	<button myitem (click)='handleClick(post);' </button>-->
       <button (click)="expandItem(post)" ion-item>
 

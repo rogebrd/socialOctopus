@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewProfilePage } from '../view-profile/view-profile';
+import { TestingPage } from '../testing/testing';
 
 /**
  * Generated class for the SearchresultsPage page.
@@ -21,6 +22,7 @@ export class SearchresultsPage {
   names = [];
   u_names = [];
   message = [];
+  params = {test : false, code: ""};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.results = navParams.get('results');
     // var test = (JSON.parse(this.results));
@@ -64,22 +66,33 @@ export class SearchresultsPage {
         i++;
       }
 
+      if (navParams.get('test')== true){
+        this.params = {test: true, code: "-6"};
+        this.navCtrl.push(TestingPage, this.params);
+      }
+
       //console.log(comeon);
       //this.results = comeon;
       //this.names[0] = comeon.name;
       //this.u_names[0] = comeon.userId;
     } else {
       this.message[0] = "No results found :(";
+      if (navParams.get('test')== true){
+        this.params = {test: true, code: "-6"};
+        this.navCtrl.push(TestingPage, this.params);
+      }
     }
 
   }
 
   ionViewDidLoad() {
-    //console.log("hello");
-  }
+    console.log("ionViewDidLoad SearchResultsPage");
 
+  }
   goToViewProfilePage(i){
-    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i]});
+    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i], test: this.params.test, code:
+      this.params.code});
   }
 
 }
+

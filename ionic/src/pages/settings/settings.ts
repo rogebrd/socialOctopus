@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import "rxjs/add/operator/map";
 import { ApiProvider } from '../../providers/api/api';
 import { SuccessPage } from '../success/success';
+import { TestingPage } from '../testing/testing';
 
 /**
  * Generated class for the SettingsPage page.
@@ -21,15 +22,17 @@ export class SettingsPage {
 
   public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":""};
 
-  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
+  params = {test : false, code: ""};
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(navParams.get('test'));
+    if (navParams.get('test')== true){
+      this.params = {test: true, code: navParams.get('code')};
+      this.navCtrl.push(TestingPage, this.params);
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
-  }
-
-  swipeRightEvent(event){
-    this.navCtrl.pop();
   }
 
   updateSettings(){
