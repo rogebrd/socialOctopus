@@ -28,8 +28,8 @@ To test it, do test all. It might crush at some page but the test will continue.
 
 Testing already registered accounts;
 ```
-username:bradrogers;
-password:brad;
+username:bradrogers
+password:brad
 ```
 
 Once open, you can register for an account, and login and play around with the features
