@@ -12,6 +12,19 @@ $ git clone
 $ cd socialOctopus/ionic
 $ ionic lab
 ```
+ionic lab might ask you whether to update something, click y
+if it throws error
+do 
+```
+rm package-lock.json
+npm install
+```
+
+All individual testing page should only serves as a demonstration, please do not enter any fields which might interrupt backend database.
+
+Do normal walk through log in and the app should work correctly.
+
+To test it, do test all. It might crush at some page but the test will continue. Check console for specifics.
 
 Once open, you can register for an account, and login and play around with the features
 
