@@ -28,7 +28,7 @@ export class TestingPage {
   quotes:any;
   picsURL:any;
   uID:any;
-  loginWent:0;
+  loginWent=0;
   params = {test : false, code: ""};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
