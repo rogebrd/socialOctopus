@@ -23,7 +23,7 @@ export class SettingsPage {
   public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":""};
 
   params = {test : false, code: ""};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
     console.log(navParams.get('test'));
     if (navParams.get('test')== true){
       this.params = {test: true, code: navParams.get('code')};
