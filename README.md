@@ -26,9 +26,14 @@ Do normal walk through log in and the app should work correctly.
 
 To test it, do test all. It might crush at some page but the test will continue. Check console for specifics.
 
+Testing already registered accounts;
+```
+username:bradrogers;
+password:brad;
+```
+
 Once open, you can register for an account, and login and play around with the features
 
-Note: You must manually add an account from the edit user page (Swipe Right)
 
 If you would prefer to skip this step and use a test account we have created, you can login with the following credentials: 
 
