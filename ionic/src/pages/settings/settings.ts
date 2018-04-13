@@ -24,7 +24,7 @@ export class SettingsPage {
 
   params = {test : false, code: ""};
   constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
-    console.log(navParams.get('test'));
+    //console.log(navParams.get('test'));
     if (navParams.get('test')== true){
       this.params = {test: true, code: navParams.get('code')};
       this.navCtrl.push(TestingPage, this.params);
@@ -32,7 +32,7 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    //console.log('ionViewDidLoad SettingsPage');
   }
 
   updateSettings(){
@@ -63,13 +63,13 @@ export class SettingsPage {
         console.log(data);
         let str = data.toString();
        if(str==='update successful'){
-         //
+    
         console.log(str);
 
        }
 
       });
-
+  
 
 
   }

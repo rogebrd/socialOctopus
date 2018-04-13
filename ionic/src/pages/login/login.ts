@@ -28,6 +28,7 @@ export class LoginPage {
   }
 
   login(){
+    try {
     let response = this.api.apiPost('auth/login', this.userData)
     .then(data => {
 //console.log(data);
@@ -45,6 +46,10 @@ export class LoginPage {
         this.navCtrl.push(TestingPage, this.params);
       }
     });
+  } catch (err){
+    this.params.code = "-1";
+        this.navCtrl.push(TestingPage, this.params);
+  }
     
     
   }

@@ -25,6 +25,7 @@ export class SignupPage {
 
 
   signup(){
+  try {
     let response = this.api.apiPost('auth/create', this.userData)
       .then(data => {
         //console.log(data);
@@ -38,7 +39,9 @@ export class SignupPage {
         }
         
       });
-
+    } catch (err){
+      
+    }
 
 
   }

@@ -67,8 +67,8 @@ export class SearchresultsPage {
       }
 
       if (navParams.get('test')== true){
-        this.params = {test: true, code: "-6"};
-        this.navCtrl.push(TestingPage, this.params);
+        this.params = {test: true, code: "6"};
+        this.goToViewProfilePage(0);
       }
 
       //console.log(comeon);

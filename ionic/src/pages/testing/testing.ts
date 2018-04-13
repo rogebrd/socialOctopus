@@ -83,22 +83,40 @@ export class TestingPage {
   testAll () {
     
     this.params = {test : true, code: ""};
-    this.goToLoginPage();
-   
-    this.params = {test : true, code: ""};
-    this.goToSignupPage();
-    
-    this.params = {test : true, code: ""};
-    this.goToHomePage();
-  
-    this.params = {test : true, code: ""};
-    this.goToUserPage();
-   
-    this.params = {test : true, code: ""};
-    this.goToSettingsPage();
-  
-    this.params = {test : true, code: ""};
     this.goToSearchPage();
+    setTimeout(() => {
+      this.params = {test : true, code: ""};
+      this.goToLoginPage();
+      setTimeout(() => {
+        this.params = {test : true, code: ""};
+        this.goToSignupPage();
+      }, 6000);
+      setTimeout(() => {
+        this.params = {test : true, code: ""};
+        this.goToHomePage();
+      }, 6000);
+      setTimeout(() => {
+        this.params = {test : true, code: ""};
+        this.goToUserPage();
+      }, 6000);
+      setTimeout(() => {
+        this.params = {test : true, code: ""};
+        this.goToSettingsPage();
+      }, 6000);
+    }, 6000);
+    
+  
+   // this.params = {test : true, code: ""};
+   // this.goToHomePage();
+   
+  //  this.params = {test : true, code: ""};
+  //  this.goToUserPage();
+   
+  //  this.params = {test : true, code: ""};
+   // this.goToSettingsPage();
+    
+  //  this.params = {test : true, code: ""};
+  //  this.goToSearchPage();
     
 
    

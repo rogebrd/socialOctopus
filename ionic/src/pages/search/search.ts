@@ -23,7 +23,7 @@ export class SearchPage {
     //console.log(this.input);
     if (this.input.term!=  ""){
       let response = this.api.apiPost('search', this.input).then(data => {
-        //console.log(data);
+       // console.log(data);
         this.results = data;
         let parsed = JSON.parse(data.toString());
         let status = 0;
