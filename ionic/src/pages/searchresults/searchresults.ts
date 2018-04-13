@@ -1,0 +1,105 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ViewProfilePage } from '../view-profile/view-profile';
+import { TestingPage } from '../testing/testing';
+
+/**
+ * Generated class for the SearchresultsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-searchresults',
+  templateUrl: 'searchresults.html',
+})
+export class SearchresultsPage {
+  people: any;
+  results: any;
+  resoolt: any;
+  names = [];
+  u_names = [];
+  message = [];
+  quote = [];
+  params = {test : false, code: ""};
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.results = navParams.get('results');
+    // var test = (JSON.parse(this.results));
+    //console.log(test[0].results);
+    let status = 0;
+    status = navParams.get('status');
+    if (status == 1){
+      let str = ""
+      let i = 0;
+      let size = 0;
+      while (i<this.results.length){
+        str+=this.results[i];
+        i++;
+      }
+
+      i = 0;
+
+
+      var comeon = JSON.parse(str);
+      this.resoolt = comeon;
+      console.log(comeon.results[i].name);
+      while (i<comeon.results.length){
+        let first = JSON.stringify(comeon.results[i].name);
+        let second = "";
+        let third = JSON.stringify(comeon.results[i].userId);
+        let fourth = "";
+        let fifth = JSON.stringify(comeon.results[i].Quotes);
+        let sixth = "";
+        console.log(third);
+        let j = 1;
+        while (first[j]!= "\""){
+          second+= first[j];
+          j++;
+        }
+        j = 1;
+        while (third[j]!= "\""){
+          fourth+= third[j];
+          j++;
+        }
+        j = 1;
+        while (fifth[j]!= "\""){
+          sixth+= fifth[j];
+          j++;
+        }
+
+        this.names[i] = second;
+        this.u_names[i] = fourth;
+        this.quote[i] = sixth;
+        i++;
+      }
+
+      if (navParams.get('test')== true){
+        this.params = {test: true, code: "6"};
+        this.goToViewProfilePage(0);
+      }
+
+      //console.log(comeon);
+      //this.results = comeon;
+      //this.names[0] = comeon.name;
+      //this.u_names[0] = comeon.userId;
+    } else {
+      this.message[0] = "No results found :(";
+      if (navParams.get('test')== true){
+        this.params = {test: true, code: "-6"};
+        this.navCtrl.push(TestingPage, this.params);
+      }
+    }
+
+  }
+
+  ionViewDidLoad() {
+    //console.log("hello");
+  }
+
+  goToViewProfilePage(i){
+    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i], quote: this.quote[i],test: this.params.test, code: this.params.code});
+  }
+
+}
