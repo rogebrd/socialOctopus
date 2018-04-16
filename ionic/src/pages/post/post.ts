@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
-import {TwitPostProvider} from "../../providers/twit-post/twit-post";
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ApiProvider } from '../../providers/api/api';
 
 
 @IonicPage()
@@ -12,11 +12,12 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 export class PostPage {
 
+  input = {"status": ""};
   postText: string = '';
   private postForm : FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public twitPostProvider: TwitPostProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
+              private api: ApiProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
               private formBuilder: FormBuilder) {
 
     this.postForm = this.formBuilder.group({
@@ -37,7 +38,17 @@ export class PostPage {
   }
 
   postToTwitter(){
-    this.twitPostProvider.postTweet(this.postText);
+    if (this.input.status != ""){
+      let response = this.api.apiPost('TwitterPost', this.input).then(data => {
+        //console.log(data);
+        this.results = data;
+        let parsed = JSON.parse(data.toString());
+        let status = 0;
+        status = parsed.status
+        console.log(data.toString());
+      });
+    }
+
     this.success();
     console.log('Posted status as' + this.postText);
   }

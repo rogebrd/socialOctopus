@@ -7,15 +7,52 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.TwitterObjectFactory;
+import twitter4j.auth.AccessToken;
+import twitter4j.conf.ConfigurationBuilder;
 
+import java.util.List;
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 
 public class TwitterPost {
 
-    public static final String userId = "userId";
-    public static final String name = "name";
-    public static final String profilePicUrl = "profilePicsLink";
+    private static final String consumer_token = "6WUiXKkUgfYTtPQxn4PvFg32z";
+    private static final String consumer_secret = "M4CVwQPTFooisegoQX8iO8nxtygFMxjeGvkrMkc96yyTNg5Ou1";
+
+    private static Twitter createTwitterClient(DatabaseConnection connection, String userId) throws Exception {
+        String access_token = "";
+        String access_secret = "";
+
+        //Get the twitter factory and populate the consumer info
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setJSONStoreEnabled(true);
+        //cb.setHttpConnectionTimeout(100000);
+
+        Twitter twitter = new TwitterFactory(cb.build()).getInstance();
+        twitter.setOAuthConsumer(consumer_token, consumer_secret);
+
+        //select tokens from db
+        ResultSet res = connection.SELECT("SELECT * FROM accounts WHERE userId='" + userId + "' AND type='twitter'");
+
+        //select tokens
+        if(res.next()){
+            access_token = res.getString("access_token");
+            access_secret = res.getString("access_secret");
+        }else{
+            throw new Exception("Twitter account not found");
+        }
+
+        //add access token info to twitter
+        AccessToken token = new AccessToken(access_token, access_secret);
+        twitter.setOAuthAccessToken(token);
+
+        return (twitter);
+    }
 
     public String post(Object body, Context context){
         DatabaseConnection connection;
@@ -27,7 +64,7 @@ public class TwitterPost {
 
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
-        String term = postBody.get("term");
+        String term = postBody.get("status");
 
         try {
             logger.log("Connecting...\n");
@@ -36,20 +73,20 @@ public class TwitterPost {
             logger.log("Verifying...\n");
             EncryptionManager.verify(connection, body);
 
-            logger.log("Querying...\n");
-            //query for search
-            ResultSet res = connection.SELECT("SELECT * FROM Utility.users u,Utility.settings s WHERE u.userId = s.userId AND (u.userId LIKE '%" + term + "%' OR u.name LIKE '%" + term + "%')");
-
-            logger.log("Formatting...\n");
-            //Format results
-            JSONObject formattedResults = formatSearch(res);
+            logger.log("Updating status...\n");
+            //Update status
+            try {
+                Status status = twitter.updateStatus(term);
+                System.out.println("Successfully updated the status to [" + status.getText() + "].");
+            } catch (TwitterException te) {
+                te.printStackTrace();
+                System.out.println("Failed to get timeline: " + te.getMessage());
+            }
 
             logger.log("Disconnecting...\n");
             connection.disconnect();
 
-            logger.log(formattedResults.toJSONString());
-
-            return (formattedResults.toJSONString());
+            return;
 
         }catch(Exception e){
             logger.log("ERROR: " + e.getMessage() + "\n");
@@ -60,30 +97,4 @@ public class TwitterPost {
             return results.toJSONString();
         }
     }
-
-    private JSONObject formatSearch(ResultSet res) throws Exception {
-        JSONObject results = new JSONObject();
-
-        JSONArray people = new JSONArray();
-        while(res.next()){
-            JSONObject person = new JSONObject();
-
-            person.put(userId, res.getString(userId));
-            person.put(name, res.getString(name));
-            person.put(profilePicUrl, res.getString(profilePicUrl));
-
-            people.add(person);
-        }
-
-        if(people.size() == 0){
-            results.put("status",0);
-        }else{
-            results.put("status",1);
-        }
-
-        results.put("results", people);
-
-        return results;
-    }
-
 }
