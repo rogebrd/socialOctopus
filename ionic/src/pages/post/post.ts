@@ -11,6 +11,7 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class PostPage {
+  token:any;
 
   postText: string = '';
   private postForm : FormGroup;
@@ -18,6 +19,7 @@ export class PostPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public twitPostProvider: TwitPostProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
               private formBuilder: FormBuilder) {
+
 
     this.postForm = this.formBuilder.group({
       postText: ['', Validators.required],

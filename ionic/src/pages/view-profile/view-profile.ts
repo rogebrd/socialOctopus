@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { TestingPage } from '../testing/testing';
 
 /**
  * Generated class for the ViewProfilePage page.
@@ -23,9 +24,11 @@ export class ViewProfilePage {
   name = "Michael Phelps";
   uname = "";
   quote = "Life is like a box of chocolates";
+  params = {test : false, code: ""};
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.name = navParams.get('name');
     this.uname = navParams.get('uid');
+    this.quote = navParams.get('quote');
     this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
 
         this.posts = data;
@@ -43,6 +46,11 @@ export class ViewProfilePage {
             this.posts[i].photo = null;
           }
 
+        }
+
+        if (navParams.get('test')== true){
+          this.params = {test: true, code: navParams.get('code')};
+          this.navCtrl.push(TestingPage, this.params);
         }
       },
       err => {

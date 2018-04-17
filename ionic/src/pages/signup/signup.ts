@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { ApiProvider } from '../../providers/api/api';
+import { TestingPage } from '../testing/testing';
 
 @Component({
   selector: 'page-signup',
@@ -9,9 +10,17 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class SignupPage {
   responseData : any;
-  userData = {"name": "", "username": "", "password": ""}
+  userData = {"name": "", "username": "", "password": ""};
+  params = {test : false, code: ""};
 
-  constructor(private api: ApiProvider, public navCtrl: NavController) {
+  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
+    if (navParams.get('test')== true){
+      //console.log("login test is true");
+      this.createSignup();
+      this.params = {test: true, code: "2"};
+      this.signup();
+
+    }
   }
 
 
@@ -25,11 +34,28 @@ export class SignupPage {
 
           this.navCtrl.push(SuccessPage);
 
+        }else if (this.params.test == true){
+          this.params.code = "-1";
+          this.navCtrl.push(TestingPage, this.params);
         }
       });
 
 
 
+  }
+
+  createSignup(){
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++){
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    }
+    //console.log(text);
+    this.userData.name=text;
+    this.userData.password=text;
+    this.userData.username=text;
   }
 
   goToSuccess(){
