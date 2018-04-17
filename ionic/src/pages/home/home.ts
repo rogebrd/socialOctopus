@@ -13,7 +13,7 @@ import { UserProfilePage } from '../user-profile/user-profile';
   templateUrl: 'home.html'
 })
 export class HomePage {
-	posts: Array<object>;
+	posts: any;
   noPhoto: 'style="display: none;"';
   itemExpandHeight: number = 200;
   expanded: boolean = false;
