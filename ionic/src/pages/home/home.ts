@@ -109,15 +109,9 @@ export class HomePage {
           console.log('API ERROR DETECTED');
           this.goToErrorFeedPage();
         }
-<<<<<<< HEAD
         else {
           console.log(JSON.parse(String(data)));
           this.posts = JSON.parse(String(data));
-=======
-        else{
-          console.log(JSON.parse(data));
-          this.posts = JSON.parse(data);
->>>>>>> b28932f350d4c750ab2e2eb2c8990b9dbc309fb5
           this.processFeed();
         }
       });
