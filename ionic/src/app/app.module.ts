@@ -20,6 +20,7 @@ import {PostPage} from "../pages/post/post";
 import {TwitPostProvider} from "../providers/twit-post/twit-post";
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { ViewProfilePage } from '../pages/view-profile/view-profile';
+import { ErrorFeedPage } from '../pages/error-feed/error-feed';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     TestingPage,
     PostPage,
     UserProfilePage,
-  ViewProfilePage
+  ViewProfilePage,
+    ErrorFeedPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     TestingPage,
     PostPage,
     UserProfilePage,
-    ViewProfilePage
+    ViewProfilePage,
+    ErrorFeedPage
   ],
   providers: [
     StatusBar,

@@ -4,7 +4,7 @@
 
 ### Build Instructions
 
-Building the project is relatively simple; you must have ionic installed on the computer you are using and then check out the tagged 'iteration_2' code.  Once this has been done, cd into the ionic directory and run 'ionic lab' to start a local server to test the code in a local browser.  'ionic lab' allows you to see the application in a prepackaged iOS, Android, or Windows emulator.  If you wish to view the application natively in the browser, run 'ionic serve'.  
+Building the project is relatively simple; you must have ionic installed on the computer you are using and then check out the tagged 'Iteration2' code.  Once this has been done, cd into the ionic directory and run 'ionic lab' to start a local server to test the code in a local browser.  'ionic lab' allows you to see the application in a prepackaged iOS, Android, or Windows emulator.  If you wish to view the application natively in the browser, run 'ionic serve'.  
 
 ```sh
 $ mkdir socialOctopus

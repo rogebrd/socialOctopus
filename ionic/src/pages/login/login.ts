@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { SignupPage } from '../signup/signup';
 import { SearchPage } from '../search/search';
 import { HomePage } from '../home/home';
 import { ApiProvider } from '../../providers/api/api';
+import { TestingPage } from '../testing/testing';
 
 
 @Component({
@@ -14,11 +15,23 @@ import { ApiProvider } from '../../providers/api/api';
 export class LoginPage {
   responseData : any;
   userData = {"username": "", "password": ""}
-
+  token:any;
+  params = {test : false, code: ""};
   private creds: any;
+  appName:any;
+  quotes:any;
+  picsURL:any;
+  uID:any;
 
-  constructor(private api: ApiProvider, public navCtrl: NavController) {
+  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
    // temporary
+    if (navParams.get('test')== true){
+      //console.log("login test is true");
+      this.userData = {"username": "hey", "password": "hey"};
+      this.params = {test: true, code: "1"};
+      this.login();
+
+    }
   }
 
   login(){
@@ -27,14 +40,19 @@ export class LoginPage {
       console.log(data);
       let parsed = JSON.parse(data.toString());
       if(parsed.status == 1){
+        this.token = parsed.token;
         this.api.setToken(parsed.token);
 
         let input = {"term": ""};
         input.term = this.userData.username;
 
         this.retrieveUserInfo();
+        this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
 
-
+      } else if (this.params.test == true){
+       this.retrieveUserInfo();
+        this.params.code = "-1";
+        this.navCtrl.push(TestingPage, {token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
       }
     });
 
@@ -44,8 +62,7 @@ export class LoginPage {
   retrieveUserInfo() {
 
 
-
-      let response = this.api.apiGet('user/'+this.userData.username).then(data => {
+    let response = this.api.apiGet('user/'+this.userData.username).then(data => {
         //console.log(data);
 
         let parsed = JSON.parse(data.toString());
@@ -53,13 +70,13 @@ export class LoginPage {
       //  status = parsed.status
 
         console.log(data.toString());
+        this.appName = parsed.results[0].name;
+          this.quotes= parsed.results[0].Quotes;
+          this.picsURL=parsed.results[0].profilePicsLink;
+          this.uID=this.userData.username;
 
-       // console.log(parsed.results.Quotes);
-        this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:parsed.results[0].name,quotes:parsed.results[0].Quotes,picsURL:parsed.results[0].profilePicsLink,uID:parsed.results[0].userID });
 
       });
-
-
 
   }
 
