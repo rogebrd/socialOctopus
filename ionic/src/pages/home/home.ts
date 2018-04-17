@@ -20,6 +20,7 @@ export class HomePage {
   itemExpandHeight: number = 200;
   expanded: boolean = false;
   twitterFeedEndpoint: '';
+  apiError: number = 0;
   token : any;
 
   appName:any;
@@ -48,8 +49,30 @@ export class HomePage {
         this.getFeed();
 
 
+    // this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
 
+    //     this.posts = data;
+    //     console.log("worked");
+    //     for(let i = 0; i<= this.posts.length - 1; i++){
+    //       this.posts[i].platformPic = '/assets/imgs/twitter.png';
+    //       //    this.posts[i].date = this.calculateSince(this.posts[i].created_at);
+    //       this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
+    //       if (typeof this.posts[i].entities.media !== 'undefined'){
+    //         this.posts[i].hasPhoto = true;
+    //         this.posts[i].photo = this.posts[i].entities.media[0].media_url;
+    //       }
+    //       else{
+    //         this.posts[i].hasPhoto = false;
+    //         this.posts[i].photo = null;
+    //       }
 
+    //     }
+    //   },
+    //   err => {
+    //     console.log("Oops!");
+    //   }
+    // );
+    
   	}
   	displayFakePage() {
 
@@ -81,15 +104,16 @@ export class HomePage {
   getFeed() {
     let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
-        if (data[0] == 'E') {
+        if(data[0] == 'E'){
+          this.apiError = 1;
+          console.log('API ERROR DETECTED');
           this.goToErrorFeedPage();
         }
-        else {
+        else{
           console.log(JSON.parse(data));
           this.posts = JSON.parse(data);
           this.processFeed();
         }
-
       });
   }
 
