@@ -42,10 +42,18 @@ export class PostPage {
       let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
         console.log(data);
         this.success();
-        console.log('Posted status as' + this.postText);
+        console.log('Posted status as' + this.input.status);
       }, error => {
         this.showError(error);
       });
+    }
+    else {
+      let alert = this.alertCtrl.create({
+        title: 'Empty Post',
+        message: 'Post can not be empty.',
+        buttons: ['OK']
+      });
+      alert.present(prompt);
     }
   }
 
@@ -57,7 +65,7 @@ export class PostPage {
     toast.present();
   }
 
-  private showError(text) {
+  showError(text) {
     this.loading.dismiss().then(() => {
       let alert = this.alertCtrl.create({
         title: 'Fail',
