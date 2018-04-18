@@ -57,6 +57,26 @@ export class PostPage {
     }
   }
 
+  postToTumblr(){
+    if (this.input.status != ""){
+      let response = this.api.apiPost('/social/tumblr/post', this.input).then(data => {
+        console.log(data);
+        this.success();
+        console.log('Posted status as' + this.input.status);
+      }, error => {
+        this.showError(error);
+      });
+    }
+    else {
+      let alert = this.alertCtrl.create({
+        title: 'Empty Post',
+        message: 'Post can not be empty.',
+        buttons: ['OK']
+      });
+      alert.present(prompt);
+    }
+  }
+
   success(){
     let toast = this.toastCtrl.create({
       message: 'Success!',
