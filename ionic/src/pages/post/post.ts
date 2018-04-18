@@ -41,11 +41,12 @@ export class PostPage {
     if (this.input.status != ""){
       let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
         console.log(data);
+        this.success();
+        console.log('Posted status as' + this.postText);
+      }, error => {
+        this.showError(error);
       });
     }
-
-    this.success();
-    console.log('Posted status as' + this.postText);
   }
 
   success(){
@@ -54,6 +55,17 @@ export class PostPage {
       duration: 1500
     });
     toast.present();
+  }
+
+  private showError(text) {
+    this.loading.dismiss().then(() => {
+      let alert = this.alertCtrl.create({
+        title: 'Fail',
+        message: text + '\nPosting unsuccesful.',
+        buttons: ['OK']
+      });
+      alert.present(prompt);
+    });
   }
 
 }

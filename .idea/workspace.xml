@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/ionic/src/pages/post/post.ts" afterPath="$PROJECT_DIR$/ionic/src/pages/post/post.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -30,11 +29,11 @@
       <file leaf-file-name="post.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ionic/src/pages/post/post.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="42" column="26" lean-forward="false" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+            <state relative-caret-position="216">
+              <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
-                <marker date="1523855118255" expanded="true" signature="1269:1275" ph="{...}" />
+                <marker date="1524013956101" expanded="true" signature="1329:1333" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -330,15 +329,16 @@
       <workItem from="1523575032942" duration="1246000" />
       <workItem from="1523623260028" duration="1219000" />
       <workItem from="1523850480470" duration="2561000" />
-      <workItem from="1524012899723" duration="353000" />
+      <workItem from="1524012899723" duration="872000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13074000" />
+    <option name="totallyTimeSpent" value="13593000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="707" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -353,7 +353,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2536349" sideWeight="0.4869281" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2536349" sideWeight="0.4869281" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2536349" sideWeight="0.5130719" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -431,7 +431,7 @@
           <caret line="41" column="3" lean-forward="false" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-            <marker date="1523855118255" expanded="true" signature="1269:1275" ph="{...}" />
+            <marker date="1524013956101" expanded="true" signature="1329:1333" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -460,7 +460,7 @@
           <caret line="41" column="3" lean-forward="true" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-            <marker date="1523855118255" expanded="true" signature="1269:1275" ph="{...}" />
+            <marker date="1524013956101" expanded="true" signature="1329:1333" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -580,7 +580,7 @@
           <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-            <marker date="1523855118255" expanded="true" signature="1269:1275" ph="{...}" />
+            <marker date="1524013956101" expanded="true" signature="1329:1333" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -717,11 +717,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ionic/src/pages/post/post.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="42" column="26" lean-forward="false" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+        <state relative-caret-position="216">
+          <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-            <marker date="1523855118255" expanded="true" signature="1269:1275" ph="{...}" />
+            <marker date="1524013956101" expanded="true" signature="1329:1333" ph="{...}" />
           </folding>
         </state>
       </provider>
