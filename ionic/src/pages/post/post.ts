@@ -39,13 +39,8 @@ export class PostPage {
 
   postToTwitter(){
     if (this.input.status != ""){
-      let response = this.api.apiPost('TwitterPost', this.input).then(data => {
-        //console.log(data);
-        this.results = data;
-        let parsed = JSON.parse(data.toString());
-        let status = 0;
-        status = parsed.status
-        console.log(data.toString());
+      let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
+        console.log(data);
       });
     }
 
