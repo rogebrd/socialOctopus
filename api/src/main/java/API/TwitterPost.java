@@ -108,7 +108,7 @@ public class TwitterPost {
 
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
-        String postStatus = postBody.get("status");
+        String postStatus = postBody.get("postText");
 
         try {
             logger.log("Connecting...\n");

@@ -46,8 +46,17 @@ export class PostPage {
     this.postText = this.formText[1];
 
     console.log('input is ' + this.postText);
+    console.log('input length is ' + this.postText.length);
 
-    if (this.postText != ""){
+    if (!this.postText.length) {
+      let alert = this.alertCtrl.create({
+        title: 'Empty Post',
+        message: 'Post can not be empty.',
+        buttons: ['OK']
+      });
+      alert.present(prompt);
+    }
+    else {
       let response = this.api.apiPost('/social/twitter/post', this.postText).then(data => {
         console.log(data);
         this.success();
@@ -55,14 +64,6 @@ export class PostPage {
       }, error => {
         this.showError(error);
       });
-    }
-    else {
-      let alert = this.alertCtrl.create({
-        title: 'Empty Post',
-        message: 'Post can not be empty.',
-        buttons: ['OK']
-      });
-      alert.present(prompt);
     }
   }
 
