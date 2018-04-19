@@ -108,7 +108,7 @@ public class TwitterPost {
 
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
-        String term = postBody.get("status");
+        String postStatus = postBody.get("status");
 
         try {
             logger.log("Connecting...\n");
@@ -120,11 +120,11 @@ public class TwitterPost {
             logger.log("Updating status...\n");
             //Update status
             try {
-                Status status = twitter.updateStatus(term);
+                Status status = twitter.updateStatus(postStatus);
                 System.out.println("Successfully updated the status to [" + status.getText() + "].");
             } catch (TwitterException te) {
                 te.printStackTrace();
-                System.out.println("Failed to get timeline: " + te.getMessage());
+                System.out.println("Failed to post: " + te.getMessage());
             }
 
             logger.log("Disconnecting...\n");

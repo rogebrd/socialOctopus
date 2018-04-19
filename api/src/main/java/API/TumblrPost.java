@@ -1,4 +1,4 @@
 
-public class TwitterPost {
+public class TumblrPost {
 
 }

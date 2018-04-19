@@ -13,7 +13,7 @@ import { ApiProvider } from '../../providers/api/api';
 export class PostPage {
 
   input = {"status": ""};
-  postText: string = '';
+  // postText: string = '';
   private postForm : FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
@@ -21,7 +21,7 @@ export class PostPage {
               private formBuilder: FormBuilder) {
 
     this.postForm = this.formBuilder.group({
-      postText: ['', Validators.required],
+      input: ['', Validators.required],
     });
   }
 
@@ -38,11 +38,11 @@ export class PostPage {
   }
 
   postToTwitter(){
-    if (this.input.status != ""){
+    if (this.input != ""){
       let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
         console.log(data);
         this.success();
-        console.log('Posted status as' + this.input.status);
+        console.log('Posted status as' + this.input);
       }, error => {
         this.showError(error);
       });
@@ -58,11 +58,11 @@ export class PostPage {
   }
 
   postToTumblr(){
-    if (this.input.status != ""){
+    if (this.input != ""){
       let response = this.api.apiPost('/social/tumblr/post', this.input).then(data => {
         console.log(data);
         this.success();
-        console.log('Posted status as' + this.input.status);
+        console.log('Posted status as' + this.input);
       }, error => {
         this.showError(error);
       });
@@ -86,14 +86,11 @@ export class PostPage {
   }
 
   showError(text) {
-    this.loading.dismiss().then(() => {
       let alert = this.alertCtrl.create({
         title: 'Fail',
         message: text + '\nPosting unsuccesful.',
         buttons: ['OK']
       });
       alert.present(prompt);
-    });
   }
-
 }

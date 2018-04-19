@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { TestingPage } from '../pages/testing/testing';
+import {PostPage} from '../pages/post/post'
 
 
 
@@ -12,7 +13,7 @@ import { TestingPage } from '../pages/testing/testing';
 })
 export class MyApp {
 
-    rootPage:any = LoginPage;
+    rootPage:any = PostPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
