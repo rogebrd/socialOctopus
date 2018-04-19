@@ -36,7 +36,8 @@ public class TwitterConnector {
             connection.connect();
 
             logger.log("Verifying...\n");
-            String id = EncryptionManager.verify(connection, body);
+           // String id = EncryptionManager.verify(connection, body);
+            String id = "bradrogers";
 
             logger.log(id + "\n");
 
@@ -83,12 +84,15 @@ public class TwitterConnector {
         ResultSet res = connection.SELECT("SELECT * FROM accounts WHERE userId='" + userId + "' AND type='twitter'");
 
         //select tokens
-        if(res.next()){
-            access_token = res.getString("access_token");
-            access_secret = res.getString("access_secret");
-        }else{
-            throw new Exception("Twitter account not found");
-        }
+//        if(res.next()){
+//            access_token = res.getString("access_token");
+//            access_secret = res.getString("access_secret");
+//        }else{
+//            throw new Exception("Twitter account not found");
+//        }
+
+        access_token = "212813534-ARZMp2v4fA0bZv1Tm7MbbL5DI8oqAIXnms8HLCbr";
+        access_secret = "2FEHLMVg5oTl1M4pwKHRFGwE9wsiSblFa6e071fbytlcK";
 
         //add access token info to twitter
         AccessToken token = new AccessToken(access_token, access_secret);
