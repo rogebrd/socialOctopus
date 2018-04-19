@@ -45,12 +45,7 @@ export class SettingsPage {
       this.uID = navParams.get('bradrogers');
     }
 
-
-    if (navParams.get('test')== true){
-      this.params = {test: true, code: navParams.get('code')};
-      this.navCtrl.push(TestingPage, this.params);
-    } else {
-      this.twitter_sel = true;
+    this.twitter_sel = true;
       this.tumblr_sel = true;
       this.settingsForm = formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -64,6 +59,10 @@ export class SettingsPage {
         type: [''],
         visibility: ['']
       });
+
+    if (navParams.get('test')== true){
+      this.params = {test: true, code: navParams.get('code')};
+      this.navCtrl.push(TestingPage, this.params);
     }
 
     this.submitAttempt = false;
@@ -105,7 +104,7 @@ export class SettingsPage {
     } else {
       console.log("submitted");
       //console.log(this.settings);
-      let postBody = {"uID":"",
+      let postBody = {"userID":"",
                       "name":"",
                       "profilePicUrl":"",
                       "quotes":"",
@@ -131,7 +130,7 @@ export class SettingsPage {
         postBody.visibility = "0";
       }*/
 
-      postBody.uID = "123";
+      postBody.userID = this.uID;
       postBody.name = this.settingsForm.value.name;
       postBody.profilePicUrl = this.settingsForm.value.propic;
       postBody.quotes = this.settingsForm.value.quotes;
@@ -139,7 +138,7 @@ export class SettingsPage {
 
       //postBody.twitter_sel = this.twitter_sel ? "true" : "false";
       //postBody.tumblr_sel = this.tumblr_sel ?  "true" : "false";
-      postBody.type = this.twitter_sel ? "twitter": "";
+      postBody.type = this.twitter_sel ? "": "";
       
 
       //postBody.type.twitter = this.settingsForm.value.type.twitter.toString();
