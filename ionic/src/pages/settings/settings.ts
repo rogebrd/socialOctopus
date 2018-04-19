@@ -33,7 +33,7 @@ export class SettingsPage {
   tumblr_sel: boolean ;
 
 
-  public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":""};
+  //public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":""};
 
   constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     try {
@@ -105,7 +105,7 @@ export class SettingsPage {
     } else {
       console.log("submitted");
       //console.log(this.settings);
-      let postBody = {
+      let postBody = {"uID":"",
                       "name":"",
                       "profilePicUrl":"",
                       "quotes":"",
@@ -131,15 +131,15 @@ export class SettingsPage {
         postBody.visibility = "0";
       }*/
 
-      //postBody.userID = "123";
+      postBody.uID = "123";
       postBody.name = this.settingsForm.value.name;
       postBody.profilePicUrl = this.settingsForm.value.propic;
       postBody.quotes = this.settingsForm.value.quotes;
       postBody.viewPreference = "1";
 
-      postBody.twitter_sel = this.twitter_sel ? "true" : "false";
+      //postBody.twitter_sel = this.twitter_sel ? "true" : "false";
       //postBody.tumblr_sel = this.tumblr_sel ?  "true" : "false";
-      //postBody.type = this.twitter_sel ? "twitter": "";
+      postBody.type = this.twitter_sel ? "twitter": "";
       
 
       //postBody.type.twitter = this.settingsForm.value.type.twitter.toString();
@@ -151,7 +151,7 @@ export class SettingsPage {
 
       console.log(postBody);
 
-      let response = this.api.apiPost('user', this.settingsForm)
+      let response = this.api.apiPost('user', postBody)
         .then(data => {
           console.log(data);
           let str = data.toString();
