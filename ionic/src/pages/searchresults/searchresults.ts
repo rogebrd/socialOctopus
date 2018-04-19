@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, } from 'ionic-angular';
 import { ViewProfilePage } from '../view-profile/view-profile';
 import { TestingPage } from '../testing/testing';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the SearchresultsPage page.
@@ -24,7 +26,11 @@ export class SearchresultsPage {
   message = [];
   quote = [];
   params = {test : false, code: ""};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  valid = false;
+  
+ 
+  picURLS = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient, private api: ApiProvider) {
     this.results = navParams.get('results');
     // var test = (JSON.parse(this.results));
     //console.log(test[0].results);
@@ -44,7 +50,7 @@ export class SearchresultsPage {
 
       var comeon = JSON.parse(str);
       this.resoolt = comeon;
-      console.log(comeon.results[i].name);
+      //console.log(comeon.results[i].name);
       while (i<comeon.results.length){
         let first = JSON.stringify(comeon.results[i].name);
         let second = "";
@@ -52,7 +58,8 @@ export class SearchresultsPage {
         let fourth = "";
         let fifth = JSON.stringify(comeon.results[i].Quotes);
         let sixth = "";
-        console.log(third);
+        let sev = JSON.stringify(comeon.results[i].profilePicsLink);
+        let eight = "";
         let j = 1;
         while (first[j]!= "\""){
           second+= first[j];
@@ -68,10 +75,21 @@ export class SearchresultsPage {
           sixth+= fifth[j];
           j++;
         }
-
+        j = 1;
+        while (sev[j]!= "\""){
+          eight+= sev[j];
+          j++;
+        }
         this.names[i] = second;
         this.u_names[i] = fourth;
         this.quote[i] = sixth;
+        this.isValid(eight);
+        if (this.valid){
+          this.picURLS[i] = eight;
+        } else {
+          this.picURLS[i] = "assets/img/profile.png";
+        }
+        
         i++;
       }
 
@@ -99,7 +117,24 @@ export class SearchresultsPage {
   }
 
   goToViewProfilePage(i){
-    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i], quote: this.quote[i],test: this.params.test, code: this.params.code});
+    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i], quote: this.quote[i],test: this.params.test, code: this.params.code, picsURL: this.picURLS[i]});
   }
-
+  isValid(str){
+    var i = 0;
+    let test1 = false;
+    let test2 = false;
+    while (i < str.length){
+      if (str[i] == '/'){
+        test1 = true;
+      }
+      if (str[i] == '.'){
+        test2 = true;
+      }
+      i++;
+    }
+    if (test1 && test2){
+      this.valid = true;
+    }
+  }
+  
 }

@@ -6,19 +6,30 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page4" style="background-color:#f0ffff;" padding (swipeRight) ="swipeRightEvent($event)">
+    <img src="assets/img/PZG5FrbjRmiy7xVyFMyq_2a10410ce245411ac98632bc6bb1e773.png" style="display:block;width:50%;height:auto;margin-left:auto;margin-right:auto;" />
 
-  <form id="search-form8">
-    <ion-item id="search-input10">
-      <ion-label floating>
-        Search
-      </ion-label>
-      <ion-input type="text" [(ngModel)]="input.term" name = "term"></ion-input>
-    </ion-item>
-  </form>
-  <button id="search-button5" ion-button color="secondary" block on-click="goSearch()">
-    go
-  </button>
+  <ion-card>
+<div style="width: 100%; display: table;">
+    <div style="display: table-row">
+        <div style="width: 100px; display: table-cell;">  
+            <button class="btn" id="search-button5" ion-button color="secondary" block on-click="goSearch()">
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </div>
+        <div style="display: table-cell;">  
+            <form id="search-form8">
+                <ion-item id="search-input10">
+                  <ion-label floating>
+                    Search
+                  </ion-label>
+                  <ion-input  type="text" [(ngModel)]="input.term" name = "term" round outline></ion-input>
+                </ion-item>
+              </form>
+        </div>
+    </div>
+</div>
+</ion-card>
 
-  <img src="assets/img/PZG5FrbjRmiy7xVyFMyq_2a10410ce245411ac98632bc6bb1e773.png" style="display:block;width:50%;height:auto;margin-left:auto;margin-right:auto;" />
+  
 
 </ion-content>

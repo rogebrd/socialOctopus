@@ -24,11 +24,13 @@ export class ViewProfilePage {
   name = "Michael Phelps";
   uname = "";
   quote = "Life is like a box of chocolates";
+  picsURL = "";
   params = {test : false, code: ""};
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.name = navParams.get('name');
     this.uname = navParams.get('uid');
     this.quote = navParams.get('quote');
+    this.picsURL = navParams.get('picsURL');
     this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
 
         this.posts = data;
