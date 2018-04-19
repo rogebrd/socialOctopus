@@ -35,7 +35,6 @@ public class TwitterPost {
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
         String postText = postBody.get("status");
-        // "term"
 
         try {
             logger.log("Connecting...\n");
