@@ -27,10 +27,13 @@ export class SearchresultsPage {
   quote = [];
   params = {test : false, code: ""};
   valid = false;
+  token: any;
   
  
   picURLS = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient, private api: ApiProvider) {
+    this.token = navParams.get('token');
+    this.api.setToken(this.token);
     this.results = navParams.get('results');
     // var test = (JSON.parse(this.results));
     //console.log(test[0].results);
@@ -117,7 +120,7 @@ export class SearchresultsPage {
   }
 
   goToViewProfilePage(i){
-    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i], quote: this.quote[i],test: this.params.test, code: this.params.code, picsURL: this.picURLS[i]});
+    this.navCtrl.push(ViewProfilePage, {name: this.names[i], uid: this.u_names[i], quote: this.quote[i],test: this.params.test, code: this.params.code, picsURL: this.picURLS[i], token: this.token});
   }
   isValid(str){
     var i = 0;

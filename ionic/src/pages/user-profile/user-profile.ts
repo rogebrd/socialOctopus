@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { HomePage } from '../home/home';
 import { TestingPage } from '../testing/testing';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the UserProfilePage page.
@@ -22,12 +23,13 @@ export class UserProfilePage {
   picsURL:any;
   uID:any;
   params = {test : false, code: ""};
-
+  token: any;
   name = this.appName;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiProvider) {
     console.log('in user profile page now');
-
+    this.token = navParams.get('token');
+    this.api.setToken(this.token);
     try{
    //   console.log(navParams.get('quotes'));
       this.appName = navParams.get('appName');

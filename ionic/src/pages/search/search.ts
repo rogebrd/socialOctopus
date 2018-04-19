@@ -14,8 +14,8 @@ export class SearchPage {
   params = {test : false, code: ""};
 
   constructor(private api: ApiProvider, public navCtrl: NavController,private navParams: NavParams) {
-  //  this.token = navParams.get('token');
-   // this.api.setToken(this.token);
+    this.token = navParams.get('token');
+    this.api.setToken(this.token);
     // temporary
     if (navParams.get('test')== true){
       this.params = {test: true, code: navParams.get('code')};
@@ -37,7 +37,7 @@ export class SearchPage {
         let status = 0;
         status = parsed.status
         console.log(data.toString());
-        this.navCtrl.push(SearchresultsPage, {results: data.toString(), status: status,test: this.params.test,code:this.params.code});
+        this.navCtrl.push(SearchresultsPage, {results: data.toString(), status: status,test: this.params.test,code:this.params.code, token: this.token});
       });
     }
 

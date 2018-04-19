@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { TestingPage } from '../testing/testing';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the ViewProfilePage page.
@@ -26,7 +27,10 @@ export class ViewProfilePage {
   quote = "Life is like a box of chocolates";
   picsURL = "";
   params = {test : false, code: ""};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  token: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private api: ApiProvider) {
+    this.token = navParams.get('token');
+    this.api.setToken(this.token);
     this.name = navParams.get('name');
     this.uname = navParams.get('uid');
     this.quote = navParams.get('quote');
