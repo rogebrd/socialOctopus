@@ -5,6 +5,7 @@ import Connection.RDSConnection;
 import Security.EncryptionManager;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import com.tumblr.jumblr.types.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,6 +14,7 @@ import com.tumblr.jumblr.*;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.*;
+import com.tumblr.jumblr.request.RequestBuilder;
 
 
 public class TumblrConnector {
@@ -53,22 +55,46 @@ public class TumblrConnector {
             logger.log("Get Tumblr User...\n");
             com.tumblr.jumblr.types.User user = client.user();
 
-            Map<String, Object> params = new HashMap<String, Object>();
-           // params.put("filter", "raw");
-            List<com.tumblr.jumblr.types.Post> posts = client.blogPosts("socialoctopustesting.tumblr.com");
 
+            logger.log("map string operations... \n");
+            Map<String, ?>  options = Collections.emptyMap();
+            Map<String, Object> mod = new HashMap<String, Object>();
+            mod.putAll(options);
+            Map<String, Object> soptions = mod;
+
+            logger.log("consumer secret setup.. \n");
+            soptions.put("api_key", consumer_secret);
+
+            logger.log("construct paths.. \n");
+            String path = "/posts";
+            if (soptions.containsKey("type")) {
+                path += "/" + soptions.get("type").toString();
+                soptions.remove("type");
+            }
+
+            logger.log("request building...\n");
+            RequestBuilder requestBuilder = new RequestBuilder(client);
+            requestBuilder.setToken("a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr", "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY");
+            requestBuilder.setConsumer(consumer_key, consumer_secret);
+            String blogName = "socialoctopustesting.tumblr.com";
+            String blogUrl = blogName.contains(".") ? blogName : blogName + ".tumblr.com";
+            String blogPath = "/blog/" + blogUrl + path;
+
+            logger.log("retrieve posts...\n");
+           List<com.tumblr.jumblr.types.Post> posts = requestBuilder.get(blogPath, soptions).getPosts();
 
             logger.log("Parsing Timeline...\n");
             JSONObject Response = new JSONObject();
             JSONArray tumbs = new JSONArray();
             int i =0;
             logger.log("list size of posts: " + posts.size());
+           // String Avatarurl = client.blogAvatar("socialoctopustesting.tumblr.com");
+
             for(com.tumblr.jumblr.types.Post post: posts){
                 i++;
 
-
-
                 JSONObject tweet = new JSONObject();
+               // tweet.put("avatarURL",Avatarurl);
 
                 tweet.put("blog_name",post.getBlogName());
                 tweet.put("id",post.getId());
@@ -80,6 +106,7 @@ public class TumblrConnector {
                 tweet.put("state",post.getState());
                 tweet.put("format",post.getFormat());
                 tweet.put("reblog_key",post.getReblogKey());
+
                 JSONArray tags = new JSONArray();
                 for (String tag :post.getTags()) {
                     tags.add(tag);
@@ -89,6 +116,27 @@ public class TumblrConnector {
                 tweet.put("note_count",post.getNoteCount());
                 tweet.put("title",post.getSourceTitle());
                 logger.log("parsing post, post number : " + i);
+                if(post.getClass().equals(TextPost.class)){
+                    TextPost newPost = (TextPost) post;
+                    tweet.put("body",newPost.getBody());
+                } else if(post.getClass().equals(PhotoPost.class)){
+                    PhotoPost newPost = (PhotoPost) post;
+                    tweet.put("caption",newPost.getCaption());
+
+                    List<Photo> photos = newPost.getPhotos();
+                    JSONArray photosInfo = new JSONArray();
+                    for (Photo photo:photos) {
+                      JSONObject pp = new JSONObject();
+                      PhotoSize p = photo.getOriginalSize();
+                      pp.put("height",p.getHeight());
+                      pp.put("width",p.getWidth());
+                      pp.put("url",p.getUrl());
+                        photosInfo.add(pp);
+                    }
+                    tweet.put("photos",photosInfo);
+
+                }
+
                 logger.log(post.toString());
                 tumbs.add(tweet);
             }
@@ -116,31 +164,4 @@ public class TumblrConnector {
         }
     }
 
-//    private static   List<com.tumblr.jumblr.types.Post> createTumblrTimeLine(String userId) throws Exception {
-//        String access_token = "";
-//        String access_secret = "";
-//
-//        //Get the twitter factory and populate the consumer info
-//        ConfigurationBuilder cb = new ConfigurationBuilder();
-//        cb.setJSONStoreEnabled(true);
-//        //cb.setHttpConnectionTimeout(100000);
-//        JumblrClient client = new JumblrClient(consumer_key, consumer_secret);
-//
-//        client.setToken(
-//                "a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr",
-//                "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY"
-//        );
-//
-//
-//
-//        com.tumblr.jumblr.types.User user = client.user();
-//
-//        Map<String, Object> params = new HashMap<String, Object>();
-//        params.put("filter", "raw");
-//        List<com.tumblr.jumblr.types.Post> posts = client.blogQueuedPosts("socialoctopustesting.tumblr.com", params);
-//
-//
-//
-//        return (posts);
-//    }
 }

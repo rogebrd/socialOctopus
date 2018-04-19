@@ -102,7 +102,7 @@ export class HomePage {
     }
 
   getFeed() {
-    let response = this.api.apiGet('social/tumblr/feed')
+    let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
         console.log(data);
         if(data[0] == 'E'){
