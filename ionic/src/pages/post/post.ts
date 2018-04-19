@@ -41,12 +41,10 @@ export class PostPage {
 
   postToTwitter(){
 
-    //this.logForm();
     this.formText = JSON.stringify(this.postForm.value).split(":");
-    this.postText = this.formText[1];
+    this.postText = this.formText[1].replace(/['"}]+/g, '');
 
     console.log('input is ' + this.postText);
-    console.log('input length is ' + this.postText.length);
 
     if (!this.postText.length) {
       let alert = this.alertCtrl.create({
