@@ -56,23 +56,7 @@ export class PostPage {
   }
 
   postToTumblr(){
-    if (this.input){
-      let response = this.api.apiPost('/social/tumblr/post', this.input).then(data => {
-        console.log(data);
-        this.success();
-        console.log('Posted status as' + this.input);
-      }, error => {
-        this.showError(error);
-      });
-    }
-    else {
-      let alert = this.alertCtrl.create({
-        title: 'Empty Post',
-        message: 'Post can not be empty.',
-        buttons: ['OK']
-      });
-      alert.present(prompt);
-    }
+
   }
 
   success(){
