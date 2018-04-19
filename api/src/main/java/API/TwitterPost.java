@@ -24,13 +24,18 @@ public class TwitterPost {
     private static final String consumer_token = "6WUiXKkUgfYTtPQxn4PvFg32z";
     private static final String consumer_secret = "M4CVwQPTFooisegoQX8iO8nxtygFMxjeGvkrMkc96yyTNg5Ou1";
 
-    public String get(Object body, Context context){
+    public String post(Object body, Context context){
         DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
 
         logger.log("Creating Connection...\n");
         connection = new RDSConnection();
+
+        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
+
+        String postText = postBody.get("status");
+        // "term"
 
         try {
             logger.log("Connecting...\n");
@@ -46,20 +51,15 @@ public class TwitterPost {
 
             logger.log(twitter.getOAuthAccessToken().getToken() + "\n" + twitter.getOAuthAccessToken().getTokenSecret() + "\n");
 
-            logger.log("Getting Timeline...\n");
-            List<Status> timeline = twitter.timelines().getHomeTimeline();
-
-            logger.log("Parsing Timeline...\n");
-            JSONArray tweets = new JSONArray();
-            for(Status s: timeline){
-                JSONObject tweet = (JSONObject) (new JSONParser().parse(TwitterObjectFactory.getRawJSON(s)));
-                tweets.add(tweet);
-            }
+            logger.log("Updating status...\n");
+            //Update status
+            Status status = twitter.updateStatus(postText);
+            logger.log("Successfully updated the status to [" + status.getText() + "]. \n");
 
             logger.log("Disconnecting...\n");
             connection.disconnect();
 
-            return (tweets.toJSONString());
+            return (new JSONObject().put("status", "1").toString());
         }catch(Exception e){
             System.out.println(e.getMessage());
             logger.log("ERROR: " + e.getMessage() + "\n");
@@ -96,49 +96,5 @@ public class TwitterPost {
         twitter.setOAuthAccessToken(token);
 
         return (twitter);
-    }
-
-    public String post(Object body, Context context){
-        DatabaseConnection connection;
-
-        LambdaLogger logger = context.getLogger();
-
-        logger.log("Creating Connection...\n");
-        connection = new RDSConnection();
-
-        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
-
-        String postStatus = postBody.get("postText");
-
-        try {
-            logger.log("Connecting...\n");
-            connection.connect();
-
-            logger.log("Verifying...\n");
-            EncryptionManager.verify(connection, body);
-
-            logger.log("Updating status...\n");
-            //Update status
-            try {
-                Status status = twitter.updateStatus(postStatus);
-                System.out.println("Successfully updated the status to [" + status.getText() + "].");
-            } catch (TwitterException te) {
-                te.printStackTrace();
-                System.out.println("Failed to post: " + te.getMessage());
-            }
-
-            logger.log("Disconnecting...\n");
-            connection.disconnect();
-
-            return;
-
-        }catch(Exception e){
-            logger.log("ERROR: " + e.getMessage() + "\n");
-            JSONObject results = new JSONObject();
-            results.put("status",0);
-            results.put("Error: ",e.getMessage());
-
-            return results.toJSONString();
-        }
     }
 }

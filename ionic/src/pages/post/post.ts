@@ -13,8 +13,6 @@ import { ApiProvider } from '../../providers/api/api';
 export class PostPage {
 
   input = {"status": ""};
-  formText : string;
-  postText : string;
 
   private postForm : FormGroup;
 
@@ -22,17 +20,11 @@ export class PostPage {
               private api: ApiProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
               private formBuilder: FormBuilder) {
 
+    this.api.setToken(navParams.get('token'));
+
     this.postForm = this.formBuilder.group({
       text: ['', Validators.required],
     });
-  }
-
-  logForm() {
-    console.log(this.postForm.value)
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PostPage');
   }
 
   swipeRightEvent(event){
@@ -41,12 +33,10 @@ export class PostPage {
 
   postToTwitter(){
 
-    this.formText = JSON.stringify(this.postForm.value).split(":");
-    this.postText = this.formText[1].replace(/['"}]+/g, '');
+    this.input.status = this.postForm.value['text'];
+    console.log('input is ' + this.input.status);
 
-    console.log('input is ' + this.postText);
-
-    if (!this.postText.length) {
+    if (!this.input.status.length) {
       let alert = this.alertCtrl.create({
         title: 'Empty Post',
         message: 'Post can not be empty.',
@@ -55,10 +45,10 @@ export class PostPage {
       alert.present(prompt);
     }
     else {
-      let response = this.api.apiPost('/social/twitter/post', this.postText).then(data => {
+      let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
         console.log(data);
         this.success();
-        console.log('Posted status as' + this.postText);
+        console.log('Posted status as' + this.input.status);
       }, error => {
         this.showError(error);
       });
@@ -66,7 +56,7 @@ export class PostPage {
   }
 
   postToTumblr(){
-    if (this.input != ""){
+    if (this.input){
       let response = this.api.apiPost('/social/tumblr/post', this.input).then(data => {
         console.log(data);
         this.success();
@@ -96,7 +86,7 @@ export class PostPage {
   showError(text) {
       let alert = this.alertCtrl.create({
         title: 'Fail',
-        message: text + '\nPosting unsuccesful.',
+        message: text + '\nPosting unsuccessful.',
         buttons: ['OK']
       });
       alert.present(prompt);
