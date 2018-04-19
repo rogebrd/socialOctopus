@@ -119,8 +119,8 @@ public class User {
             logger.log("request twitter API to get client id client scerect access token etc ... \n");
             String client_id = "clientid";
             String client_secret = "clientsecrect";
-            String access_token = "accesstoken";
-            String access_secret = "accesssecret";
+            String access_token = "212813534-ARZMp2v4fA0bZv1Tm7MbbL5DI8oqAIXnms8HLCbr";
+            String access_secret = "2FEHLMVg5oTl1M4pwKHRFGwE9wsiSblFa6e071fbytlcK";
 
             // parse the visibility into an integer
             int view = Integer.parseInt(visibility);
