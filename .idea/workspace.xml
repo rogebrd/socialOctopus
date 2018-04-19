@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/API/TwitterPost.java" afterPath="$PROJECT_DIR$/api/src/main/java/API/TwitterPost.java" />
-      <change beforePath="$PROJECT_DIR$/ionic/src/pages/post/post.ts" afterPath="$PROJECT_DIR$/ionic/src/pages/post/post.ts" />
-    </list>
+    <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />

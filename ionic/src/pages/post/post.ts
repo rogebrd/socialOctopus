@@ -34,7 +34,7 @@ export class PostPage {
   postToTwitter(){
 
     this.input.status = this.postForm.value['text'];
-    console.log('input is ' + this.input.status);
+    console.log('Twitter input is ' + this.input.status);
 
     if (!this.input.status.length) {
       let alert = this.alertCtrl.create({
@@ -57,6 +57,26 @@ export class PostPage {
 
   postToTumblr(){
 
+    this.input.status = this.postForm.value['text'];
+    console.log('Tumblr input is ' + this.input.status);
+
+    if (!this.input.status.length) {
+      let alert = this.alertCtrl.create({
+        title: 'Empty Post',
+        message: 'Post can not be empty.',
+        buttons: ['OK']
+      });
+      alert.present(prompt);
+    }
+    else {
+      let response = this.api.apiPost('/social/tumblr/post', this.input).then(data => {
+        console.log(data);
+        this.success();
+        console.log('Posted status as' + this.input.status);
+      }, error => {
+        this.showError(error);
+      });
+    }
   }
 
   success(){
