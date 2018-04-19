@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/API/TumblrPost.java" afterPath="$PROJECT_DIR$/api/src/main/java/API/TumblrPost.java" />
       <change beforePath="$PROJECT_DIR$/ionic/src/app/app.component.ts" afterPath="$PROJECT_DIR$/ionic/src/app/app.component.ts" />
-      <change beforePath="$PROJECT_DIR$/ionic/src/pages/post/post.html" afterPath="$PROJECT_DIR$/ionic/src/pages/post/post.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,8 +56,8 @@
       <file leaf-file-name="TumblrPost.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/src/main/java/API/TumblrPost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -682,8 +682,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/src/main/java/API/TumblrPost.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
