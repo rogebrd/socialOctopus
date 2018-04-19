@@ -12,11 +12,12 @@
   <ion-list>
 
     <ion-item no-lines>
-      <form [formGroup]="postForm" (ngSubmit)="logForm()">
+      <form [formGroup]="postForm" (ngSubmit)="postToTwitter()">
         <ion-item>
-          <ion-textarea rows="10" maxLength="280" placeholder="Write something..." clearInput formControlName="input">
+          <ion-textarea rows="10" maxLength="280" placeholder="Write something..." clearInput formControlName="text">
           </ion-textarea>
         </ion-item>
+        <button ion-button type="submit" [disabled]="!postForm.valid">Submit</button>
       </form>
     </ion-item>
 

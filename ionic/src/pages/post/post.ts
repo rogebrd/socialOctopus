@@ -13,7 +13,9 @@ import { ApiProvider } from '../../providers/api/api';
 export class PostPage {
 
   input = {"status": ""};
-  // postText: string = '';
+  formText : string;
+  postText : string;
+
   private postForm : FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
@@ -21,7 +23,7 @@ export class PostPage {
               private formBuilder: FormBuilder) {
 
     this.postForm = this.formBuilder.group({
-      input: ['', Validators.required],
+      text: ['', Validators.required],
     });
   }
 
@@ -38,11 +40,18 @@ export class PostPage {
   }
 
   postToTwitter(){
-    if (this.input != ""){
-      let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
+
+    //this.logForm();
+    this.formText = JSON.stringify(this.postForm.value).split(":");
+    this.postText = this.formText[1];
+
+    console.log('input is ' + this.postText);
+
+    if (this.postText != ""){
+      let response = this.api.apiPost('/social/twitter/post', this.postText).then(data => {
         console.log(data);
         this.success();
-        console.log('Posted status as' + this.input);
+        console.log('Posted status as' + this.postText);
       }, error => {
         this.showError(error);
       });
