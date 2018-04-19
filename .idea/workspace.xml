@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="" />
+    <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/ionic/src/app/app.component.ts" afterPath="$PROJECT_DIR$/ionic/src/app/app.component.ts" />
+      <change beforePath="$PROJECT_DIR$/ionic/src/pages/post/post.html" afterPath="$PROJECT_DIR$/ionic/src/pages/post/post.html" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />

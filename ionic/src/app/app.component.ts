@@ -13,7 +13,7 @@ import {PostPage} from '../pages/post/post'
 })
 export class MyApp {
 
-    rootPage:any = LoginPage;
+    rootPage:any = PostPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
