@@ -7,27 +7,53 @@
 </ion-header>
 <ion-content padding id="page3" >
   <img src="assets/img/ecetmfGFQluWk424WSWl_2a10410ce245411ac98632bc6bb1e773.png" style="display:block;width:50%;height:auto;margin-left:auto;margin-right:auto;" />
-  <form id="signup-form5">
+
+  <p *ngIf="!submitAttempt" style="color: #ea6153;">Please fill out the form.</p>
+
+  <form id="signup-form5" [formGroup] = "signupForm">
+
     <ion-item id="signup-input13">
       <ion-label floating>
         Name
       </ion-label>
-      <ion-input type="text" [(ngModel)]="userData.name" name = "name"></ion-input>
+      <ion-input type="text" formControlName="name" [class.invalid]="!signupForm?.controls.name.valid && (signupForm?.controls.name.dirty || submitAttempt)"></ion-input>
     </ion-item>
+
+    <ion-item *ngIf="!signupForm?.controls.name.valid  && (signupForm?.controls.name.dirty || submitAttempt)">
+      <p>Please enter a valid name.</p>
+    </ion-item>
+    
     <ion-item id="signup-input9">
       <ion-label floating>
         Username
       </ion-label>
-      <ion-input type="text" [(ngModel)]="userData.userId" name = "userId"></ion-input>
+      <ion-input type="text"  formControlName="username" [class.invalid]="!signupForm?.controls.username.valid && (signupForm?.controls.username.dirty || submitAttempt)"></ion-input>
     </ion-item>
+
+    <ion-item *ngIf="signupForm?.controls.username.pending">
+      <p>Checking username...</p>
+    </ion-item>
+
+    <ion-item *ngIf="!signupForm?.controls.username.valid && !signupForm?.controls.username.pending && (signupForm?.controls.username.dirty || submitAttempt)">
+      <p>Sorry, that username can not be used!</p>
+    </ion-item>
+
+
     <ion-item id="signup-input10">
       <ion-label floating>
         Password
       </ion-label>
-      <ion-input type="password" [(ngModel)]="userData.password" name = "password"></ion-input>
+      <ion-input type="password" formControlName="password" [class.invalid]="!signupForm?.controls.password.valid && (signupForm?.controls.password.dirty || submitAttempt)"></ion-input>
     </ion-item>
+
+    <ion-item *ngIf="!signupForm?.controls.password.valid && (signupForm?.controls.password.dirty || submitAttempt)">
+      <p>Sorry, that password can not be used!</p>
+    </ion-item>
+
   </form>
+
   <button id="signup-button5" ion-button color="secondary" block on-click="signup()">
     Sign me up!
   </button>
+
 </ion-content>
