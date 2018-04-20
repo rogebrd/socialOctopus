@@ -9,6 +9,7 @@ import {SearchPage} from "../search/search";
 import { UserProfilePage } from '../user-profile/user-profile';
 import { ErrorFeedPage } from '../error-feed/error-feed';
 import { TestingPage } from '../testing/testing';
+import { LoginPage } from "../login/login";
 
 @Component({
   selector: 'page-home',
@@ -166,7 +167,9 @@ export class HomePage {
      this.navCtrl.push(PostPage,{token:this.api.getToken()});
    }
 
-
+  logout(){
+    this.navCtrl.push(LoginPage);
+  }
   getItems(event){
     console.log("Something entered in search bar")
   }
@@ -174,6 +177,7 @@ export class HomePage {
   expandAll(){
 
     this.expanded = !this.expanded;
+    console.log(this.posts);
 
     for(let i = 0; i<= this.posts.length - 1; i++){
       this.posts[i].expand = this.expanded;

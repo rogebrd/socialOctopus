@@ -1,0 +1,509 @@
+  396  git status
+  397  git log
+  398  git add src/stack.c src/fib.c
+  399  git commit -m "added fib.c and stack.c w/ sally's implementation of peek"
+  400  git branch
+  401  git status
+  402  git log
+  403  git checkout master
+  404  git merge test
+  405  git commit -m "committing test"
+  406  git log
+  407  git diff origin/master master
+  408  git diff origin/master master > output.txt
+  409  sublime output.txt
+  410  sublime src/fib.c
+  411  sublime src/stack.c
+  412  ls
+  413  cd /Users/agrimpandey19/Documents/UW-Madison/Semesters/8th Sem Spring 2018/CS 506/project/
+  414  ls
+  415  ls
+  416  cd ..
+  417  l
+  418  ls
+  419  cd .
+  420  cd ..
+  421  ls
+  422  `
+  423  1
+  424  quit'
+  425  quit
+  426  exit
+  427  cd .. ..
+  428  ls
+  429  cd .. 
+  430  ls
+  431  ls
+  432  ls
+  433  git clone https://github.com/ionic2blueprints/social-app
+  434  clear
+  435  ls
+  436  cd social-app
+  437  ls
+  438  ionic build ios
+  439  ionic serve
+  440  ionic version
+  441  angular version
+  442  ng version
+  443  ngl version
+  444  ls
+  445  sublime  README.md 
+  446  pwd
+  447  cd ..
+  448  ls
+  449  cd socialOctopus/
+  450  ls
+  451  grep README
+  452  grep README *
+  453  cd ionic
+  454  ls
+  455  ls
+  456  pwd
+  457  git pull
+  458  ls
+  459  pwd
+  460  ionic version 
+  461  git branch posting
+  462  git branch
+  463  git bnrach -d posting
+  464  git branch -d posting
+  465  ls
+  466  git branch -a
+  467  git checkout Posting
+  468  ls
+  469  pwd
+  470  ionic lab
+  471  clear
+  472  ls
+  473  cd ionic/
+  474  ls
+  475  ionic start myApp
+  476  clear
+  477  ls
+  478  io ic serve
+  479  ionic serve
+  480  git pull
+  481  ionic serve
+  482  ionic lab
+  483  git branch 
+  484  git branch -a
+  485  git branch feed2
+  486  ionic lab
+  487  git branch -a
+  488  git branch settingsPageReal
+  489  ionic lab
+  490  clear
+  491  git lcone 
+  492  git clone https://github.com/ionic-team/ionic-unit-testing-example
+  493  cd ionic-unit-testing-example/
+  494  ls
+  495  clear
+  496  npm install
+  497  clear
+  498  ionic serve
+  499  npm run test
+  500  clear
+  501  ls
+  502  pwd
+  503  git branch 
+  504  git pull 
+  505  ionic lab 
+  506  git branch signup_settings_validation
+  507  git chekcout signup_settings_validation
+  508  git checkout signup_settings_validation
+  509  clear
+  510  ls
+  511  clear
+  512  ionic serve 
+  513  clear
+  514  ionic serve 
+  515  clear
+  516  ls
+  517  git branch 
+  518  git branch master
+  519  ioni serve 
+  520  ionic serve 
+  521  cler
+  522  clear
+  523  git branch 
+  524  git checkout signup_settings_validation
+  525  ls
+  526  ls
+  527  ionic serve
+  528  cd ..
+  529  ls
+  530  pwd
+  531  cd ..
+  532  ls
+  533  git clone https://github.com/fajita12/socialOctopus
+  534  git clone https://github.com/fajita12/socialOctopus socialOct2
+  535  ls
+  536  cd socialOCt2
+  537  ls
+  538  pwd
+  539  cd ionic
+  540  ionic serve
+  541  npm install
+  542  npm i -g npm
+  543  clear
+  544  ls
+  545  pwd
+  546  pwd
+  547  ionic serve
+  548  cd ..
+  549  ls
+  550  cd ..ls
+  551  cd ..
+  552  cd SocialOctopus
+  553  ls
+  554  pwd
+  555  cd ionic
+  556  ls
+  557  ionci serve
+  558  ioni serve
+  559  ionic serve
+  560  git branch 
+  561  ionic serve 
+  562  clear
+  563  git branch
+  564  git checkout usrname_pswd_validation
+  565  git branch 
+  566  git status 
+  567  git add >
+  568  git add .
+  569  git commit -m "doesn't work completely rn"
+  570  git checkout usrname_pswd_validation
+  571  ls
+  572  pwd
+  573  ionic serve
+  574  ionic status
+  575  git sttaus
+  576  git status
+  577  git stash
+  578  git checkout master
+  579  ls
+  580  ionic serve
+  581  git branch
+  582  git checkout signup_settings_validation
+  583  ls
+  584  pwd
+  585  ionic serve
+  586  git branch
+  587  ionic serve
+  588  clear
+  589  git branch 
+  590  ls 
+  591  ionic serve 
+  592  clear
+  593  git checkout master
+  594  git status
+  595  git add .
+  596  clear
+  597  ls
+  598  git commit -m "getting error: update unsuccessul due to user setting table update failed  in the settings page "
+  599  clear
+  600  ls
+  601  git checkout master
+  602  ionic serve 
+  603  git brnach 
+  604  git branch
+  605  git checkout signup_settings_validation
+  606  ionic serve
+  607  git add .
+  608  git commit -m "works"
+  609  git checkout master
+  610  ionic serve
+  611  git checkout signup_settings_validation
+  612  git push
+  613  git push --set-upstream origin signup_settings_validation
+  614  git branch
+  615  git checkout testing
+  616  ls
+  617  nmp test
+  618  npm e2e
+  619  git branch
+  620  npm tests
+  621  npm test
+  622  clear
+  623  ls
+  624  owd
+  625  pwd
+  626  ls
+  627  cd src
+  628  ls
+  629  cd aoo
+  630  cd app
+  631  ls
+  632  npm test
+  633  npm test
+  634  webpack version
+  635  npm install --save-dev webpack
+  636  npm test
+  637  clear
+  638  npm test
+  639  clear
+  640  npm test
+  641  clear
+  642  npm test
+  643  CLEAR
+  644  npm test
+  645  clear
+  646  ls
+  647  npm test 
+  648  jasmine version
+  649  ng -v
+  650  npm -v
+  651  npm install
+  652  npm test
+  653  clear
+  654  ls
+  655  clear
+  656  ls
+  657  ls
+  658  pwd
+  659  npm test
+  660  npm test
+  661  clear
+  662  ls
+  663  ls
+  664  clear
+  665  ls
+  666  npm test 
+  667  clear
+  668  npm test 
+  669  clear
+  670  ls
+  671  ls
+  672  npm test
+  673  clear
+  674  npm test 
+  675  clear
+  676  npm test 
+  677  npm test 
+  678  clear
+  679  npm test 
+  680  clear
+  681  ls
+  682  ls
+  683  git checkout master
+  684  git add .
+  685  ls
+  686  git commit "testing"
+  687  git checkout master
+  688  cd ..
+  689  ls
+  690  pwd
+  691  cd ..
+  692  ls
+  693  git add .
+  694  ls
+  695  git commit -m "testing"
+  696  clear
+  697  ls
+  698  ls 
+  699  ls
+  700  clear
+  701  ls
+  702  git checkout 
+  703  git branch
+  704  git checkout master
+  705  ls
+  706  pwd
+  707  clera
+  708  clear
+  709  ls
+  710  git pull 
+  711  clear
+  712  git branch 
+  713  ls
+  714  cd src
+  715  ls
+  716  cd app
+  717  ls
+  718  clear
+  719  ls
+  720  git pull 
+  721  clear
+  722  git checkout signup_settings_validation 
+  723  src/pages/home/home.html
+  724  src/pages/home/home.ts
+  725  src/pages/signup/signup.html
+  726  src/pages/signup/signup.ts
+  727  src/pages/settings/settings.html
+  728  git chekcout master
+  729  git checkout master
+  730  git checkout signup_settings_validation src/pages/home/home.html src/pages/home/home.ts src/pages/signup/signup.html src/pages/signup/signup.ts src/pages/settings/settings.html src/pages/settings/settings.ts
+  731  pwd
+  732  cd ..
+  733  cd ..
+  734  ls
+  735  git checkout signup_settings_validation src/pages/home/home.html src/pages/home/home.ts src/pages/signup/signup.html src/pages/signup/signup.ts src/pages/settings/settings.html src/pages/settings/settings.ts
+  736  git commit -m "signup & settings page validation done, logout button on home page added"
+  737  git staus 
+  738  git status
+  739  ionic serve 
+  740  clear
+  741  ls
+  742  ls
+  743  git branch 
+  744  ionic serve 
+  745  git checkout testing 
+  746  npm test
+  747  clera
+  748  clear
+  749  ls
+  750  git checkout master
+  751  clear
+  752  git branch 
+  753  ionic serve
+  754  clear
+  755  git branch 
+  756  ls
+  757  cd src/app
+  758  ls
+  759  cd ..
+  760  ls
+  761  cd pages
+  762  ls
+  763  cd settings/
+  764  ls
+  765  ionic serve
+  766  git branch 
+  767  cd ..
+  768  ls
+  769  cd ..
+  770  ls
+  771  pwd
+  772  cd ..
+  773  ionic serve
+  774  git checkout signup_settinsg_validation
+  775  git checkout signup_settings_validation
+  776  ionci serve
+  777  ionic serve
+  778  clear
+  779  git checkout master
+  780  ionic serve
+  781  clear
+  782  ls
+  783  git branch 
+  784  git checkout  signup_settings_validation
+  785  ionic serve
+  786  git chekcout testing
+  787  git checkout testing
+  788  git add .
+  789  git cimmit 
+  790  git commit 
+  791  git branch 
+  792  git statsu 
+  793  git status
+  794  git reseat HEAD~
+  795  git reset HEAD~
+  796  git reset HEAD~
+  797  git reset HEAD~
+  798  ionic serve
+  799  git checkout testing
+  800  '
+
+
+
+
+quit
+exit
+,
+,
+'
+  801  clear
+  802  pwd
+  803  git branch 
+  804  git status 
+  805  git branch
+  806  git status 
+  807  git add . 
+  808  git commit -m "settings page validation, sign up page validation, home page (logout buttun added)"
+  809  git checkout master
+  810  git status
+  811  git reset HEAD~
+  812  git branch 
+  813  git status
+  814  git add .
+  815  git commit 
+  816  git checkout signup_settings_validation
+  817  git checkout master src/pages/home/home.html src/pages/home/home.ts src/pages/signup/signup.html src/pages/signup/signup.ts src/pages/settings/settings.html src/pages/settings/settings.ts
+  818  git branch
+  819  git status
+  820   
+  821  git pull
+  822  git status
+  823  git checkout master src/pages/home/home.html src/pages/home/home.ts src/pages/signup/signup.html src/pages/signup/signup.ts src/pages/settings/settings.html src/pages/settings/settings.ts
+  824  git checkout testing
+  825  git ready
+  826  git diff --changed "ionic/src/pages/settings/settings.ts"
+  827  pwd
+  828  git diff --changed "src/pages/settings/settings.ts"
+  829  git diff "src/pages/settings/settings.ts"
+  830  ls
+  831* git diff "src/pages/settings/settings.ts" > view.tx
+  832  ls
+  833  git sttaus
+  834  git stauts
+  835  git status
+  836  sublime view.txt
+  837  git diff HEAD src/pages/settings/settings.ts
+  838  git stash 
+  839  git checkout testing 
+  840  git status
+  841  ls
+  842  rm view.txt
+  843  git status
+  844  git push
+  845  git checkout signup_settings_validation
+  846  git status
+  847  git checkout master src/pages/home/home.html src/pages/home/home.ts src/pages/signup/signup.html src/pages/signup/signup.ts src/pages/settings/settings.html src/pages/settings/settings.ts
+  848  git status
+  849  git stash
+  850  git checkout master
+  851  git status
+  852  git history
+  853  git log 
+  854  git log 80b7a884df1f21ad0d16b4412531eb5b0f88190d
+  855  git show 80b7a884df1f21ad0d16b4412531eb5b0f88190d
+  856  git checkout signup_settings_page
+  857  git checkout signup_settings_validation
+  858  git branch
+  859  git staus
+  860  git status
+  861  git commit -m "settings"
+  862  git add .
+  863  git commit -m "settings"
+  864  git checkout signup_settings_validation
+  865  git checkout master src/pages/home/home.html src/pages/home/home.ts src/pages/signup/signup.html src/pages/signup/signup.ts src/pages/settings/settings.html src/pages/settings/settings.ts
+  866  clear
+  867  ls
+  868  git status 
+  869  git add .
+  870  git commit -m "settings"
+  871  git branch
+  872  git push
+  873  git pull
+  874  git add .
+  875  git commit "conflict resolved in settings"
+  876  git commit -m "conflict resolved in settings"
+  877  clear
+  878  git status
+  879  git pull 
+  880  git push
+  881  clear
+  882  ls
+  883  pwd
+  884  git bnrahc 
+  885  git branch 
+  886  git checkout master
+  887  git checkout testing 
+  888  clear
+  889  ls
+  890  pwd
+  891  hisotr 
+  892  hisotry
+  893  history
+  894  hisory > history.txt
+  895  history > history.txt

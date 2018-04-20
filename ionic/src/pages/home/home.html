@@ -7,7 +7,7 @@
       </button>
     </ion-buttons>
     <ion-buttons end padding-right="20px">
-      <button ion-button icon-only (click)='expandAll();' >
+      <button ion-button icon-only (click)='expandAll()' >
         <ion-icon name="expand"></ion-icon>
       </button>
     </ion-buttons>
@@ -36,6 +36,12 @@
         <ion-icon name="options"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons start (click) = "logout()">
+      <button>
+        <ion-icon name = "logout">Logout</ion-icon>
+      </button>
+    </ion-buttons>
+
     <!--<ion-buttons end padding-right="20px">-->
       <!--<button ion-button icon-only (click)='goToPostPage()'>-->
         <!--<ion-icon name="add-circle"></ion-icon>-->
@@ -47,7 +53,7 @@
 
 
 <ion-content padding (swipeleft)="swipeLeftEvent($event)" padding (swipeRight) ="swipeRightEvent($event)">
-<button ion-item (click)='expandAll();' >
+<button ion-item (click)="expandAll()" >
 Expanded / Minimized Toggle
 </button>
   <ion-list>
