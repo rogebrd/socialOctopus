@@ -46,9 +46,8 @@ export class SettingsPage {
     }
 
     this.twitter_sel = true;
-    this.tumblr_sel = true;
-    
-    this.settingsForm = formBuilder.group({
+      this.tumblr_sel = true;
+      this.settingsForm = formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         username: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         password: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -59,7 +58,7 @@ export class SettingsPage {
         //tumblr_sel: [''],
         type: [''],
         visibility: ['']
-    });
+      });
 
     if (navParams.get('test')== true){
       this.params = {test: true, code: navParams.get('code')};
@@ -131,7 +130,7 @@ export class SettingsPage {
         postBody.visibility = "0";
       }*/
 
-      postBody.userID = "bradrogers";
+      postBody.userID = this.uID;
       postBody.name = this.settingsForm.value.name;
       postBody.profilePicUrl = this.settingsForm.value.propic;
       postBody.quotes = this.settingsForm.value.quotes;
@@ -139,7 +138,7 @@ export class SettingsPage {
 
       //postBody.twitter_sel = this.twitter_sel ? "true" : "false";
       //postBody.tumblr_sel = this.tumblr_sel ?  "true" : "false";
-      postBody.type = this.twitter_sel ? "true": "false";
+      postBody.type = this.twitter_sel ? "true": "";
       
 
       //postBody.type.twitter = this.settingsForm.value.type.twitter.toString();
