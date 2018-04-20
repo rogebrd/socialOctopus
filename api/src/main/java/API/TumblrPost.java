@@ -58,7 +58,6 @@ public class TumblrPost {
             logger.log("Get Tumblr User...\n");
             com.tumblr.jumblr.types.User user = client.user();
 
-
             logger.log("map string operations... \n");
             Map<String, ?>  options = Collections.emptyMap();
             Map<String, Object> mod = new HashMap<String, Object>();
@@ -87,7 +86,6 @@ public class TumblrPost {
             QuotePost post = client.newPost(blogName, QuotePost.class);
             post.setQuote(postText);
             post.save();
-
 
             return (Response.toJSONString());
         }catch(Exception e){

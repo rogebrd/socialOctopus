@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e44f3074-b0a7-4329-b19a-68a9e4248fb5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/api/src/main/java/API/TumblrPost.java" afterPath="$PROJECT_DIR$/api/src/main/java/API/TumblrPost.java" />
-      <change beforePath="$PROJECT_DIR$/ionic/src/app/app.component.ts" afterPath="$PROJECT_DIR$/ionic/src/app/app.component.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
