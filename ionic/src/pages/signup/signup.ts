@@ -57,7 +57,6 @@ export class SignupPage {
             this.submitAttempt = false; 
     }
     else{
-
       console.log("success");
       console.log(this.signupForm.value);
       this.signupForm

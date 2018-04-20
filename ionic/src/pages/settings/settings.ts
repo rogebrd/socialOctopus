@@ -139,7 +139,7 @@ export class SettingsPage {
       //postBody.twitter_sel = this.twitter_sel ? "true" : "false";
       //postBody.tumblr_sel = this.tumblr_sel ?  "true" : "false";
       postBody.type = this.twitter_sel ? "true": "";
-      
+
 
       //postBody.type.twitter = this.settingsForm.value.type.twitter.toString();
       //postBody.type.tumblr = this.settingsForm.value.type.tumblr.toString();
