@@ -20,48 +20,27 @@ import java.util.List;
 
 public class TwitterFeed {
 
-    public String get(Object body, Context context){
-        DatabaseConnection connection;
+    public JSONObject process(DatabaseConnection connection, Object body, LambdaLogger logger) throws Exception {
 
-        LambdaLogger logger = context.getLogger();
+        logger.log("Verifying...\n");
+        String id = EncryptionManager.verify(connection, body);
 
-        logger.log("Creating Connection...\n");
-        connection = new RDSConnection();
+        logger.log("Creating Twitter Client...\n");
+        Twitter twitter = TwitterUtilities.createTwitterClient(connection, id);
 
-        try {
-            logger.log("Connecting...\n");
-            connection.connect();
+        logger.log("Getting Timeline...\n");
+        List<Status> timeline = twitter.timelines().getHomeTimeline();
 
-            logger.log("Verifying...\n");
-           // String id = EncryptionManager.verify(connection, body);
-            String id = "bradrogers";
-
-            logger.log(id + "\n");
-
-            logger.log("Creating Twitter Client...\n");
-            Twitter twitter = TwitterUtilities.createTwitterClient(connection, id);
-
-            logger.log(twitter.getOAuthAccessToken().getToken() + "\n" + twitter.getOAuthAccessToken().getTokenSecret() + "\n");
-
-            logger.log("Getting Timeline...\n");
-            List<Status> timeline = twitter.timelines().getHomeTimeline();
-
-            logger.log("Parsing Timeline...\n");
-            JSONArray tweets = new JSONArray();
-            for(Status s: timeline){
-                JSONObject tweet = (JSONObject) (new JSONParser().parse(TwitterObjectFactory.getRawJSON(s)));
-                tweets.add(tweet);
-            }
-
-            logger.log("Disconnecting...\n");
-            connection.disconnect();
-
-            return (tweets.toJSONString());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-            logger.log("ERROR: " + e.getMessage() + "\n");
-
-            return ("ERROR: " + e.getMessage() + "\n");
+        logger.log("Parsing Timeline...\n");
+        JSONArray tweets = new JSONArray();
+        for(Status s: timeline){
+            JSONObject tweet = (JSONObject) (new JSONParser().parse(TwitterObjectFactory.getRawJSON(s)));
+            tweets.add(tweet);
         }
+
+        JSONObject results = new JSONObject();
+        results.put("tweets", tweets);
+
+        return results;
     }
 }
