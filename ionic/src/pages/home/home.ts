@@ -72,7 +72,7 @@ export class HomePage {
     //     console.log("Oops!");
     //   }
     // );
-    
+
   	}
   	displayFakePage() {
 
@@ -104,8 +104,10 @@ export class HomePage {
   getFeed() {
     let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
+        console.log(data);
         if(data[0] == 'E'){
           this.apiError = 1;
+
           console.log('API ERROR DETECTED');
           this.goToErrorFeedPage();
         }

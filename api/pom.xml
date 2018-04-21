@@ -15,6 +15,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.8-dmr</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.tumblr/jumblr -->
+        <dependency>
+            <groupId>com.tumblr</groupId>
+            <artifactId>jumblr</artifactId>
+            <version>0.0.11</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-core -->
         <dependency>
