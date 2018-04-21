@@ -22,6 +22,7 @@ export class LoginPage {
   quotes:any;
   picsURL:any;
   uID:any;
+  logged_in: boolean = false;
 
   constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
    // temporary
@@ -40,6 +41,7 @@ export class LoginPage {
       console.log(data);
       let parsed = JSON.parse(data.toString());
       if(parsed.status == 1){
+        this.logged_in = true;
         this.token = parsed.token;
         this.api.setToken(parsed.token);
 
@@ -82,6 +84,18 @@ export class LoginPage {
 
   goToSignup(){
     this.navCtrl.push(SignupPage);
+  }
+
+
+  setUserData(userInfo)
+  {
+    this.userData.username = userInfo.get('username');
+    this.userData.password = userInfo.get('password');
+  }
+
+  getLoginStatus()
+  {
+    return this.logged_in;
   }
 }
 
