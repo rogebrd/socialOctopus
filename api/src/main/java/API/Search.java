@@ -7,6 +7,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import sun.reflect.annotation.ExceptionProxy;
 
 import java.sql.ResultSet;
 import java.util.LinkedHashMap;
@@ -27,7 +28,7 @@ public class Search {
 
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
-        String term = postBody.get("term");
+        JSONObject results = new JSONObject();
 
         try {
             logger.log("Connecting...\n");
@@ -38,27 +39,27 @@ public class Search {
 
             logger.log("Querying...\n");
             //query for search
+            String term = postBody.get("term");
             ResultSet res = connection.SELECT("SELECT * FROM Utility.users u,Utility.settings s WHERE u.userId = s.userId AND (u.userId LIKE '%" + term + "%' OR u.name LIKE '%" + term + "%')");
 
             logger.log("Formatting...\n");
             //Format results
-            JSONObject formattedResults = formatSearch(res);
-
-            logger.log("Disconnecting...\n");
-            connection.disconnect();
-
-            logger.log(formattedResults.toJSONString());
-
-            return (formattedResults.toJSONString());
+            results = formatSearch(res);
 
         }catch(Exception e){
             logger.log("ERROR: " + e.getMessage() + "\n");
-            JSONObject results = new JSONObject();
             results.put("status",0);
-            results.put("Error: ",e.getMessage());
+            results.put("message",e.getMessage());
 
             return results.toJSONString();
+        }finally{
+            logger.log("Disconnecting...\n");
+            try {
+                connection.disconnect();
+            }catch(Exception e){}
         }
+
+        return (results.toJSONString());
     }
 
     private JSONObject formatSearch(ResultSet res) throws Exception {
@@ -77,11 +78,11 @@ public class Search {
 
         if(people.size() == 0){
             results.put("status",0);
+            results.put("message", "0 results returned");
         }else{
             results.put("status",1);
+            results.put("results", people);
         }
-
-        results.put("results", people);
 
         return results;
     }

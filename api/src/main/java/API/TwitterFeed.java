@@ -18,10 +18,7 @@ import twitter4j.conf.ConfigurationBuilder;
 import java.sql.ResultSet;
 import java.util.List;
 
-public class TwitterConnector {
-
-    private static final String consumer_token = "6WUiXKkUgfYTtPQxn4PvFg32z";
-    private static final String consumer_secret = "M4CVwQPTFooisegoQX8iO8nxtygFMxjeGvkrMkc96yyTNg5Ou1";
+public class TwitterFeed {
 
     public String get(Object body, Context context){
         DatabaseConnection connection;
@@ -42,7 +39,7 @@ public class TwitterConnector {
             logger.log(id + "\n");
 
             logger.log("Creating Twitter Client...\n");
-            Twitter twitter = createTwitterClient(connection, id);
+            Twitter twitter = TwitterUtilities.createTwitterClient(connection, id);
 
             logger.log(twitter.getOAuthAccessToken().getToken() + "\n" + twitter.getOAuthAccessToken().getTokenSecret() + "\n");
 
@@ -66,38 +63,5 @@ public class TwitterConnector {
 
             return ("ERROR: " + e.getMessage() + "\n");
         }
-    }
-
-    private static Twitter createTwitterClient(DatabaseConnection connection, String userId) throws Exception {
-        String access_token = "";
-        String access_secret = "";
-
-        //Get the twitter factory and populate the consumer info
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setJSONStoreEnabled(true);
-        //cb.setHttpConnectionTimeout(100000);
-
-        Twitter twitter = new TwitterFactory(cb.build()).getInstance();
-        twitter.setOAuthConsumer(consumer_token, consumer_secret);
-
-        //select tokens from db
-        ResultSet res = connection.SELECT("SELECT * FROM accounts WHERE userId='" + userId + "' AND type='twitter'");
-
-        //select tokens
-//        if(res.next()){
-//            access_token = res.getString("access_token");
-//            access_secret = res.getString("access_secret");
-//        }else{
-//            throw new Exception("Twitter account not found");
-//        }
-
-        access_token = "212813534-ARZMp2v4fA0bZv1Tm7MbbL5DI8oqAIXnms8HLCbr";
-        access_secret = "2FEHLMVg5oTl1M4pwKHRFGwE9wsiSblFa6e071fbytlcK";
-
-        //add access token info to twitter
-        AccessToken token = new AccessToken(access_token, access_secret);
-        twitter.setOAuthAccessToken(token);
-
-        return (twitter);
     }
 }

@@ -17,7 +17,7 @@ import java.util.*;
 import com.tumblr.jumblr.request.RequestBuilder;
 
 
-public class TumblrConnector {
+public class TumblrFeed {
     public static int debug;
 
     private static final String consumer_key = "Mem1pyzoHKlyr4lDIKUo1xolEVAEcWY22n0EvWDPdez40yoD9g";

@@ -35,7 +35,7 @@ public class UserLogin {
             connection.connect();
 
             logger.log("Verifying...\n");
-            EncryptionManager.verify(connection, body);
+            //EncryptionManager.verify(connection, body);
 
             logger.log("Getting Input...\n");
             //validate
@@ -57,7 +57,7 @@ public class UserLogin {
                 throw new Exception("Invalid Login");
             }else{
                 logger.log("Updating Login Info...\n");
-                if(connection.UPDATE("UPDATE Utility.users SET token='" + token + "' WHERE userId='" + id + "'") == 0){
+                if(connection.UPDATE("UPDATE Utility.users SET Token='" + token + "' WHERE userId='" + id + "'") == 0){
                     logger.log("Update Query Failed...\n");
 
                     status = -1;

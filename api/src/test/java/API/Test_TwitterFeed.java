@@ -13,14 +13,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
-public class Test_TwitterConnector {
+public class Test_TwitterFeed {
 
     private static final String TOKEN = "TEST";
-    private TwitterConnector tc;
+    private TwitterFeed tc;
 
     @Before
     public void setup(){
-        tc = new TwitterConnector();
+        tc = new TwitterFeed();
     }
 
     @Test
