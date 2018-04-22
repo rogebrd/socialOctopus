@@ -31,7 +31,6 @@ export class LoginPage {
       this.userData = {"username": "hey", "password": "hey"};
       this.params = {test: true, code: "1"};
       this.login();
-
     }
   }
 
@@ -62,8 +61,6 @@ export class LoginPage {
 
 
   retrieveUserInfo() {
-
-
     let response = this.api.apiGet('user/'+this.userData.username).then(data => {
         //console.log(data);
 
@@ -79,7 +76,6 @@ export class LoginPage {
 
 
       });
-
   }
 
   goToSignup(){

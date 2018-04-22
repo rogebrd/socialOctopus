@@ -45,9 +45,13 @@ describe('MyApp Component', () => {
   it('is created', () => {
      expect(fixture).toBeTruthy();
      expect(component).toBeTruthy();
+     console.log(component);
+     console.log(fixture);
   });
  
   it('displays the product page to the user', () => {
+     console.log(component['rootPage']);
+     //console.log(component[].pages[0]);
      expect(component['rootPage']).toBe(LoginPage);
   });
 
@@ -57,7 +61,7 @@ describe('MyApp Component', () => {
     // LoginPage.
 
      let login_status = component['rootPage'].getLoginStatus();
-     expect(component['rootPage'].login_status).toBeFalsy;
+     expect(login_status).toBeFalsy;
   });
 
   

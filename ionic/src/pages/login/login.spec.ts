@@ -8,8 +8,27 @@ import { HttpModule } from '@angular/http';
 
 import { NavController,NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
- 
-let comp: LoginPage;
+import { ApiProviderMock } from '../../providers/api/api.mock';
+
+
+import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import {
+  PlatformMock,
+  StatusBarMock,
+  SplashScreenMock,
+  NavParamsMock,
+  NavMock
+} from '../../../test-config/mocks-ionic';
+
+import { LoginPageMock } from  './login.mock';
+
+let comp0;
+let fixture0;
+
+let comp: LoginPageMock;
 let fixture: ComponentFixture<LoginPage>;
 let de: DebugElement;
 let el: HTMLElement;
@@ -27,22 +46,31 @@ describe('Page: Login Page', () => {
             declarations: [MyApp, LoginPage],
  
             providers: [
- 
+                { provide: StatusBar, useClass: StatusBarMock },
+                { provide: SplashScreen, useClass: SplashScreenMock },
+                { provide: Platform, useClass: PlatformMock },
+                { provide: NavController, useClass: NavMock},
+                { provide: NavParams, useClass: NavParamsMock },
+                { provide: LoginPage, useClass: LoginPageMock },
+                { provide: ApiProvider, useClass: ApiProviderMock }
             ],
- 
+
             imports: [
                 IonicModule.forRoot(MyApp),
                 HttpModule
             ]
  
-        }).compileComponents();
+        }).compileComponents().
+        then(()=>{
+            fixture0 = TestBed.createComponent(MyApp);
+            comp0    = fixture.componentInstance;
+            fixture0.detectChanges();
+            //fixture = TestBed.createComponent(LoginPage);
+            //comp    = fixture.componentInstance;
+            //fixture.detectChanges();
+        });
  
     }));
- 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(LoginPage);
-        comp    = fixture.componentInstance;
-    });
  
     afterEach(() => {
         fixture.destroy();
@@ -50,7 +78,11 @@ describe('Page: Login Page', () => {
         de = null;
         el = null;
     });
- 
+
+    it('should create', () => {
+        expect(comp).toBeDefined();
+    });
+
     it('is created', () => {
  
         expect(fixture).toBeTruthy();
