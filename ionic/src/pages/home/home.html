@@ -1,6 +1,5 @@
 <ion-header>
-  <ion-navbar>
-
+  <ion-navbar hideBackButton="true">
     <ion-buttons end padding-right="20px">
       <button ion-button icon-only (click)='goToSettingsPage();' >
         <ion-icon name="cog"></ion-icon>
@@ -47,13 +46,16 @@
 
 
 <ion-content padding (swipeleft)="swipeLeftEvent($event)" padding (swipeRight) ="swipeRightEvent($event)">
-<button ion-item (click)='expandAll();' >
-Expanded / Minimized Toggle
-</button>
-  <ion-list>
-    <h1 *ngIf="apiError">Error Pulling Twitter Data</h1>
-  		<ion-card *ngFor="let post of posts">
-  		<!--	<button myitem (click)='handleClick(post);' </button>-->
+
+  <div class = "box blue" id = "errorMessage"><br/><br/><h2 align="center"> We failed to get your Twitter feed Right now. </h2><h2 align="center">Try other Stuff by clicking buttons in navbar</h2> </div>
+
+    <button ion-item (click)='expandAll();' >
+      Expanded / Minimized Toggle
+    </button>
+    <ion-list>
+      <h1 *ngIf="apiError">Error Pulling Twitter Data</h1>
+      <ion-card *ngFor="let post of posts">
+        <!--	<button myitem (click)='handleClick(post);' </button>-->
         <button (click)="expandItem(post)" ion-item>
 
           <ion-avatar item-left >

@@ -20,7 +20,6 @@ export class HomePage {
   itemExpandHeight: number = 200;
   expanded: boolean = false;
   twitterFeedEndpoint: '';
-  apiError: number = 0;
   token : any;
 
   appName:any;
@@ -28,6 +27,7 @@ export class HomePage {
   picsURL:any;
   uID:any;
   params = {test : false, code: ""};
+  canExpand = false;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private api: ApiProvider, public http: Http) {
     this.token = navParams.get('token');
@@ -47,6 +47,7 @@ export class HomePage {
       this.return();
     }
         this.getFeed();
+
 
 
     // this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
@@ -72,6 +73,7 @@ export class HomePage {
     //     console.log("Oops!");
     //   }
     // );
+
 
   	}
   	displayFakePage() {
@@ -104,18 +106,21 @@ export class HomePage {
   getFeed() {
     let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
+
         console.log(data);
         if(data[0] == 'E'){
           this.apiError = 1;
 
           console.log('API ERROR DETECTED');
+
           this.goToErrorFeedPage();
         }
         else {
-          console.log(JSON.parse(String(data)));
-          this.posts = JSON.parse(String(data));
+          console.log(JSON.parse(data));
+          this.posts = JSON.parse(data);
           this.processFeed();
         }
+
       });
   }
 
@@ -135,6 +140,7 @@ export class HomePage {
       }
 
     }
+    this.canExpand = true;
   }
 
 
@@ -175,6 +181,7 @@ export class HomePage {
 
   expandAll(){
 
+    if (!this.canExpand) return;
     this.expanded = !this.expanded;
 
     for(let i = 0; i<= this.posts.length - 1; i++){
@@ -203,7 +210,7 @@ export class HomePage {
 
   }
   return() {
-    this.navCtrl.push(TestingPage, this.params);
+this.navCtrl.push(TestingPage, {test: true, code: this.code, token: this.token});
 
   }
 
