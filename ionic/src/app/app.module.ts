@@ -36,7 +36,7 @@ import { ViewProfilePage } from '../pages/view-profile/view-profile';
     TestingPage,
     PostPage,
     UserProfilePage,
-  ViewProfilePage
+    ViewProfilePage
   ],
   imports: [
     BrowserModule,

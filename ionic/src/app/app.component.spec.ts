@@ -10,6 +10,7 @@ import {
   StatusBarMock,
   SplashScreenMock
 } from '../../test-config/mocks-ionic';
+import {LoginPage} from "../pages/login/login";
 
 describe('MyApp Component', () => {
   let fixture;
@@ -34,18 +35,18 @@ describe('MyApp Component', () => {
     component = fixture.componentInstance;
   });
 
-  afterEach(() =>{
-    fixture.destroy();
-    component = null;
-  })
+//  afterEach(() =>{
+//    fixture.destroy();
+//   component = null;
+//  })
 
 
   it('should be created', () => {
     expect(component instanceof MyApp).toBe(true);
   });
 
-  it('should have eleven pages', () => {
-    expect(component.pages.length).toBe(11);
+  it('root page should be Login page', () => {
+    expect(component.rootPage).toBe(LoginPage);
   });
 
 });
