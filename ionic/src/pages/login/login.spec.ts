@@ -25,17 +25,19 @@ import {
 
 import { LoginPageMock } from  './login.mock';
 
-let comp0;
-let fixture0;
+//let comp0;
+//let fixture0;
 
-let comp: LoginPageMock;
-let fixture: ComponentFixture<LoginPage>;
-let de: DebugElement;
-let el: HTMLElement;
+let comp;//: LoginPageMock;
+let fixture;//: ComponentFixture<LoginPage>;
+let de;//: DebugElement;
+let el;//: HTMLElement;
 
-let api: ApiProvider;
-let params: NavParams;
-let navCtrl: NavController;
+let api;//: ApiProvider;
+let params;//: NavParams;
+let navCtrl;//: NavController;
+
+let login;
  
 describe('Page: Login Page', () => {
  
@@ -44,7 +46,12 @@ describe('Page: Login Page', () => {
         TestBed.configureTestingModule({
  
             declarations: [MyApp, LoginPage],
- 
+
+            imports: [
+                IonicModule.forRoot(MyApp),
+                HttpModule
+            ],
+
             providers: [
                 { provide: StatusBar, useClass: StatusBarMock },
                 { provide: SplashScreen, useClass: SplashScreenMock },
@@ -53,21 +60,22 @@ describe('Page: Login Page', () => {
                 { provide: NavParams, useClass: NavParamsMock },
                 { provide: LoginPage, useClass: LoginPageMock },
                 { provide: ApiProvider, useClass: ApiProviderMock }
-            ],
-
-            imports: [
-                IonicModule.forRoot(MyApp),
-                HttpModule
             ]
  
         }).compileComponents().
         then(()=>{
-            fixture0 = TestBed.createComponent(LoginPage);
-            comp0    = fixture.componentInstance;
-            fixture0.detectChanges();
-            //fixture = TestBed.createComponent(LoginPage);
-            //comp    = fixture.componentInstance;
-            //fixture.detectChanges();
+            //fixture0 = TestBed.createComponent(LoginPage);
+            //comp0    = fixture.componentInstance;
+            //fixture0.detectChanges();
+            api = TestBed.get(ApiProvider);
+            params = TestBed.get(NavParams);
+            navCtrl = TestBed.get(NavController);
+
+            login = new LoginPage(api, navCtrl, params);
+
+            fixture = TestBed.createComponent(login);
+            comp    = fixture.componentInstance;
+            fixture.detectChanges();
         });
  
     }));
