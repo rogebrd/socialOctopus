@@ -210,7 +210,7 @@ export class HomePage {
 
   }
   return() {
-this.navCtrl.push(TestingPage, {test: true, code: this.code, token: this.token});
+this.navCtrl.push(TestingPage, {test: true, code: this.params.code, token: this.token});
 
   }
 
