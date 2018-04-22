@@ -62,7 +62,7 @@ describe('Page: Login Page', () => {
  
         }).compileComponents().
         then(()=>{
-            fixture0 = TestBed.createComponent(MyApp);
+            fixture0 = TestBed.createComponent(LoginPage);
             comp0    = fixture.componentInstance;
             fixture0.detectChanges();
             //fixture = TestBed.createComponent(LoginPage);
