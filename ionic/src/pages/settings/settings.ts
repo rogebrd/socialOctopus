@@ -30,7 +30,8 @@ export class SettingsPage {
     try {
       this.token = navParams.get('token');
       this.api.setToken(this.token);
-      this.uID = navParams.get('uID');
+      console.log(this.api.getToken());
+      //this.uID = navParams.get('uID');
     } catch (err) {
      
       this.uID = navParams.get('bradrogers');
@@ -59,8 +60,8 @@ export class SettingsPage {
     console.log("submitted");
     console.log(this.settings);
     let postBody = {"userID":"","name":"","profilePicUrl":"","quotes":"","viewPreference":"","type":"","socialMediaID":"","socialMediaPassword":"","visibility":""};
-    console.log("user ID here is : " +this.uID);
-    postBody.userID = this.uID;
+    //console.log("user ID here is : " +this.uID);
+    //postBody.userID = this.uID;
     postBody.name = this.settings.name;
     postBody.profilePicUrl = this.settings.propic;
     postBody.quotes = this.settings.quotes;
@@ -81,14 +82,14 @@ export class SettingsPage {
 
     let response = this.api.apiPost('user', postBody)
       .then(data => {
-        console.log(data);
-        let str = data.toString();
-       if(str==='update successful !! App name and quotes are now changed'){
+    //    console.log(data);
+        //let str = data.toString();
+       //if(str==='update successful !! App name and quotes are now changed'){
          //
-        console.log(str);
-         this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.settings.name,quotes:this.settings.quotes,picsURL:postBody.profilePicUrl,uID:this.uID,test: this.params.test, code: this.params.code});
+        //console.log(str);
+         //this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.settings.name,quotes:this.settings.quotes,picsURL:postBody.profilePicUrl,uID:this.uID,test: this.params.test, code: this.params.code});
 
-       }
+       //}
 
       });
 
