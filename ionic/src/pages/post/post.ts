@@ -19,7 +19,7 @@ export class PostPage {
               private api: ApiProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
               private formBuilder: FormBuilder) {
 
-    this.api.setToken(navParams.get('token'));
+    //this.api.setToken(navParams.get('token'));
 
     this.postForm = this.formBuilder.group({
       text: ['', Validators.required],
