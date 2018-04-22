@@ -29,7 +29,8 @@ public class UserCreate extends LambdaSkeleton {
         name = postBody.get("name");
 
         //check if userExists
-        int i = connection.INSERT("INSERT INTO Utility.users(userId,password,name) VALUES('" + id +"','" + password+"','" + name+"')");
+        int i = connection.INSERT("INSERT INTO Utility.users (id,userId,password,name) VALUES (100,'" + id +"','" + password+"','" + name+"')");
+        //int i = connection.INSERT("INSERT INTO Utility.users (userId,password,name) VALUES('" + id +"','" + password+"','" + name+"')");
         // check if insert statement is successful
         if (i==0) {
             throw new Exception("Username Already Exists!");

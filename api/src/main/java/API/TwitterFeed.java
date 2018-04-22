@@ -18,7 +18,7 @@ import twitter4j.conf.ConfigurationBuilder;
 import java.sql.ResultSet;
 import java.util.List;
 
-public class TwitterFeed {
+public class TwitterFeed extends LambdaSkeleton {
 
     public JSONObject process(DatabaseConnection connection, Object body, LambdaLogger logger) throws Exception {
 
