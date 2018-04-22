@@ -6,8 +6,6 @@ import { LoginPage } from '../pages/login/login';
 import { TestingPage } from '../pages/testing/testing';
 import {PostPage} from '../pages/post/post'
 
-
-
 @Component({
   templateUrl: 'app.html'
 })
