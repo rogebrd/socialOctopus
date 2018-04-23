@@ -111,7 +111,12 @@ export class NavMock {
 }
 
 export class NavParamsMock {
-  token = 0;
+
+  public setToken(): any {
+    return new Promise(function(resolve: Function): void {
+      resolve();
+    });
+  }
 }
 
 export class DeepLinkerMock {
