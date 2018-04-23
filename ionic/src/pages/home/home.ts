@@ -33,13 +33,13 @@ export class HomePage {
     this.token = navParams.get('token');
     this.uID = navParams.get('uID');
     this.api.setToken(this.token);
-
+    console.log("home " + this.token);
     this.appName = navParams.get('appName');
     this.quotes = navParams.get('quotes');
     this.picsURL = navParams.get('picsURL');
     this.uID = navParams.get('uID');
 
-    console.log(this.appName);
+    
     console.log(this.quotes);
 
     if (navParams.get('test')== true){
@@ -105,28 +105,41 @@ export class HomePage {
 
   getFeed() {
     let response = this.api.apiGet('social/twitter/feed')
-      .then(data => {
+    .then(data => {
+      
+      let data1 = JSON.parse(String(data))
+      let stat = data1.status;
+     // console.log("data1: " + data1);
+     //console.log(stat + " DATA STATUS");
+     
+     console.log(data);
 
-        console.log(data);
-        if(data[0] == 'E'){
-          this.apiError = 1;
+      //let mark = JSON.parse(String(data))
+      
+      if(stat == -1){
+        //this.apiError = 1;
 
-          console.log('API ERROR DETECTED');
+        console.log('API ERROR DETECTED');
 
-          this.goToErrorFeedPage();
-        }
-        else {
-          console.log(JSON.parse(data));
-          this.posts = JSON.parse(data);
-          this.processFeed();
-        }
+        this.goToErrorFeedPage();
+      }
+      else {
+        let tweets = JSON.parse(data1.tweets);
+       
+        //console.log("data/tweets/tweet " + data + tweets);
+        //console.log("TWEETS: " + tweets);
+        this.posts = tweets;
+        this.processFeed();
+      }
 
-      });
-  }
+    });
+}
+  
 
 
   processFeed(){
     for(let i = 0; i<= this.posts.length - 1; i++){
+      console.log(this.posts[i] + "    " + i);
       this.posts[i].platformPic = '/assets/imgs/twitter.png';
       //  this.posts[i].date = this.calculateSince(this.posts[i].created_at);
       this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
@@ -162,7 +175,7 @@ export class HomePage {
   }
 
   goToErrorFeedPage() {
-    this.navCtrl.push(ErrorFeedPage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.uID } );
+    this.navCtrl.push(SettingsPage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.uID } );
   }
 
   goToProfilePage() {
