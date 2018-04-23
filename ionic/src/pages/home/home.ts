@@ -109,15 +109,15 @@ export class HomePage {
 
         console.log(data);
         if(data[0] == 'E'){
-          this.apiError = 1;
+          //this.apiError = 1;
 
           console.log('API ERROR DETECTED');
 
           this.goToErrorFeedPage();
         }
         else {
-          console.log(JSON.parse(data));
-          this.posts = JSON.parse(data);
+          console.log(JSON.parse(data.toString()));
+          this.posts = JSON.parse(data.toString());
           this.processFeed();
         }
 
