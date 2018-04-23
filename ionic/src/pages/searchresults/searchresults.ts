@@ -39,10 +39,24 @@ export class SearchresultsPage {
     //console.log(test[0].results);
     let status = 0;
     status = navParams.get('status');
+    console.log(this.results);
     if (status == 1){
       let str = ""
       let i = 0;
       let size = 0;
+      let comeon = JSON.parse(this.results);
+      for (var j = 0; j < comeon.results.length; j++){
+        this.names[i] = comeon.results[i].name;
+        this.u_names[i] = comeon.results[i].userId
+        this.isValid(comeon.results[i].profilePicsLink);
+        this.quote[i] = comeon.results[i].Quotes;
+        if (this.valid){
+          this.picURLS[i] = comeon.results[i].profilePicsLink;
+        } else {
+          this.picURLS[i] = "assets/img/profile.png";
+        }      
+      }
+      console.log(comeon + "come on already");
       while (i<this.results.length){
         str+=this.results[i];
         i++;
@@ -50,11 +64,10 @@ export class SearchresultsPage {
 
       i = 0;
 
-
-      var comeon = JSON.parse(str);
-      this.resoolt = comeon;
-      //console.log(comeon.results[i].name);
-      while (i<comeon.results.length){
+      
+    //  var comeon = JSON.parse(str);
+    
+      /* while (i<comeon.results.length){
         let first = JSON.stringify(comeon.results[i].name);
         let second = "";
         let third = JSON.stringify(comeon.results[i].userId);
@@ -94,7 +107,7 @@ export class SearchresultsPage {
         }
         
         i++;
-      }
+      } */
 
       if (navParams.get('test')== true){
         this.params = {test: true, code: "6"};
