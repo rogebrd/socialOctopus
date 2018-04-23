@@ -39,11 +39,7 @@ export class HomePage {
     this.picsURL = navParams.get('picsURL');
     this.uID = navParams.get('uID');
 
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> bugfreestuff
     console.log(this.quotes);
 
     if (navParams.get('test')== true){
@@ -109,7 +105,6 @@ export class HomePage {
 
   getFeed() {
     let response = this.api.apiGet('social/twitter/feed')
-<<<<<<< HEAD
       .then(data => {
 
         let data1 = JSON.parse(String(data))
@@ -136,38 +131,9 @@ export class HomePage {
           this.posts = tweets;
           this.processFeed();
         }
-=======
-    .then(data => {
-      
-      let data1 = JSON.parse(String(data))
-      let stat = data1.status;
-     // console.log("data1: " + data1);
-     //console.log(stat + " DATA STATUS");
-     
-     console.log(data);
 
-      //let mark = JSON.parse(String(data))
-      
-      if(stat == -1){
-        //this.apiError = 1;
-
-        console.log('API ERROR DETECTED');
-
-        this.goToErrorFeedPage();
-      }
-      else {
-        let tweets = JSON.parse(data1.tweets);
-       
-        //console.log("data/tweets/tweet " + data + tweets);
-        //console.log("TWEETS: " + tweets);
-        this.posts = tweets;
-        this.processFeed();
-      }
->>>>>>> bugfreestuff
-
-    });
-}
-  
+      });
+  }
 
 
 

@@ -37,7 +37,7 @@ export class PostPage {
     let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
       console.log(data);
       this.success();
-      console.log('Posted status as' + this.input.status);
+      console.log('Posted status as ' + this.input.status);
     }, error => {
       this.showError(error);
     });
