@@ -17,6 +17,7 @@ public class Search extends LambdaSkeleton {
     public static final String userId = "userId";
     public static final String name = "name";
     public static final String profilePicUrl = "profilePicsLink";
+    public static final String Quotes = "Quotes";
 
     public JSONObject process(DatabaseConnection connection, Object body, LambdaLogger logger) throws Exception{
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
@@ -46,6 +47,7 @@ public class Search extends LambdaSkeleton {
             person.put(userId, res.getString(userId));
             person.put(name, res.getString(name));
             person.put(profilePicUrl, res.getString(profilePicUrl));
+            person.put(Quotes,res.getString(Quotes));
 
             people.add(person);
         }
