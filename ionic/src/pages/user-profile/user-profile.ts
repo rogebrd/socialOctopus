@@ -57,6 +57,24 @@ export class UserProfilePage {
   goToSettingsPage(){
     this.navCtrl.push(SettingsPage);
   }
+
+  testURL(){
+    let response = this.api.apiGet('social/twitter/GET')
+    .then(data => {
+      
+      let data1 = JSON.parse(String(data))
+      let stat = data1.status;
+     // console.log("data1: " + data1);
+     //console.log(stat + " DATA STATUS");
+     
+     console.log("response from social/twitter/get: " + data);
+
+    });
+  }
+
+   testPrint2(){
+    console.log('test auth token button clicked');
+  }
   // goToHomePage(){
   //   this.navCtrl.push(HomePage);
   // }

@@ -23,8 +23,13 @@ export class SettingsPage {
   token:any;
   uID:any;
   params = {test : false, code: ""};
+  testResponse = "{\"authURL\":\"https://api.twitter.com/oauth/authorize?oauth_token=F6McbgAAAAAA44s-AAABYvBbd2M\",\"requestTokenSecret\":\"CNLUaFT9krymqhLz3Nz8q1pHo7EapKgg\",\"requestToken\":\"F6McbgAAAAAA44s-AAABYvBbd2M\",\"status\":1}";
+  URL:string;
+  requestSecret:string;
+  requestToken:string;
+  status:number;
 
-  public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":""};
+  public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":"", "twitterPIN":"", "tumblerPIN":""};
 
   constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
     try {
@@ -91,8 +96,47 @@ export class SettingsPage {
        }
 
       });
+  }
+
+  getTwitterURL(){
+    console.log('inside getTwitterURL');
+    var response = JSON.parse(this.testResponse);
+    this.URL = response.authURL;
+    this.requestSecret = response.requestTokenSecret;
+    this.requestToken = response.requestToken;
+    this.status = response.status;
+    if(this.status != 1){
+      console.log("ERROR RETRIEVING TWITTER URL");
+      return;
+    }
+    console.log("URL: " + this.URL + " Secret: " + this.requestSecret + " token: " + this.requestToken + " status: " + this.status);
+  }
+
+  sendTwitterPIN(){
+    console.log('inside sendTwitterPIN');
+    console.log("INPUTED PIN: " + this.settings.twitterPIN);
+  }
+
+  getTumblrURL(){
+    console.log('inside getTumblrURL');
+    var response = JSON.parse(this.testResponse);
+    this.URL = response.authURL;
+    this.requestSecret = response.requestTokenSecret;
+    this.requestToken = response.requestToken;
+    this.status = response.status;
+    if(this.status != 1){
+      console.log("ERROR RETRIEVING TWITTER URL");
+      return;
+    }
+    console.log("URL: " + this.URL + " Secret: " + this.requestSecret + " token: " + this.requestToken + " status: " + this.status);
+  }
+
+  sendTumblrPIN(){
+    console.log('inside sendTumblrPIN');
+  }
 
 
+  addTumblr(){
 
   }
 
