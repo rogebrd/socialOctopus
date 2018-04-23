@@ -11,8 +11,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProviderMock {
 
-  private token = "";
-
+  private token = "123";
+  private data = {"token" : this.token,
+                  "status": 0 
+                 };
   //config.set('SOToken', "rogers");
   //config.ammend('Content-Type', 'application/json');
 
@@ -32,15 +34,15 @@ export class ApiProviderMock {
     return (this.token);
   }
 
-  apiGet(endpoint){
-  	return new Promise(function(resolve: Function): void {
-      resolve();
-    }); 
+  apiGet(endpoint, body){
+    return new Promise(function(resolve: Function): void {
+      resolve(this.data);
+    });
   }
 
   apiPost(endpoint, body){
     return new Promise(function(resolve: Function): void {
-      resolve();
+      resolve(this.data);
     });
   }
 

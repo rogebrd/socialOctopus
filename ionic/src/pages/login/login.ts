@@ -85,8 +85,8 @@ export class LoginPage {
 
   setUserData(userInfo)
   {
-    this.userData.username = userInfo.get('username');
-    this.userData.password = userInfo.get('password');
+    this.userData.username = "wrong";
+    this.userData.password = "info";
   }
 
   getLoginStatus()

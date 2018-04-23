@@ -45,17 +45,17 @@ describe('MyApp Component', () => {
   it('is created', () => {
      expect(fixture).toBeTruthy();
      expect(component).toBeTruthy();
-     console.log(component);
-     console.log(fixture);
+     //console.log(component);
+     //console.log(fixture);
   });
  
   it('displays the product page to the user', () => {
-     console.log(component['rootPage']);
+     //console.log(component['rootPage']);
      //console.log(component[].pages[0]);
      expect(component['rootPage']).toBe(LoginPage);
   });
 
-  
+  /*
   it('should return login status false', () => {
      //spyOn(component['rootPage'], 'getLoginStatus');
     // LoginPage.
@@ -63,6 +63,7 @@ describe('MyApp Component', () => {
      let login_status = component['rootPage'].getLoginStatus();
      expect(login_status).toBeFalsy;
   });
+  */
 
   
   /*
