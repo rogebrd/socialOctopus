@@ -12,33 +12,21 @@
   <ion-list>
 
     <ion-item no-lines>
-      <form [formGroup]="postForm" (ngSubmit)="logForm()">
+      <form [formGroup]="postForm">
         <ion-item>
-          <ion-textarea rows="10" maxLength="280" placeholder="Write something..." clearInput formControlName="postText">
+          <ion-textarea rows="10" maxLength="280" placeholder="Write something..." clearInput formControlName="text">
           </ion-textarea>
         </ion-item>
+        <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="postToTwitter()">
+          <ion-icon name="logo-twitter"></ion-icon>
+          Share on Twitter
+        </button>
+        <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="postToTumblr()">
+          <ion-icon name="logo-tumblr"></ion-icon>
+          Share on Tumblr
+        </button>
       </form>
     </ion-item>
-
-    <ion-item no-lines>
-      <ion-icon name="logo-twitter" item-start></ion-icon>
-      <ion-label>Share on Twitter</ion-label>
-      <ion-toggle color="coral" [(ngModel)]="toggleStatus" checked="true"></ion-toggle>
-    </ion-item>
-    <ion-item no-lines>
-      <ion-icon name="logo-instagram" item-start></ion-icon>
-      <ion-label>Share on Instagram</ion-label>
-      <ion-toggle disabled="" color="coral"></ion-toggle>
-    </ion-item>
-    <ion-item no-lines>
-      <ion-icon name="logo-facebook" item-start></ion-icon>
-      <ion-label>Share on Facebook</ion-label>
-      <ion-toggle disabled="" color="coral"></ion-toggle>
-    </ion-item>
-
-    <button ion-button color="coral" full type="submit" [disabled]="!postForm.valid || !toggleStatus" (click)="postToTwitter()">
-      Post!
-    </button>
 
   </ion-list>
 
