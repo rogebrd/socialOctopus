@@ -51,11 +51,26 @@
       console.log("Called Get Feed");
       this.posts = new Array();
       this.getFeed();
-      this.displayFakeTum();
-
+      this.getTumblrFeed();
+  //    this.posts.sort(this.compare);
+      this.posts.sort((a,b) => {
+          console.log('finally entered');
+        return +a.sortDate - +b.sortDate;});
+   
+            console.log(this.posts);
 
       console.log("Returned to Constructor");
     }
+
+    compare(a, b){
+        if (a.sortDate > b.sortDate) return -1;
+        if (a.sortDate < b.sortDate) return 1;
+        return 0;
+      }
+
+      compare1(a, b) {
+        return a-b;
+      }
 
     displayFakePage() {
 
@@ -65,7 +80,6 @@
         console.log(this.posts);
         for(let i = 0; i<= this.posts.length - 1; i++){
           this.posts[i].platformPic = '/assets/imgs/twitter.png';
-              //    this.posts[i].date = this.calculateSince(this.posts[i].created_at);
               this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
               if (typeof this.posts[i].entities.media !== 'undefined'){
                 this.posts[i].hasPhoto = true;
@@ -87,16 +101,14 @@
     displayFakeTum() {
 
       this.http.get('../assets/tumblr.json').map(res => res.json()).subscribe(data => {
-        console.log("FT");
         this.postsT = data.response.posts;
-        console.log(this.postsT);
         for(let i = 0; i<= this.postsT.length - 1; i++){
           this.postsT[i].platformPic = '/assets/imgs/tumblr.png';
 
               //    this.posts[i].date = this.calculateSince(this.posts[i].created_at);
               this.postsT[i].screenName = '@' + this.postsT[i].blog_name;
               this.postsT[i].name = this.postsT[i].blog_name;
-              this.postsT[i].profileImg = null;
+              this.postsT[i].profileImg = 'api.tumblr.com/v2/blog/' + this.postsT[i].blog_name + '/avatar';
               this.postsT[i].likes = this.postsT[i].note_count;
               this.postsT[i].comments = this.postsT[i].note_count;
               this.postsT[i].text = this.postsT[i].body;
@@ -141,6 +153,14 @@
        return a;
   }
 
+  sortDate(date){
+       date = new Date(Date.parse(date));
+       let dateNow = new Date();
+       return Math.floor((+dateNow - date) / 1000);
+  }
+
+
+
   getFeed() {
     console.log("Entered Get Feed - Right before api.Get");
 
@@ -158,8 +178,8 @@
        this.goToErrorFeedPage();
      }
      else {
-
-       this.postsT = JSON.parse(String(data));
+      let tweets = JSON.parse(String(data));
+      this.postsT = JSON.parse(String(tweets.tweets));
        this.processFeed();
      } 
    });
@@ -178,6 +198,8 @@
       this.postsT[i].likes = this.postsT[i].user.favourites_count;
       this.postsT[i].comments = this.postsT[i].retweet_count;
       this.postsT[i].date = this.displayDate(this.postsT[i].created_at);
+      this.postsT[i].sortDate = this.sortDate(this.postsT[i].created_at);
+      this.postsT[i].Tumblr = false;
 
       if (typeof this.postsT[i].entities.media !== 'undefined'){
         this.postsT[i].hasPhoto = true;
@@ -192,6 +214,7 @@
   }
 
   getTumblrFeed(){
+    console.log("Enter TF");
     let response = this.api.apiGet('social/tumblr/feed')
     .then(data => {
 
@@ -202,13 +225,46 @@
         this.goToErrorFeedPage();
       }
       else {
-        console.log(JSON.parse(String(data)));
-        this.posts = JSON.parse(String(data));
-        this.processFeed();
+        this.postsT = JSON.parse(String(data));
+        this.postsT = this.postsT.posts;
+       this.processTumblrFeed();
       }
     });
   }
 
+  processTumblrFeed(){
+               
+ for(let i = 0; i<= this.postsT.length - 1; i++){
+         
+
+
+
+          this.postsT[i].platformPic = '/assets/imgs/tumblr.png';
+
+              //this.posts[i].date = this.calculateSince(this.posts[i].created_at);
+              this.postsT[i].screenName = '@' + this.postsT[i].blog_name;
+              this.postsT[i].name = this.postsT[i].blog_name;
+              this.postsT[i].profileImg = 'https://api.tumblr.com/v2/blog/' + this.postsT[i].blog_name +'/avatar';
+              this.postsT[i].likes = this.postsT[i].note_count;
+              this.postsT[i].comments = this.postsT[i].note_count;
+              this.postsT[i].text = this.postsT[i].body;
+              this.postsT[i].hasPhoto = false;
+              this.postsT[i].photo = null;
+              this.postsT[i].sortDate = this.sortDate(this.postsT[i].date);
+
+              this.postsT[i].date = this.displayDate(this.postsT[i].date);
+              this.postsT[i].Tumblr = true;
+          if(this.postsT[i].type == "photo") {
+
+
+          }
+
+
+
+         this.posts.push(this.postsT[i]);
+    }
+
+  }
 
   swipeLeftEvent(event) {
    this.navCtrl.push(PostPage,{token:this.api.getToken()});

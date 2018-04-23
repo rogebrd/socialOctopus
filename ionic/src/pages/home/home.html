@@ -69,19 +69,22 @@
         </button>
 
 
-        <ion-card-content style="padding:2pxx" >
+        <ion-card-content style="padding:2px" >
           <p [hidden] = "!post.expand" [innerHTML] ="post.text">  </p> <!-- TWEET TEXT -->
 
           <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>  <!-- TWEET PHOTO -->
 
-          <ion-row class = "row" [hidden] = "!post.expand">
+          <ion-row class = "row" [hidden] = "!post.expand" >
             <ion-col class = "col">
               <button (click)="likePost(post)" ion-button item-left float-left icon-left clear small>
-                <ion-icon name="thumbs-up" class = "bottom"></ion-icon>
-                <div>{{post.likes}} Likes</div>
+                <ion-icon name="thumbs-up" class = "bottom" [hidden] = "post.Tumblr"></ion-icon>
+                 <ion-icon name="document" class = "bottom" [hidden] = "!post.Tumblr"></ion-icon>
+
+                <div [hidden] = "post.Tumblr">{{post.likes}} Likes</div>
+                <div [hidden] = "!post.Tumblr"> {{post.likes}} Notes </div>
               </button>
             </ion-col>
-            <ion-col class = "col" [hidden] = "!post.expand">
+            <ion-col class = "col" [hidden] = "post.Tumblr">
               <button (click)="commentPost(post)" ion-button icon-left clear small>
                 <ion-icon name="text" class = "bottom"></ion-icon>
                 <div >{{post.comments}} Comments</div>
