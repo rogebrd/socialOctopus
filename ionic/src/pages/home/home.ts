@@ -18,6 +18,7 @@
   export class HomePage {
   	posts: any;
     postsT: any;
+    photos: any
     noPhoto: 'style="display: none;"';
     itemExpandHeight: number = 200;
     expanded: boolean = false;
@@ -53,25 +54,17 @@
       this.getFeed();
       this.getTumblrFeed();
   //    this.posts.sort(this.compare);
-      this.posts.sort((a,b) => {
-          console.log('finally entered');
-        return +a.sortDate - +b.sortDate;});
+  
+      
+
+      
    
             console.log(this.posts);
 
       console.log("Returned to Constructor");
     }
 
-    compare(a, b){
-        if (a.sortDate > b.sortDate) return -1;
-        if (a.sortDate < b.sortDate) return 1;
-        return 0;
-      }
-
-      compare1(a, b) {
-        return a-b;
-      }
-
+   
     displayFakePage() {
 
       this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
@@ -210,6 +203,8 @@
         this.postsT[i].photo = null;
       }
       this.posts.push(this.postsT[i]);
+      this.posts.sort((a,b) => {
+        return a.sortDate - b.sortDate;});
     }
   }
 
@@ -254,14 +249,18 @@
 
               this.postsT[i].date = this.displayDate(this.postsT[i].date);
               this.postsT[i].Tumblr = true;
+              this.postsT[i].tumblrPhotos = false;
+
           if(this.postsT[i].type == "photo") {
-
-
+              this.postsT[i].tumblrPhotos = true;
+            
           }
 
 
-
          this.posts.push(this.postsT[i]);
+         this.posts.sort((a,b) => {
+        return a.sortDate - b.sortDate;});
+
     }
 
   }

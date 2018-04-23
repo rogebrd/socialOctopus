@@ -71,7 +71,10 @@
 
         <ion-card-content style="padding:2px" >
           <p [hidden] = "!post.expand" [innerHTML] ="post.text">  </p> <!-- TWEET TEXT -->
-
+          <div *ngFor= "let photo of post.photos" >
+            <img *ngIf= "photo.url" [src] = "photo.url" [hidden] = '!post.expand'> 
+          </div>
+         <div [hidden] = '!post.expand' [innerHTML] ="post.caption"> </div>
           <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>  <!-- TWEET PHOTO -->
 
           <ion-row class = "row" [hidden] = "!post.expand" >
