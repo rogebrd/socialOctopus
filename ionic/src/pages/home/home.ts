@@ -15,7 +15,7 @@ import { TestingPage } from '../testing/testing';
   templateUrl: 'home.html'
 })
 export class HomePage {
-	posts: any;
+  posts: any;
   noPhoto: 'style="display: none;"';
   itemExpandHeight: number = 200;
   expanded: boolean = false;
@@ -33,20 +33,20 @@ export class HomePage {
     this.token = navParams.get('token');
     this.uID = navParams.get('uID');
     this.api.setToken(this.token);
-
+    console.log("home " + this.token);
     this.appName = navParams.get('appName');
     this.quotes = navParams.get('quotes');
     this.picsURL = navParams.get('picsURL');
     this.uID = navParams.get('uID');
 
-    console.log(this.appName);
+
     console.log(this.quotes);
 
     if (navParams.get('test')== true){
       this.params = {test: true, code: navParams.get('code')};
       this.return();
     }
-        this.getFeed();
+    this.getFeed();
 
 
 
@@ -75,40 +75,48 @@ export class HomePage {
     // );
 
 
-  	}
-  	displayFakePage() {
+  }
+  displayFakePage() {
 
-      this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
+    this.http.get('../assets/timeline_with_photo.json').map(res => res.json()).subscribe(data => {
 
-          this.posts = data;
-          console.log("worked");
-          for(let i = 0; i<= this.posts.length - 1; i++){
-            this.posts[i].platformPic = '/assets/imgs/twitter.png';
-            //    this.posts[i].date = this.calculateSince(this.posts[i].created_at);
-            this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
-            if (typeof this.posts[i].entities.media !== 'undefined'){
-              this.posts[i].hasPhoto = true;
-              this.posts[i].photo = this.posts[i].entities.media[0].media_url;
-            }
-            else{
-              this.posts[i].hasPhoto = false;
-              this.posts[i].photo = null;
-            }
-
+        this.posts = data;
+        console.log("worked");
+        for(let i = 0; i<= this.posts.length - 1; i++){
+          this.posts[i].platformPic = '/assets/imgs/twitter.png';
+          //    this.posts[i].date = this.calculateSince(this.posts[i].created_at);
+          this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
+          if (typeof this.posts[i].entities.media !== 'undefined'){
+            this.posts[i].hasPhoto = true;
+            this.posts[i].photo = this.posts[i].entities.media[0].media_url;
           }
-        },
-        err => {
-          console.log("Oops!");
+          else{
+            this.posts[i].hasPhoto = false;
+            this.posts[i].photo = null;
+          }
+
         }
-      );
-    }
+      },
+      err => {
+        console.log("Oops!");
+      }
+    );
+  }
 
   getFeed() {
     let response = this.api.apiGet('social/twitter/feed')
       .then(data => {
 
+        let data1 = JSON.parse(String(data))
+        let stat = data1.status;
+        // console.log("data1: " + data1);
+        //console.log(stat + " DATA STATUS");
+
         console.log(data);
-        if(data[0] == 'E'){
+
+        //let mark = JSON.parse(String(data))
+
+        if(stat == -1){
           //this.apiError = 1;
 
           console.log('API ERROR DETECTED');
@@ -116,8 +124,11 @@ export class HomePage {
           this.goToErrorFeedPage();
         }
         else {
-          console.log(JSON.parse(data.toString()));
-          this.posts = JSON.parse(data.toString());
+          let tweets = JSON.parse(data1.tweets);
+
+          //console.log("data/tweets/tweet " + data + tweets);
+          //console.log("TWEETS: " + tweets);
+          this.posts = tweets;
           this.processFeed();
         }
 
@@ -125,8 +136,10 @@ export class HomePage {
   }
 
 
+
   processFeed(){
     for(let i = 0; i<= this.posts.length - 1; i++){
+      console.log(this.posts[i] + "    " + i);
       this.posts[i].platformPic = '/assets/imgs/twitter.png';
       //  this.posts[i].date = this.calculateSince(this.posts[i].created_at);
       this.posts[i].user.screen_name = '@' + this.posts[i].user.screen_name;
@@ -145,8 +158,8 @@ export class HomePage {
 
 
   swipeLeftEvent(event) {
-     this.navCtrl.push(PostPage,{token:this.api.getToken()});
-   }
+    this.navCtrl.push(PostPage,{token:this.api.getToken()});
+  }
 
   swipeRightEvent(event){
     this.navCtrl.pop();
@@ -162,7 +175,7 @@ export class HomePage {
   }
 
   goToErrorFeedPage() {
-    this.navCtrl.push(ErrorFeedPage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.uID } );
+    this.navCtrl.push(SettingsPage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.uID } );
   }
 
   goToProfilePage() {
@@ -170,9 +183,9 @@ export class HomePage {
   }
 
 
-   goToPostPage() {
-     this.navCtrl.push(PostPage,{token:this.api.getToken()});
-   }
+  goToPostPage() {
+    this.navCtrl.push(PostPage,{token:this.api.getToken()});
+  }
 
 
   getItems(event){
@@ -210,7 +223,7 @@ export class HomePage {
 
   }
   return() {
-this.navCtrl.push(TestingPage, {test: true, code: this.params.code, token: this.token});
+    this.navCtrl.push(TestingPage, {test: true, code: this.params.code, token: this.token});
 
   }
 

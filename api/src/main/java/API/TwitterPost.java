@@ -39,5 +39,5 @@ public class TwitterPost extends LambdaSkeleton{
 
         return (new JSONObject().put("status", "1").toString());
     }
-    
+
 }
