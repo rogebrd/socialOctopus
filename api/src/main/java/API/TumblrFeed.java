@@ -21,13 +21,10 @@ public class TumblrFeed {
     private static final String consumer_key = "Mem1pyzoHKlyr4lDIKUo1xolEVAEcWY22n0EvWDPdez40yoD9g";
     private static final String consumer_secret = "FnCwfbkRl941DJw9tCBccAKIdVjyJQIvnIO8Dkyop0X8zyJlnJ";
 
-    public String get(DatabaseConnection connection,Object body, Context context){
-
+    public String get(Object body, Context context){
 
         LambdaLogger logger = context.getLogger();
-
         logger.log("Creating Connection...\n");
-      //  connection = new RDSConnection();
         String access_token = "";
         String access_secret="";
 
@@ -39,87 +36,26 @@ public class TumblrFeed {
 
             logger.log("Verifying...\n");
 
-            String id = EncryptionManager.verify(connection, body);
-
-            logger.log(id + "\n");
-
             logger.log("Creating Tumblr Client...\n");
 
             logger.log("Connecting to Tumblr Client...\n");
             JumblrClient client = new JumblrClient(consumer_key, consumer_secret);
 
-            //select tokens from db
-            ResultSet res = connection.SELECT("SELECT * FROM accounts WHERE userId='" + id + "' AND type='tumblr'");
-
-            //select tokens
-            if(res.next()){
-
-                try {
-                    String email = res.getString("client_id");
-                    String passwords = res.getString("client_secret");
-                    client.xauth(email, passwords);
-
-
-                } catch (Exception e) {
-                    access_token = "a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr";
-                    access_secret = "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY";
-                    client.setToken(access_token, access_secret);
-
-                }
-            }else{
-                //throw new Exception("Twitter account not found");
-                access_token = "a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr";
-                access_secret = "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY";
-                client.setToken(access_token, access_secret);
-            }
 
 
 
+            logger.log("set tumblr token...\n");
 
+            access_token = "zxG4S4aSihK3bMNs8yZYo7U3bJ6QrwJtDJVuGhepRWReyiHoAO";
+            access_secret = "6paipcfyasYojCacdQN3N9XUQtxSxunjj8sZCcJzY36k3vfXb2";
+            client.setToken(access_token, access_secret);
 
-
-            logger.log("Get Tumblr User...\n");
-            com.tumblr.jumblr.types.User user = client.user();
-
-
-//            logger.log("map string operations... \n");
-//            Map<String, ?>  options = Collections.emptyMap();
-//            Map<String, Object> mod = new HashMap<String, Object>();
-//            mod.putAll(options);
-//            Map<String, Object> soptions = mod;
-//
-//            logger.log("consumer secret setup.. \n");
-//            soptions.put("api_key", consumer_secret);
-//
-//            logger.log("construct paths.. \n");
-//            String path = "/posts";
-//            if (soptions.containsKey("type")) {
-//                path += "/" + soptions.get("type").toString();
-//                soptions.remove("type");
-//            }
-//
-//            logger.log("request building...\n");
-//            RequestBuilder requestBuilder = new RequestBuilder(client);
-//            requestBuilder.setToken( access_token, access_secret);
-//            requestBuilder.setConsumer(consumer_key, consumer_secret);
-//            String blogName = "socialoctopustesting.tumblr.com";
-//            String blogUrl = blogName.contains(".") ? blogName : blogName + ".tumblr.com";
-//            String blogPath = "/blog/" + blogUrl + path;
-//
-//            logger.log("retrieve posts...\n");
-//           List<com.tumblr.jumblr.types.Post> posts = requestBuilder.get(blogPath, soptions).getPosts();
+            logger.log("Get Tumblr Dashboard Posts...\n");
 
             List<com.tumblr.jumblr.types.Post> posts = null;
-            try {
                posts  = client.userDashboard();
-            } catch (Exception e) {
-                JumblrClient client2 = new JumblrClient(consumer_key, consumer_secret);
-                access_token = "a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr";
-                access_secret = "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY";
-                client2.setToken(access_token, access_secret);
-                posts= client2.userDashboard();
+               logger.log("successfully retrieved dashboard from user \n");
 
-            }
 
             logger.log("Parsing Timeline...\n");
             JSONObject Response = new JSONObject();
