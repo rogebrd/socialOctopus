@@ -12,8 +12,9 @@ import { ApiProvider } from '../../providers/api/api';
 
 export class PostPage {
 
-  input = {"status": ""};
+  input = {"title": "", "status": ""};
   private postForm : FormGroup;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               private api: ApiProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
@@ -27,7 +28,7 @@ export class PostPage {
   }
 
   swipeRightEvent(event){
-    this.navCtrl.pop();
+      this.navCtrl.pop();
   }
 
   postToTwitter(){
@@ -37,21 +38,22 @@ export class PostPage {
     let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
       console.log(data);
       this.success();
-      console.log('Posted status as ' + this.input.status);
-    }, error => {
+      console.log('Posted status as' + this.input.status);
+      }, error => {
       this.showError(error);
     });
   }
 
   postToTumblr(){
     this.input.status = this.postForm.value['text'];
-    console.log('Tumblr input is ' + this.input.status);
+   
+    console.log('Tumblr input is ' + String(this.input.status));
 
     let response = this.api.apiPost('/social/tumblr/post', this.input).then(data => {
       console.log(data);
       this.success();
       console.log('Posted status as' + this.input.status);
-    }, error => {
+      }, error => {
       this.showError(error);
     });
   }
@@ -65,11 +67,17 @@ export class PostPage {
   }
 
   showError(text) {
-    let alert = this.alertCtrl.create({
-      title: 'Fail',
-      message: text + '\nPosting unsuccessful.',
-      buttons: ['OK']
-    });
-    alert.present(prompt);
+      let alert = this.alertCtrl.create({
+        title: 'Fail',
+        message: text + '\nPosting unsuccessful.',
+        buttons: ['OK']
+      });
+      alert.present(prompt);
+  }
+  superPost(){
+    if (this.input.title == "") this.input.title = "I'm not creative enough to come up with a title";
+    this.postToTwitter();
+    this.postToTumblr();
+    
   }
 }
