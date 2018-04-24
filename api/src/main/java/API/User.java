@@ -73,11 +73,25 @@ public class User extends LambdaSkeleton {
         String access_secret = "";
 
         if (type.equals("twitter")) {
-            access_token = "212813534-ARZMp2v4fA0bZv1Tm7MbbL5DI8oqAIXnms8HLCbr";
-            access_secret = "2FEHLMVg5oTl1M4pwKHRFGwE9wsiSblFa6e071fbytlcK";
+            try {
+                access_token = postBody.get("access_token");
+                access_secret = postBody.get("access_secret");
+            } catch (Exception e) {
+
+            }
+
+            if (access_token == null || access_secret == null) {
+                access_token = "212813534-ARZMp2v4fA0bZv1Tm7MbbL5DI8oqAIXnms8HLCbr";
+                access_secret = "2FEHLMVg5oTl1M4pwKHRFGwE9wsiSblFa6e071fbytlcK";
+            }
         } else {
-            client_id = postBody.get("client_id");
-            client_secret = postBody.get("client_secret");
+
+            try {
+                client_id = postBody.get("client_id");
+                client_secret = postBody.get("client_secret");
+            } catch (Exception e) {
+
+            }
 
             access_token = "a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr";
             access_secret = "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY";

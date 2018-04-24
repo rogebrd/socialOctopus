@@ -7,6 +7,7 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+import twitter4j.conf.*;
 import java.io.*;
 import java.util.LinkedHashMap;
 
@@ -20,8 +21,9 @@ import twitter4j.conf.ConfigurationBuilder;
 public class TwitterGetToken {
     public AccessToken accessToken;
 
-    public String get()   {
+    public String get(Context context)   {
         String url = "";
+        LambdaLogger logger = context.getLogger();
 
 
         JSONObject res = new JSONObject();
@@ -29,19 +31,24 @@ try {
    // logger.log("get Singleton ...\n");
 
     // The factory instance is re-useable and thread safe.
-    Twitter twitter = TwitterFactory.getSingleton();
+    //Twitter twitter = TwitterFactory.getSingleton();
 
-    try {
-        twitter.setOAuthConsumer("6WUiXKkUgfYTtPQxn4PvFg32z", "M4CVwQPTFooisegoQX8iO8nxtygFMxjeGvkrMkc96yyTNg5Ou1");
-    } catch (Exception e) {
+    ConfigurationBuilder builder = new ConfigurationBuilder();
+    builder.setOAuthConsumerKey("6WUiXKkUgfYTtPQxn4PvFg32z");
+    builder.setOAuthConsumerSecret("M4CVwQPTFooisegoQX8iO8nxtygFMxjeGvkrMkc96yyTNg5Ou1");
+    Configuration configuration = builder.build();
+    TwitterFactory factory = new TwitterFactory(configuration);
+    Twitter twitter = factory.getInstance();
 
-    }
-  //  logger.log("get request token ...\n");
+
+    logger.log("get request token ...\n");
+
     RequestToken requestToken = twitter.getOAuthRequestToken();
-    AccessToken accessToken = null;
-  //  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-  //  logger.log("get request URL");
+    logger.log("successfully get the request token");
+
        url =  requestToken.getAuthorizationURL();
+       logger.log("successfully get the url");
+
 
     res.put("status",1);
     res.put("authURL",url);
@@ -77,12 +84,12 @@ try {
 
         RequestToken requestToken = null;
         try {
-            Twitter twitter = TwitterFactory.getSingleton();
-            try {
-                twitter.setOAuthConsumer("6WUiXKkUgfYTtPQxn4PvFg32z", "M4CVwQPTFooisegoQX8iO8nxtygFMxjeGvkrMkc96yyTNg5Ou1");
-            } catch (Exception e) {
-
-            }
+            ConfigurationBuilder builder = new ConfigurationBuilder();
+            builder.setOAuthConsumerKey("6WUiXKkUgfYTtPQxn4PvFg32z");
+            builder.setOAuthConsumerSecret("M4CVwQPTFooisegoQX8iO8nxtygFMxjeGvkrMkc96yyTNg5Ou1");
+            Configuration configuration = builder.build();
+            TwitterFactory factory = new TwitterFactory(configuration);
+            Twitter twitter = factory.getInstance();
             //  logger.log("get request token ...\n");
 
             requestToken = new RequestToken(OAuthToken,OAuthTokenSecret);
