@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
+  <ion-navbar>
+
     <ion-buttons end padding-right="20px">
       <button ion-button icon-only (click)='goToSettingsPage();' >
         <ion-icon name="cog"></ion-icon>
@@ -36,9 +37,9 @@
       </button>
     </ion-buttons>
     <!--<ion-buttons end padding-right="20px">-->
-    <!--<button ion-button icon-only (click)='goToPostPage()'>-->
-    <!--<ion-icon name="add-circle"></ion-icon>-->
-    <!--</button>-->
+      <!--<button ion-button icon-only (click)='goToPostPage()'>-->
+        <!--<ion-icon name="add-circle"></ion-icon>-->
+      <!--</button>-->
     <!--</ion-buttons>-->
 
   </ion-navbar>
@@ -47,60 +48,61 @@
 
 <ion-content padding (swipeleft)="swipeLeftEvent($event)" padding (swipeRight) ="swipeRightEvent($event)">
 
-  <div class = "box blue" id = "errorMessage"><br/><br/><h2 align="center"> We failed to get your Twitter feed Right now. </h2><h2 align="center">Try other Stuff by clicking buttons in navbar</h2> </div>
-
-  <button ion-item (click)='expandAll();' >
-    Expanded / Minimized Toggle
-  </button>
   <ion-list>
-    <h1 *ngIf="apiError">Error Pulling Twitter Data</h1>
-    <ion-card *ngFor="let post of posts">
-      <!--	<button myitem (click)='handleClick(post);' </button>-->
-      <button (click)="expandItem(post)" ion-item>
+   <h1 *ngIf="apiError">Error Pulling Twitter Data</h1> 
+  		<ion-card *ngFor="let post of posts">
+  		<!--	<button myitem (click)='handleClick(post);' </button>-->
+        <button (click)="expandItem(post)" ion-item>
 
-        <ion-avatar item-left >
+          <ion-avatar item-left >
 
-          <img [src]="post.user.profile_image_url"> <!-- PROFILE IMAGE -->
+            <img [src]="post.profileImg"> <!-- PROFILE IMAGE -->
 
-        </ion-avatar >
-        <ion-avatar item-right>
-          <img [src]="post.platformPic"> <!-- TWITTER LOGO -->
-        </ion-avatar>
-        <h1>{{post.user.name}}</h1>  <!-- NAME OF ACCOUNT ex; Rob Johnson -->
-        <h2>{{post.user.screen_name}}</h2> <!-- HANDLE OF ACCOUNT ex: @robjohn808 -->
-
-
-      </button>
+          </ion-avatar >
+          <ion-avatar item-right>
+            <img [src]="post.platformPic"> <!-- TWITTER LOGO -->
+          </ion-avatar>
+          <h1>{{post.name}}</h1>  <!-- NAME OF ACCOUNT ex; Rob Johnson -->
+          <h2>{{post.screenName}}</h2> <!-- HANDLE OF ACCOUNT ex: @robjohn808 -->
 
 
-      <ion-card-content>
-        <p [hidden] = "!post.expand"> {{post.text}}</p> <!-- TWEET TEXT -->
+        </button>
 
-        <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>  <!-- TWEET PHOTO -->
 
-        <ion-row [hidden] = "!post.expand">
-          <ion-col>
-            <button (click)="likePost(post)" ion-button icon-left clear small>
-              <ion-icon name="thumbs-up"></ion-icon>
-              <div>{{post.user.favourites_count}} Likes</div>
-            </button>
-          </ion-col>
-          <ion-col  [hidden] = "!post.expand">
-            <button (click)="commentPost(post)" ion-button icon-left clear small>
-              <ion-icon name="text"></ion-icon>
-              <div>{{post.retweet_count}} Comments</div>
-            </button>
-          </ion-col>
-          <ion-col center text-center [hidden] = "!post.expand">
-            <ion-note>
-              <!--		{{post.date}} -->
-            </ion-note>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
+        <ion-card-content style="padding:2px" >
+          <p [hidden] = "!post.expand" [innerHTML] ="post.text">  </p> <!-- TWEET TEXT -->
+          <div *ngFor= "let photo of post.photos" >
+            <img *ngIf= "photo.url" [src] = "photo.url" [hidden] = '!post.expand'> 
+          </div>
+         <div [hidden] = '!post.expand' [innerHTML] ="post.caption"> </div>
+          <img *ngIf="post.hasPhoto" [src] = "post.photo" [hidden] = '!post.expand'>  <!-- TWEET PHOTO -->
 
-    </ion-card>
-  </ion-list>
+          <ion-row class = "row" [hidden] = "!post.expand" >
+            <ion-col class = "col">
+              <button (click)="likePost(post)" ion-button item-left float-left icon-left clear small>
+                <ion-icon name="thumbs-up" class = "bottom" [hidden] = "post.Tumblr"></ion-icon>
+                 <ion-icon name="document" class = "bottom" [hidden] = "!post.Tumblr"></ion-icon>
+
+                <div [hidden] = "post.Tumblr">{{post.likes}} Likes</div>
+                <div [hidden] = "!post.Tumblr"> {{post.likes}} Notes </div>
+              </button>
+            </ion-col>
+            <ion-col class = "col" [hidden] = "post.Tumblr">
+              <button (click)="commentPost(post)" ion-button icon-left clear small>
+                <ion-icon name="text" class = "bottom"></ion-icon>
+                <div >{{post.comments}} Comments</div>
+              </button>
+            </ion-col>
+            <ion-col class = "col" center text-center [hidden] = "!post.expand">
+              <ion-note>
+                <div class = "date">		{{post.date}}  </div>
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+
+      </ion-card>
+    </ion-list>
 
 </ion-content>
 
