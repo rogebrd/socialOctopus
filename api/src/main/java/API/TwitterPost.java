@@ -21,10 +21,10 @@ import java.util.LinkedHashMap;
 
 public class TwitterPost extends LambdaSkeleton{
 
-    String postText = postBody.get("status");
-
     public JSONObject process(DatabaseConnection connection, Object body, LambdaLogger logger) throws Exception{
         LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
+
+        String postText = postBody.get("status");
 
         logger.log("Verifying...\n");
         String id = EncryptionManager.verify(connection, body);
@@ -37,6 +37,8 @@ public class TwitterPost extends LambdaSkeleton{
         Status status = twitter.updateStatus(postText);
         logger.log("Successfully updated the status to [" + status.getText() + "]. \n");
 
-        return (new JSONObject().put("status", "1").toString());
+        JSONObject statusResult = new JSONObject();
+
+        return statusResult;
     }
 }

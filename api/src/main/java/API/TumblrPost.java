@@ -18,6 +18,7 @@ import com.tumblr.jumblr.request.RequestBuilder;
 
 
 public class TumblrPost {
+    /*
     public static int debug;
     private static final String consumer_key = "Mem1pyzoHKlyr4lDIKUo1xolEVAEcWY22n0EvWDPdez40yoD9g";
     private static final String consumer_secret = "FnCwfbkRl941DJw9tCBccAKIdVjyJQIvnIO8Dkyop0X8zyJlnJ";
@@ -31,6 +32,7 @@ public class TumblrPost {
         //  connection = new RDSConnection();
 
         String postText = postBody.get("status");
+        LinkedHashMap<String, String> postBody = (LinkedHashMap<String, String>)(((LinkedHashMap<String, Object>) body).get("body"));
 
         try {
             logger.log("Connecting...\n");
@@ -98,5 +100,5 @@ public class TumblrPost {
             return ("ERROR: " + e.getMessage() + ee+"\n");
         }
     }
-
+*/
 }
