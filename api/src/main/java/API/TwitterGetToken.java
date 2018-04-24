@@ -58,7 +58,13 @@ try {
 
 
 } catch (Exception e) {
-    return "status: -1 " + e.getMessage();
+    try {
+        res.put("status", -1);
+        res.put("Error: ",e.getMessage());
+    } catch (Exception ee) {
+
+    }
+    return res.toString();
 }
 
 
@@ -102,11 +108,17 @@ try {
 
 
         } catch (Exception e) {
+            JSONObject res1 = new JSONObject();
 
             if (requestToken == null) {
                 return "request Token is null    " + e.getMessage();
             }
-            return "status: -1 " + e.getMessage();
+            try {
+                res1.put("status", 1);
+            } catch (Exception ee) {
+
+            }
+            return res1.toString();
 
         }
         JSONObject res = new JSONObject();
@@ -116,7 +128,12 @@ try {
             res.put("access_token", accessToken.getToken());
             res.put("access_secret", accessToken.getTokenSecret());
         } catch (Exception e) {
-            return "status: -1" ;
+            try {
+                res.put("status", 1);
+            } catch (Exception ee) {
+
+            }
+            return res.toString();
         }
 
 

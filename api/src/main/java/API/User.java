@@ -38,8 +38,8 @@ public class User extends LambdaSkeleton {
         //int view = Integer.parseInt(viewPreference);
 
         String type = postBody.get("type");
-        String socialMediaID= postBody.get("socialMediaID");
-        String socialMediaPassword= postBody.get("socialMediaPassword");
+        String socialMediaID= "socialmedia";
+        String socialMediaPassword= "socialmediasecret";
         String visibility = postBody.get("visibility");
 
         if (profilePic == null ||
@@ -47,8 +47,6 @@ public class User extends LambdaSkeleton {
                 name== null ||
                 viewPreference== null ||
                 type== null ||
-                socialMediaID== null ||
-                socialMediaPassword== null ||
                 visibility == null ) {
             status = 0;
             throw new Exception("account creation failed");
@@ -105,9 +103,10 @@ public class User extends LambdaSkeleton {
         logger.log("Update User social media account in database... \n");
 
         if (connection.UPDATE("UPDATE Utility.accounts SET type ='"+ type+"' , client_id ='" + client_id+ "', client_secret ='" + client_secret+"' , access_token ='"+ access_token+"' , access_secret = '"+access_secret+"', visibility = "+view+", socialMediaID ='"+ socialMediaID+"' where userId = '" + id+"'") == 0) {
+            throw new Exception("social media account update failed userID is  " + id + " type is " + type + "accesstoken is " + access_token + "access_secret is " + access_secret);
+        }
+        else {
 
-        } else {
-            throw new Exception("social media account update failed ");
         }
 
         JSONObject results = new JSONObject();
