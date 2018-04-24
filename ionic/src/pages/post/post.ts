@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
-import {TwitPostProvider} from "../../providers/twit-post/twit-post";
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ApiProvider } from '../../providers/api/api';
 
 
 @IonicPage()
@@ -11,37 +11,49 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class PostPage {
-  token:any;
 
-  postText: string = '';
+  input = {"status": ""};
   private postForm : FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public twitPostProvider: TwitPostProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
+              private api: ApiProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
               private formBuilder: FormBuilder) {
 
+    this.api.setToken(navParams.get('token'));
 
     this.postForm = this.formBuilder.group({
-      postText: ['', Validators.required],
+      text: ['', Validators.required],
     });
   }
 
-  logForm() {
-    console.log(this.postForm.value)
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PostPage');
-  }
-
   swipeRightEvent(event){
-      this.navCtrl.pop();
+    this.navCtrl.pop();
   }
 
   postToTwitter(){
-    this.twitPostProvider.postTweet(this.postText);
-    this.success();
-    console.log('Posted status as' + this.postText);
+    this.input.status = this.postForm.value['text'];
+    console.log('Twitter input is ' + this.input.status);
+
+    let response = this.api.apiPost('/social/twitter/post', this.input).then(data => {
+      console.log(data);
+      this.success();
+      console.log('Posted status as ' + this.input.status);
+    }, error => {
+      this.showError(error);
+    });
+  }
+
+  postToTumblr(){
+    this.input.status = this.postForm.value['text'];
+    console.log('Tumblr input is ' + this.input.status);
+
+    let response = this.api.apiPost('/social/tumblr/post', this.input).then(data => {
+      console.log(data);
+      this.success();
+      console.log('Posted status as' + this.input.status);
+    }, error => {
+      this.showError(error);
+    });
   }
 
   success(){
@@ -52,4 +64,12 @@ export class PostPage {
     toast.present();
   }
 
+  showError(text) {
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      message: text + '\nPosting unsuccessful.',
+      buttons: ['OK']
+    });
+    alert.present(prompt);
+  }
 }

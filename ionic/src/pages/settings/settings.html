@@ -38,6 +38,7 @@
 
       <ion-select [(ngModel)]="settings.type" name="type" placeholder="Type">
         <ion-option value="twitter">Twitter</ion-option>
+        <ion-option value="tumblr">Tumblr</ion-option>
       </ion-select>
 
     </ion-item>
@@ -55,4 +56,27 @@
       Save
     </button>
   </form>
+
+    <button ion-button color="coral" (click)="getTwitterURL()">
+      Add Twitter
+    </button>
+  <form (ngSubmit)="sendTwitterPIN()">
+    <ion-label>Twitter PIN:</ion-label>
+      <ion-input type="text" [(ngModel)]="settings.twitterPIN" name="twitterPIN"></ion-input>
+    <button ion-button color="coral" type="submit">
+      Submit Twitter PIN
+    </button>
+  </form>
+
+    <button ion-button color="coral" (click)="getTumblrURL()">
+      Add Tumblr
+    </button>
+  <form (ngSubmit)="sendTumblrPIN()">
+    <ion-label>Tumblr PIN:</ion-label>
+      <ion-input type="text" [(ngModel)]="settings.tumblrPIN" name="tumblrPIN"></ion-input>
+    <button ion-button color="coral" type="submit">
+      Submit Tumblr PIN
+    </button>
+  </form>
+
 </ion-content>

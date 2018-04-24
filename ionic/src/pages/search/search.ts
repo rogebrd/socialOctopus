@@ -36,7 +36,7 @@ export class SearchPage {
         let parsed = JSON.parse(data.toString());
         let status = 0;
         status = parsed.status
-        console.log(data.toString());
+        console.log("status: " + status);
         this.navCtrl.push(SearchresultsPage, {results: data.toString(), status: status,test: this.params.test,code:this.params.code, token: this.token});
       });
     }
