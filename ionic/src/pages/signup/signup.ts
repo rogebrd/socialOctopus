@@ -4,6 +4,8 @@ import { SuccessPage } from '../success/success';
 import { ApiProvider } from '../../providers/api/api';
 import { TestingPage } from '../testing/testing';
 
+import { HttpModule } from '@angular/http';
+
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'

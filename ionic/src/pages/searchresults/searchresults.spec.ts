@@ -3,8 +3,10 @@ import {AlertCmp, IonicModule, NavController, NavParams, Platform} from 'ionic-a
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpModule } from '@angular/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { LoginPage } from "./login";
+import { SearchresultsPage } from "./searchresults";
 import {
   PlatformMock,
   NavMock,
@@ -14,7 +16,8 @@ import {ApiProvider} from "../../providers/api/api";
 import {ApiProviderMock} from "../../providers/api/api.mock";
 
 
-describe('LoginPage Component', () => {
+
+describe('SearchresultsPage Component', () => {
   let fixture;
   let component;
   var mock;
@@ -22,9 +25,9 @@ describe('LoginPage Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginPage],
+      declarations: [SearchresultsPage],
       imports: [
-        IonicModule.forRoot(LoginPage)
+        IonicModule.forRoot(SearchresultsPage)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },
@@ -32,9 +35,10 @@ describe('LoginPage Component', () => {
         { provide: NavParams, useClass: NavParamsMock},
         { provide: NavController, useClass: NavMock},
         { provide: ApiProvider},
-        { provide: Boolean, useClass: PlatformMock}
+        { provide: Boolean, useClass: PlatformMock},
+        { provide: HttpClient}
       ]
-    }).overrideComponent(LoginPage, {
+    }).overrideComponent(SearchresultsPage, {
         set: {
             providers: [
                 { provide: ApiProvider, useClass: ApiProviderMock}
@@ -44,7 +48,7 @@ describe('LoginPage Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(SearchresultsPage);
     mock = TestBed.get(ApiProvider);
     component = fixture.componentInstance;
   });
@@ -55,13 +59,8 @@ describe('LoginPage Component', () => {
   });
 
   it('should be created', () => {
-    expect(component instanceof LoginPage).toBe(true);
+    expect(component instanceof SearchresultsPage).toBe(true);
     expect(fixture instanceof ComponentFixture).toBe(true);
   });
-
-  /*it('test login', () => {
-     component.login();
-     expect(component.loggedin).toBe(true);
-  });*/
 
 });

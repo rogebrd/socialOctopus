@@ -4,7 +4,7 @@ import {AlertCmp, IonicModule, NavController, NavParams, Platform} from 'ionic-a
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from "./login";
+import { PostPage } from "./post";
 import {
   PlatformMock,
   NavMock,
@@ -13,8 +13,11 @@ import {
 import {ApiProvider} from "../../providers/api/api";
 import {ApiProviderMock} from "../../providers/api/api.mock";
 
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastController, AlertController } from 'ionic-angular';
+import { TwitPostProvider } from "../../providers/twit-post/twit-post";
 
-describe('LoginPage Component', () => {
+describe('PostPage Component', () => {
   let fixture;
   let component;
   var mock;
@@ -22,9 +25,9 @@ describe('LoginPage Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginPage],
+      declarations: [PostPage],
       imports: [
-        IonicModule.forRoot(LoginPage)
+        IonicModule.forRoot(PostPage)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },
@@ -32,9 +35,13 @@ describe('LoginPage Component', () => {
         { provide: NavParams, useClass: NavParamsMock},
         { provide: NavController, useClass: NavMock},
         { provide: ApiProvider},
-        { provide: Boolean, useClass: PlatformMock}
+        { provide: Boolean, useClass: PlatformMock},
+        { provide: FormBuilder },
+        { provide: ToastController },
+        { provide: AlertController },
+        { provide: TwitPostProvider }
       ]
-    }).overrideComponent(LoginPage, {
+    }).overrideComponent(PostPage, {
         set: {
             providers: [
                 { provide: ApiProvider, useClass: ApiProviderMock}
@@ -44,7 +51,7 @@ describe('LoginPage Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(PostPage);
     mock = TestBed.get(ApiProvider);
     component = fixture.componentInstance;
   });
@@ -55,13 +62,8 @@ describe('LoginPage Component', () => {
   });
 
   it('should be created', () => {
-    expect(component instanceof LoginPage).toBe(true);
+    expect(component instanceof PostPage).toBe(true);
     expect(fixture instanceof ComponentFixture).toBe(true);
   });
-
-  /*it('test login', () => {
-     component.login();
-     expect(component.loggedin).toBe(true);
-  });*/
 
 });

@@ -4,7 +4,7 @@ import {AlertCmp, IonicModule, NavController, NavParams, Platform} from 'ionic-a
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from "./login";
+import { ViewProfilePage } from "./view-profile";
 import {
   PlatformMock,
   NavMock,
@@ -12,9 +12,10 @@ import {
 } from '../../../test-config/mocks-ionic';
 import {ApiProvider} from "../../providers/api/api";
 import {ApiProviderMock} from "../../providers/api/api.mock";
+import { Http } from '@angular/http';
 
 
-describe('LoginPage Component', () => {
+describe('ViewProfilePage Component', () => {
   let fixture;
   let component;
   var mock;
@@ -22,9 +23,9 @@ describe('LoginPage Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginPage],
+      declarations: [ViewProfilePage],
       imports: [
-        IonicModule.forRoot(LoginPage)
+        IonicModule.forRoot(ViewProfilePage)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },
@@ -32,9 +33,10 @@ describe('LoginPage Component', () => {
         { provide: NavParams, useClass: NavParamsMock},
         { provide: NavController, useClass: NavMock},
         { provide: ApiProvider},
-        { provide: Boolean, useClass: PlatformMock}
+        { provide: Boolean, useClass: PlatformMock},
+        { provide: Http}
       ]
-    }).overrideComponent(LoginPage, {
+    }).overrideComponent(ViewProfilePage, {
         set: {
             providers: [
                 { provide: ApiProvider, useClass: ApiProviderMock}
@@ -44,7 +46,7 @@ describe('LoginPage Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(ViewProfilePage);
     mock = TestBed.get(ApiProvider);
     component = fixture.componentInstance;
   });
@@ -55,13 +57,8 @@ describe('LoginPage Component', () => {
   });
 
   it('should be created', () => {
-    expect(component instanceof LoginPage).toBe(true);
+    expect(component instanceof ViewProfilePage).toBe(true);
     expect(fixture instanceof ComponentFixture).toBe(true);
   });
-
-  /*it('test login', () => {
-     component.login();
-     expect(component.loggedin).toBe(true);
-  });*/
 
 });

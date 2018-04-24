@@ -4,7 +4,7 @@ import {AlertCmp, IonicModule, NavController, NavParams, Platform} from 'ionic-a
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from "./login";
+import { SearchPage } from "./search";
 import {
   PlatformMock,
   NavMock,
@@ -14,7 +14,7 @@ import {ApiProvider} from "../../providers/api/api";
 import {ApiProviderMock} from "../../providers/api/api.mock";
 
 
-describe('LoginPage Component', () => {
+describe('SearchPage Component', () => {
   let fixture;
   let component;
   var mock;
@@ -22,9 +22,9 @@ describe('LoginPage Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginPage],
+      declarations: [SearchPage],
       imports: [
-        IonicModule.forRoot(LoginPage)
+        IonicModule.forRoot(SearchPage)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },
@@ -34,7 +34,7 @@ describe('LoginPage Component', () => {
         { provide: ApiProvider},
         { provide: Boolean, useClass: PlatformMock}
       ]
-    }).overrideComponent(LoginPage, {
+    }).overrideComponent(SearchPage, {
         set: {
             providers: [
                 { provide: ApiProvider, useClass: ApiProviderMock}
@@ -44,7 +44,7 @@ describe('LoginPage Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(SearchPage);
     mock = TestBed.get(ApiProvider);
     component = fixture.componentInstance;
   });
@@ -55,13 +55,8 @@ describe('LoginPage Component', () => {
   });
 
   it('should be created', () => {
-    expect(component instanceof LoginPage).toBe(true);
+    expect(component instanceof SearchPage).toBe(true);
     expect(fixture instanceof ComponentFixture).toBe(true);
   });
-
-  /*it('test login', () => {
-     component.login();
-     expect(component.loggedin).toBe(true);
-  });*/
 
 });

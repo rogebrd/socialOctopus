@@ -27,7 +27,6 @@ export class ApiProviderMock {
 
   constructor() {
     console.log('Hello ApiProvider Provider');
-    Data results = new Data();
   }
 
   setToken(token){

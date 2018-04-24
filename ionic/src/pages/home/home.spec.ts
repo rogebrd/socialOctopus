@@ -4,7 +4,8 @@ import {AlertCmp, IonicModule, NavController, NavParams, Platform} from 'ionic-a
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from "./login";
+import { Http } from '@angular/http';
+import { HomePage } from "./home";
 import {
   PlatformMock,
   NavMock,
@@ -14,7 +15,7 @@ import {ApiProvider} from "../../providers/api/api";
 import {ApiProviderMock} from "../../providers/api/api.mock";
 
 
-describe('LoginPage Component', () => {
+describe('HomePage Component', () => {
   let fixture;
   let component;
   var mock;
@@ -22,9 +23,9 @@ describe('LoginPage Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginPage],
+      declarations: [HomePage],
       imports: [
-        IonicModule.forRoot(LoginPage)
+        IonicModule.forRoot(HomePage)
       ],
       providers: [
         { provide: Platform, useClass: PlatformMock },
@@ -32,9 +33,10 @@ describe('LoginPage Component', () => {
         { provide: NavParams, useClass: NavParamsMock},
         { provide: NavController, useClass: NavMock},
         { provide: ApiProvider},
-        { provide: Boolean, useClass: PlatformMock}
+        { provide: Boolean, useClass: PlatformMock},
+        { provide: Http}
       ]
-    }).overrideComponent(LoginPage, {
+    }).overrideComponent(HomePage, {
         set: {
             providers: [
                 { provide: ApiProvider, useClass: ApiProviderMock}
@@ -44,7 +46,7 @@ describe('LoginPage Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(HomePage);
     mock = TestBed.get(ApiProvider);
     component = fixture.componentInstance;
   });
@@ -55,13 +57,9 @@ describe('LoginPage Component', () => {
   });
 
   it('should be created', () => {
-    expect(component instanceof LoginPage).toBe(true);
+    expect(component instanceof HomePage).toBe(true);
     expect(fixture instanceof ComponentFixture).toBe(true);
   });
 
-  /*it('test login', () => {
-     component.login();
-     expect(component.loggedin).toBe(true);
-  });*/
 
 });

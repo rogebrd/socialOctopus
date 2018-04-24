@@ -38,19 +38,33 @@ export class LoginPage {
   login(){
     let response = this.api.apiPost('auth/login', this.userData)
     .then(data => {
-      console.log("data here: " + data);
+      console.log(data);
       //let parsed = JSON.parse(data.toString());
-      let datastring = data.toString();
-      //for(let i = 0; i < datastring.length; i++){
-        console.log(datastring);
-      //}
-      let parsed = JSON.parse(datastring);
-      //let parsed = JSON.parse(String(data));
-      //console.log(parsed.status);
-      console.log("after parsed");
-    });
+      let parsed = {"status": 1, "token": "123"}
+      if(parsed.status == 1){
+        window['loggedin'] = true;
+        this.token = parsed.token;
+        this.api.setToken(parsed.token);
 
+        let input = {"term": ""};
+        input.term = this.userData.username;
+
+        this.retrieveUserInfo();
+        console.log(this.loggedin);
+        this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
+        return this.loggedin;
+      } else if (parsed.status == 0){
+        window['loggedin'] = false;
+        return this.loggedin;
+      } 
+      else if (this.params.test == true){
+       this.retrieveUserInfo();
+        this.params.code = "-1";
+        this.navCtrl.push(TestingPage, {token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
+      }
+    });
   }
+
 
 
   retrieveUserInfo() {
@@ -59,7 +73,9 @@ export class LoginPage {
     let response = this.api.apiGet('user/'+this.userData.username).then(data => {
         //console.log(data);
 
-        let parsed = JSON.parse(data.toString());
+        //let parsed = JSON.parse(data.toString());
+          let parsed = {"results" : [{"name":"Brad Rogers", "Quotes": "abcd", "profilePicsLink": "picture"}]}
+
         //let status = 0;
       //  status = parsed.status
 
@@ -75,10 +91,6 @@ export class LoginPage {
 
   goToSignup(){
     this.navCtrl.push(SignupPage);
-  }
-
-  getLoginStatus(){
-    return this.loggedin;
   }
 
   setUserData(userInfo)
