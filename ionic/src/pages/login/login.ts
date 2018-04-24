@@ -22,6 +22,7 @@ export class LoginPage {
   quotes:any;
   picsURL:any;
   uID:any;
+  loggedin: boolean = false;
 
   constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
    // temporary
@@ -37,23 +38,16 @@ export class LoginPage {
   login(){
     let response = this.api.apiPost('auth/login', this.userData)
     .then(data => {
-      console.log(data);
-      let parsed = JSON.parse(data.toString());
-      if(parsed.status == 1){
-        this.token = parsed.token;
-        this.api.setToken(parsed.token);
-
-        let input = {"term": ""};
-        input.term = this.userData.username;
-
-        this.retrieveUserInfo();
-        this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
-
-      } else if (this.params.test == true){
-       this.retrieveUserInfo();
-        this.params.code = "-1";
-        this.navCtrl.push(TestingPage, {token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
-      }
+      console.log("data here: " + data);
+      //let parsed = JSON.parse(data.toString());
+      let datastring = data.toString();
+      //for(let i = 0; i < datastring.length; i++){
+        console.log(datastring);
+      //}
+      let parsed = JSON.parse(datastring);
+      //let parsed = JSON.parse(String(data));
+      //console.log(parsed.status);
+      console.log("after parsed");
     });
 
   }
@@ -75,13 +69,22 @@ export class LoginPage {
           this.picsURL=parsed.results[0].profilePicsLink;
           this.uID=this.userData.username;
 
-
       });
 
   }
 
   goToSignup(){
     this.navCtrl.push(SignupPage);
+  }
+
+  getLoginStatus(){
+    return this.loggedin;
+  }
+
+  setUserData(userInfo)
+  {
+    this.userData.username = "wrong";
+    this.userData.password = "info";
   }
 }
 
