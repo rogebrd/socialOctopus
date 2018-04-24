@@ -23,6 +23,8 @@ export class SearchPage {
       this.goSearch();
     }
 
+    console.log(this.token);
+
 
   }
   goSearch(){

@@ -6,11 +6,10 @@ import Security.EncryptionManager;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.tumblr.jumblr.types.*;
+import com.tumblr.jumblr.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import twitter4j.conf.ConfigurationBuilder;
-import com.tumblr.jumblr.*;
+
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.*;
@@ -23,12 +22,13 @@ public class TumblrFeed {
     private static final String consumer_secret = "FnCwfbkRl941DJw9tCBccAKIdVjyJQIvnIO8Dkyop0X8zyJlnJ";
 
     public String get(Object body, Context context){
-        DatabaseConnection connection;
 
         LambdaLogger logger = context.getLogger();
-
         logger.log("Creating Connection...\n");
-      //  connection = new RDSConnection();
+        String access_token = "";
+        String access_secret="";
+
+
 
 
         try {
@@ -36,64 +36,38 @@ public class TumblrFeed {
 
             logger.log("Verifying...\n");
 
-            String id = "bradrogers";
-
-            logger.log(id + "\n");
-
             logger.log("Creating Tumblr Client...\n");
 
             logger.log("Connecting to Tumblr Client...\n");
             JumblrClient client = new JumblrClient(consumer_key, consumer_secret);
 
-            client.setToken(
-                    "a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr",
-                    "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY"
-            );
 
 
-            logger.log("Get Tumblr User...\n");
-            com.tumblr.jumblr.types.User user = client.user();
 
+            logger.log("set tumblr token...\n");
 
-            logger.log("map string operations... \n");
-            Map<String, ?>  options = Collections.emptyMap();
-            Map<String, Object> mod = new HashMap<String, Object>();
-            mod.putAll(options);
-            Map<String, Object> soptions = mod;
+            access_token = "zxG4S4aSihK3bMNs8yZYo7U3bJ6QrwJtDJVuGhepRWReyiHoAO";
+            access_secret = "6paipcfyasYojCacdQN3N9XUQtxSxunjj8sZCcJzY36k3vfXb2";
+            client.setToken(access_token, access_secret);
 
-            logger.log("consumer secret setup.. \n");
-            soptions.put("api_key", consumer_secret);
+            logger.log("Get Tumblr Dashboard Posts...\n");
 
-            logger.log("construct paths.. \n");
-            String path = "/posts";
-            if (soptions.containsKey("type")) {
-                path += "/" + soptions.get("type").toString();
-                soptions.remove("type");
-            }
+            List<com.tumblr.jumblr.types.Post> posts = null;
+               posts  = client.userDashboard();
+               logger.log("successfully retrieved dashboard from user \n");
 
-            logger.log("request building...\n");
-            RequestBuilder requestBuilder = new RequestBuilder(client);
-            requestBuilder.setToken("a0lZ1NTur68U9DUvpHynQe8a32J7MhPqcxBI83wYH8sGZ950kr", "7thrBJAgusIkNXGV5sy2GhLbm6TmBNfUtR7Dw4zNBLJVuUUffY");
-            requestBuilder.setConsumer(consumer_key, consumer_secret);
-            String blogName = "socialoctopustesting.tumblr.com";
-            String blogUrl = blogName.contains(".") ? blogName : blogName + ".tumblr.com";
-            String blogPath = "/blog/" + blogUrl + path;
-
-            logger.log("retrieve posts...\n");
-           List<com.tumblr.jumblr.types.Post> posts = requestBuilder.get(blogPath, soptions).getPosts();
 
             logger.log("Parsing Timeline...\n");
             JSONObject Response = new JSONObject();
             JSONArray tumbs = new JSONArray();
             int i =0;
             logger.log("list size of posts: " + posts.size());
-           // String Avatarurl = client.blogAvatar("socialoctopustesting.tumblr.com");
+
 
             for(com.tumblr.jumblr.types.Post post: posts){
                 i++;
 
                 JSONObject tweet = new JSONObject();
-               // tweet.put("avatarURL",Avatarurl);
 
                 tweet.put("blog_name",post.getBlogName());
                 tweet.put("id",post.getId());

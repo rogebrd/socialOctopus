@@ -39,7 +39,9 @@ public class TwitterFeed extends LambdaSkeleton {
         }
 
         JSONObject results = new JSONObject();
-        results.put("tweets", tweets);
+        results.put("status",1);
+        results.put("tweets", tweets.toJSONString());
+
 
         return results;
     }

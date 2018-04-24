@@ -28,8 +28,8 @@ export class SearchresultsPage {
   params = {test : false, code: ""};
   valid = false;
   token: any;
-  
- 
+
+
   picURLS = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient, private api: ApiProvider) {
     this.token = navParams.get('token');
@@ -39,6 +39,16 @@ export class SearchresultsPage {
     //console.log(test[0].results);
     let status = 0;
     status = navParams.get('status');
+    console.log("check results length");
+    console.log(this.results.length);
+
+    let resultSet = JSON.parse(this.results);
+    for (var i = 0; i < resultSet.results.length; i++) {
+      var r = resultSet.results[i];
+      console.log(r.name);
+    }
+
+
     if (status == 1){
       let str = ""
       let i = 0;
@@ -92,7 +102,7 @@ export class SearchresultsPage {
         } else {
           this.picURLS[i] = "assets/img/profile.png";
         }
-        
+
         i++;
       }
 
@@ -139,5 +149,5 @@ export class SearchresultsPage {
       this.valid = true;
     }
   }
-  
+
 }
