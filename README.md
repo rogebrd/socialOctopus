@@ -1,6 +1,6 @@
 # Social Octopus
 ##### UW Madison CS506 - Software Engineering Spring 2018 Project
-##### Brad Rogers, Ruite Guo, Jess Liu, Joey Kraker, Rob Johnson, Julian Pakdel
+##### Brad Rogers, Ruite Guo, Jess Liu, Joey Kraker, Rob Johnson, Julian Pakdel, Agrim Pandey
 
 ### Build Instructions
 
