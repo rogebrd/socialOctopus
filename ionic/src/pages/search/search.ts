@@ -26,11 +26,9 @@ export class SearchPage {
 
   }
   goSearch(){
-
-
     console.log(this.input);
-    if (this.input.term!=  ""){
-      let response = this.api.apiPost('search', this.input).then(data => {
+    //if (this.input.term!=  ""){
+      return this.api.apiPost('search', this.input).then(data => {
         console.log(data);
         this.results = data;
         let parsed = JSON.parse(data.toString());
@@ -38,11 +36,10 @@ export class SearchPage {
         status = parsed.status
         console.log("status: " + status);
         this.navCtrl.push(SearchresultsPage, {results: data.toString(), status: status,test: this.params.test,code:this.params.code, token: this.token});
+        var search_complete_status = status ? true : false;
+        return search_complete_status;
       });
-    }
-
-
-
+   // }
     //this.responseData = result;
   }
 

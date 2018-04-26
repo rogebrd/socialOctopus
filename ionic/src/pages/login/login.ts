@@ -35,7 +35,7 @@ export class LoginPage {
   }
 
   login(){
-    let response = this.api.apiPost('auth/login', this.userData)
+    return this.api.apiPost('auth/login', this.userData)
     .then(data => {
       console.log(data);
       let parsed = JSON.parse(data.toString());
@@ -48,8 +48,13 @@ export class LoginPage {
 
         this.retrieveUserInfo();
         this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
-
-      } else if (this.params.test == true){
+        var login_status = true;
+        return login_status;
+      } else if (parsed.status == 0){
+        var login_status = false;
+        return login_status;
+      } 
+      else if (this.params.test == true){
        this.retrieveUserInfo();
         this.params.code = "-1";
         this.navCtrl.push(TestingPage, {token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });

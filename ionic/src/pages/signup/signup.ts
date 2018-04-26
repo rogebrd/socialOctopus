@@ -25,7 +25,7 @@ export class SignupPage {
 
 
   signup(){
-    let response = this.api.apiPost('auth/create', this.userData)
+    return this.api.apiPost('auth/create', this.userData)
       .then(data => {
         console.log(data);
         let parsed = JSON.parse(data.toString());
@@ -33,8 +33,14 @@ export class SignupPage {
           this.api.setToken(parsed.token);
 
           this.navCtrl.push(SuccessPage);
+          let sign_up_status = true; 
+          return sign_up_status;
 
-        }else if (this.params.test == true){
+        } else if (parsed.status == 0){
+          let sign_up_status = false; 
+          return sign_up_status;
+        }
+        else if (this.params.test == true){
           this.params.code = "-1";
           this.navCtrl.push(TestingPage, this.params);
         }

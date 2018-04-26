@@ -93,16 +93,27 @@ export class SettingsPage {
 
     console.log(postBody);
 
-    let response = this.api.apiPost('user', postBody)
+    return this.api.apiPost('user', postBody)
       .then(data => {
         console.log(data);
-        let str = data.toString();
+        let str = data.toString();   
+        if (data == "{\"message\":\"Update Complete\",\"status\":1}")
+        {
+          var settings_updated = true;
+          return settings_updated;
+        }
+        else {
+          var settings_updated = true;
+          return settings_updated;
+        }    
+        /*
         if(str==='update successful !! App name and quotes are now changed'){
           //
           console.log(str);
           this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.settings.name,quotes:this.settings.quotes,picsURL:postBody.profilePicUrl,uID:this.uID,test: this.params.test, code: this.params.code});
 
         }
+        */
 
       });
   }
