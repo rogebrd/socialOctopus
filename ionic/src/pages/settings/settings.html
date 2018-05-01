@@ -1,0 +1,62 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title><ion-icon name="cog"></ion-icon> Settings</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding (swipeRight) ="swipeRightEvent($event)">
+    <form (ngSubmit)="updateSettings()">
+        <ion-card> 
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input type="text" [(ngModel)]="settings.name" name="name"></ion-input>
+      </ion-item>
+    </ion-card>
+      <ion-card> 
+      <ion-item>
+        <ion-label>Profile Picture:</ion-label>
+        <ion-input type="url" [(ngModel)]="settings.propic" name="propic"></ion-input>
+      </ion-item>
+    </ion-card>
+      <ion-card> 
+      <ion-item>
+        <ion-label>Quotes:</ion-label>
+        <ion-input type="text" [(ngModel)]="settings.quotes" name="quotes"></ion-input>
+      </ion-item>
+    </ion-card>
+      
+
+      
+    </form>
+    <ion-list>
+        <ion-card *ngFor="let url of urls; let i = index;">
+          <!--	<button myitem (click)='handleClick(post);' </button>-->
+            <ion-item style="font-size: 8px">
+            <ion-input [(ngModel)]="urls[i]" ></ion-input>
+            </ion-item>
+    
+    
+        </ion-card>
+      </ion-list>
+      <button ion-button color="coral" (click)="getTwitterURL()">
+        Add Twitter
+      </button>
+    <form (ngSubmit)="sendTwitterPIN()">
+      <ion-item>
+      <ion-label floating>Twitter PIN:</ion-label>
+        <ion-input type="text" [(ngModel)]="pin" name="twitterPIN"></ion-input>
+      </ion-item>
+      <button ion-button color="coral" type="submit">
+        Submit Twitter PIN
+      </button>
+      <button ion-button block on-click = "updateSettings()">
+          Save
+        </button>
+    </form>
+  
+     
+  
+  </ion-content>

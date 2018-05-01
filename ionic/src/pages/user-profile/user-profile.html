@@ -1,0 +1,57 @@
+<!--
+  Generated template for the UserProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>userProfile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="box blue" align="center" >
+    <div><p> </p></div>
+    <button id="signup-button1" style="background-color: #d5f2f2" block on-click="goToSettingsPage()">
+<div align="center"> <ion-avatar > <img src="assets/img/arya.jpg" style="border:2px solid white; border-radius:120px;width:120px ;height: auto;" /></ion-avatar></div>
+  <div style ="font-size:20px" align="center"> <p>{{name}}</p> </div>
+    </button>
+  <div align="center">  <button id="signup-button2" ion-button color="secondary" style ="height:15px;width:55px; font-size: 10px" block on-click="goToSettingsPage()">Edit Profile</button></div>
+
+    <div  align="center"><p>{{quotes}}<p> </div>
+ </div>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Display Twitter</ion-label>
+      <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Display Tumblr</ion-label>
+      <ion-toggle [(ngModel)]="sausage" disabled="true"></ion-toggle>
+    </ion-item>
+
+    <button ion-button color="coral" (click)="testURL()">
+      Test URL
+    </button>
+
+    <button ion-button color="coral" (click)="testPrint2()">
+      Test Auth Token
+    </button>
+
+
+
+
+  </ion-list>
+
+
+
+</ion-content>
+

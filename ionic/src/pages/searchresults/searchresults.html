@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>searchresults</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="page111" >
+  <img src="assets/img/PZG5FrbjRmiy7xVyFMyq_2a10410ce245411ac98632bc6bb1e773.png" style="display:block;width:50%;height:auto;margin-left:auto;margin-right:auto;" />
+  <ion-list>
+    <ion-card *ngFor="let name of names; let i = index;">
+      <!--	<button myitem (click)='handleClick(post);' </button>-->
+      <button (click)='goToViewProfilePage(i)' ion-item>
+
+        <ion-avatar item-left >
+
+          <img src="{{picURLS[i]}}">
+
+        </ion-avatar >
+
+        <h1 style="font-size: 18px">name: {{name}} </h1>
+        <h2 style="font-size: 14px">username: {{u_names[i]}}</h2>
+
+
+      </button>
+
+
+
+
+    </ion-card>
+    <ion-card *ngFor="let message of message; let i = index;">
+      <!--	<button myitem (click)='handleClick(post);' </button>-->
+      <button  ion-item>
+
+
+        <h2 style="font-size: 14px">{{message}}</h2>
+
+
+      </button>
+
+
+
+
+    </ion-card>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,27 @@
+$font-path: "../assets/fonts";
+$app-direction: ltr;
+
+@import "ionic.globals";
+$toolbar-ios-title-font-size: 1.5rem;
+
+$colors: (
+  primary:     #e0ffff,
+  secondary:   #88dbc0,
+  danger:      #f5f5dc,
+  light:       #f4f4f4,
+  dark:        #414a4c,
+  coral:       #b0e0e6,
+  bgcolor:     #f0ffff
+);
+
+$tabs-tab-color-active: color($colors, secondary);
+$tabs-background: color($colors, primary);
+$background-color: color($colors, bgcolor);
+$toolbar-background: color($colors, coral);
+$list-border-color: color($colors, light);
+$text-color: #222;
+
+@import "ionic.theme.default";
+@import "ionic.ionicons";
+@import "roboto";
+@import "noto-sans";

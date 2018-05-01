@@ -1,0 +1,82 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SettingsPage } from '../settings/settings';
+import { HomePage } from '../home/home';
+import { TestingPage } from '../testing/testing';
+import { ApiProvider } from '../../providers/api/api';
+
+/**
+ * Generated class for the UserProfilePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-user-profile',
+  templateUrl: 'user-profile.html',
+})
+export class UserProfilePage {
+  appName:any;
+  quotes:any;
+  picsURL:any;
+  uID:any;
+  params = {test : false, code: ""};
+  token: any;
+  name = this.appName;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiProvider) {
+    console.log('in user profile page now');
+    this.token = navParams.get('token');
+    this.api.setToken(this.token);
+    try{
+   //   console.log(navParams.get('quotes'));
+      this.appName = navParams.get('appName');
+      this.quotes = navParams.get('quotes');
+      this.picsURL = navParams.get('picsURL');
+      this.uID = navParams.get('uID');
+
+    } catch (err){
+      this.appName = "defaultName";
+      this.quotes = "defaultQuotes";
+      this.uID = "defaultuID";
+      this.picsURL = "defaultURL";
+    }
+
+    if (navParams.get('test')== true){
+      this.params = {test: true, code: navParams.get('code')};
+      this.navCtrl.push(TestingPage, this.params);
+    }
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UserProfilePage');
+  }
+
+  goToSettingsPage(){
+    this.navCtrl.push(SettingsPage);
+  }
+
+  testURL(){
+    let response = this.api.apiGet('social/twitter/GET')
+    .then(data => {
+      
+      let data1 = JSON.parse(String(data))
+      let stat = data1.status;
+     // console.log("data1: " + data1);
+     //console.log(stat + " DATA STATUS");
+     
+     console.log("response from social/twitter/get: " + data);
+
+    });
+  }
+
+   testPrint2(){
+    console.log('test auth token button clicked');
+  }
+  // goToHomePage(){
+  //   this.navCtrl.push(HomePage);
+  // }
+
+}
