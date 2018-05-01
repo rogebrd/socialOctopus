@@ -23,6 +23,8 @@ export class LoginPage {
   picsURL:any;
   uID:any;
 
+  login_button_disabled: boolean = false;
+
   constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
    // temporary
     if (navParams.get('test')== true){
@@ -35,6 +37,7 @@ export class LoginPage {
   }
 
   login(){
+    this.login_button_disabled = true;
     let response = this.api.apiPost('auth/login', this.userData)
     .then(data => {
       console.log(data);
@@ -49,11 +52,14 @@ export class LoginPage {
         this.retrieveUserInfo();
         this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
 
-      } else if (this.params.test == true){
+      } else if (parsed.status == -1){
+        this.login_button_disabled = false;
+      }
+      else if (this.params.test == true){
        this.retrieveUserInfo();
         this.params.code = "-1";
         this.navCtrl.push(TestingPage, {token:this.api.getToken(),appName:this.appName,quotes:this.quotes,picsURL:this.picsURL,uID:this.userData.username,test:this.params.test,code:this.params.code });
-      }
+      } 
     });
 
   }

@@ -14,7 +14,6 @@ export class PostPage {
 
   input = {"title": "", "status": ""};
   private postForm : FormGroup;
-  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               private api: ApiProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
@@ -80,4 +79,6 @@ export class PostPage {
     this.postToTumblr();
     
   }
+     
+
 }
