@@ -1,6 +1,12 @@
 <ion-header>
   <ion-navbar>
-
+    <ion-buttons end padding-right="20px" start (click) = "logout()">
+      <button>
+        <ion-icon name = "logout">
+         Logout
+        </ion-icon>
+      </button>
+    </ion-buttons>
     <ion-buttons end padding-right="20px">
       <button ion-button icon-only (click)='goToSettingsPage();' >
         <ion-icon name="cog"></ion-icon>

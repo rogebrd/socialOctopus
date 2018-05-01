@@ -6,6 +6,7 @@ import { ApiProvider  } from '../../providers/api/api';
 import { SuccessPage } from '../success/success';
 import { HomePage } from '../home/home';
 import { TestingPage } from '../testing/testing';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Generated class for the SettingsPage page.
@@ -34,7 +35,14 @@ export class SettingsPage {
   access_secret:any;
   public settings = {"name":"","propic":"","quotes":"","viewPreference":"","type":"","username":"","password":"","visibility":"", "access_token":"","access_secret":""};
 
-  constructor(public platform: Platform, private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
+
+  submitAttempt: boolean; 
+  settingsForm: FormGroup;
+  
+  twitter_sel: boolean;
+  tumblr_sel: boolean ;
+
+  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
     try {
       this.token = navParams.get('token');
 
@@ -45,12 +53,23 @@ export class SettingsPage {
       this.uID = navParams.get('bradrogers');
     }
 
+    this.twitter_sel = true;
+    this.tumblr_sel = true;
+    this.settingsForm = formBuilder.group({
+        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        quotes: ['', Validators.compose([Validators.maxLength(60)])],
+        propic: [''],
+        viewPreference: [''],
+        type: [''],
+        visibility: ['']
+    });
 
     if (navParams.get('test')== true){
       this.params = {test: true, code: navParams.get('code')};
       this.navCtrl.push(TestingPage, this.params);
     }
 
+    this.submitAttempt = false;
   }
 
   ionViewDidLoad() {
@@ -66,45 +85,49 @@ export class SettingsPage {
   }
 
   updateSettings(){
-    console.log("submitted");
-    console.log(this.settings);
-    let postBody = {"userID":"","name":"","profilePicUrl":"","quotes":"","viewPreference":"","type":"","socialMediaID":"","socialMediaPassword":"","visibility":"","access_token":"","access_secret":""};
-    console.log("user ID here is : " +this.uID);
-    
-    postBody.userID = this.uID;
-    postBody.name = this.settings.name;
-    postBody.profilePicUrl = this.settings.propic;
-    postBody.quotes = this.settings.quotes;
-    postBody.viewPreference = "1";
+    this.submitAttempt = true;
 
-    postBody.type = "twitter";
-    postBody.socialMediaID = this.settings.username;
-    postBody.socialMediaPassword = this.settings.password;
-    postBody.access_token =  this.access_token;
-    postBody.access_secret = this.access_secret;
-    if(this.settings.visibility){
-      postBody.visibility = "1";
-    }else{
-      postBody.visibility = "0";
-    }
+     if(!this.settingsForm.valid)
+    {
+      console.log("invalid details. Please re-enter details");
+      //let alert = this.util.doAlert("Error", "Username not available", "Ok");
+      //this.navCtrl.present(alert);
+      this.submitAttempt = false; 
+    } else {
+        console.log("submitted");
+        console.log(this.settings);
+        let postBody = {"userID":"","name":"","profilePicUrl":"","quotes":"","viewPreference":"","type":"","socialMediaID":"","socialMediaPassword":"","visibility":"","access_token":"","access_secret":""};
+        console.log("user ID here is : " +this.uID);
+        
+      postBody.userID = this.uID;
+      postBody.name = this.settingsForm.value.name;
+      postBody.profilePicUrl = this.settingsForm.value.propic;
+      postBody.quotes = this.settingsForm.value.quotes;
+      postBody.viewPreference = "1";
 
+      postBody.type = "twitter";
+      postBody.socialMediaID = this.settings.username;
+      postBody.socialMediaPassword = this.settings.password;
+      postBody.visibility = this.settingsForm.value.visibility ? "1" : "0";
+      postBody.access_token =  this.access_token;
+      postBody.access_secret = this.access_secret;
 
+        console.log(postBody);
 
-
-    console.log(postBody);
-
-    let response = this.api.apiPost('user', postBody)
-      .then(data => {
-        console.log(data);
-        let str = data.toString();
-        if(str==='update successful !! App name and quotes are now changed'){
-          //
-          console.log(str);
-          this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:this.settings.name,quotes:this.settings.quotes,picsURL:postBody.profilePicUrl,uID:this.uID,test: this.params.test, code: this.params.code});
-
+        let response = this.api.apiPost('user', postBody)
+          .then(data => {
+            console.log(data);
+            let str = data.toString();
+            if(str==='update successful !! App name and quotes are now changed')
+            {
+             console.log(str);
+             this.navCtrl.push(HomePage,{token:this.api.getToken(),appName:postBody.name,quotes:postBody.quotes,picsURL:postBody.profilePicUrl,uID:this.uID,test: this.params.test, code: this.params.code});
+            } else {
+              console.log("ERROR: status is 0");
+            }
+          });
         }
 
-      });
   }
 
   getTwitterURL(){
@@ -138,12 +161,9 @@ export class SettingsPage {
   
   }
 
-
-
   sendTumblrPIN(){
     console.log('inside sendTumblrPIN');
   }
-
 
 
   func(){
@@ -165,6 +185,13 @@ export class SettingsPage {
 
       this.Response = response;
     });
+  }
+
+  selectTwitter(){
+    this.twitter_sel = !this.twitter_sel;
+  }
+  selectTumblr(){
+    this.tumblr_sel = !this.tumblr_sel;
   }
 
 }

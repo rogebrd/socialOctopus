@@ -8,55 +8,68 @@
   
   
   <ion-content padding (swipeRight) ="swipeRightEvent($event)">
-    <form (ngSubmit)="updateSettings()">
-        <ion-card> 
+
+    <p *ngIf="!submitAttempt" style="color: #ea6153;">Please fill out the form.</p>
+
+  <form id="settingsForm" [formGroup]="settingsForm">
+    <ion-card> 
       <ion-item>
         <ion-label>Name:</ion-label>
-        <ion-input type="text" [(ngModel)]="settings.name" name="name"></ion-input>
+        <ion-input type="text" formControlName="name" [class.invalid]="!settingsForm?.controls.name.valid && (settingsForm?.controls.name.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!settingsForm?.controls.name.valid  && (settingsForm?.controls.name.dirty || submitAttempt)">
+          <p>Please enter a valid name.</p>
       </ion-item>
     </ion-card>
-      <ion-card> 
-      <ion-item>
+
+
+
+    <ion-card> 
+       <ion-item>
         <ion-label>Profile Picture:</ion-label>
-        <ion-input type="url" [(ngModel)]="settings.propic" name="propic"></ion-input>
+        <ion-input type="url" formControlName="propic"></ion-input>
       </ion-item>
     </ion-card>
-      <ion-card> 
+
+    <ion-card> 
       <ion-item>
         <ion-label>Quotes:</ion-label>
-        <ion-input type="text" [(ngModel)]="settings.quotes" name="quotes"></ion-input>
+        <ion-input type="text" formControlName="quotes" [class.invalid]="!settingsForm?.controls.quotes.valid && (settingsForm?.controls.quotes.dirty || submitAttempt)"></ion-input>
       </ion-item>
     </ion-card>
       
-
       
     </form>
+
     <ion-list>
         <ion-card *ngFor="let url of urls; let i = index;">
           <!--	<button myitem (click)='handleClick(post);' </button>-->
             <ion-item style="font-size: 8px">
             <ion-input [(ngModel)]="urls[i]" ></ion-input>
             </ion-item>
-    
-    
         </ion-card>
-      </ion-list>
+    </ion-list>
+
       <button ion-button color="coral" (click)="getTwitterURL()">
         Add Twitter
       </button>
+
     <form (ngSubmit)="sendTwitterPIN()">
       <ion-item>
       <ion-label floating>Twitter PIN:</ion-label>
         <ion-input type="text" [(ngModel)]="pin" name="twitterPIN"></ion-input>
       </ion-item>
+
       <button ion-button color="coral" type="submit">
         Submit Twitter PIN
       </button>
-      <button ion-button block on-click = "updateSettings()">
-          Save
-        </button>
+
     </form>
-  
-     
+
+    <button ion-button type="" color="secondary" block on-click="updateSettings()">
+      <ion-icon name="checkbox"></ion-icon>
+      Save
+   </button>
   
   </ion-content>

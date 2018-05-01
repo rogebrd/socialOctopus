@@ -3,6 +3,7 @@ import { NavController,NavParams } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { ApiProvider } from '../../providers/api/api';
 import { TestingPage } from '../testing/testing';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'page-signup',
@@ -13,7 +14,16 @@ export class SignupPage {
   userData = {"name": "", "username": "", "password": ""};
   params = {test : false, code: ""};
 
-  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams) {
+  submitAttempt: boolean; 
+  signupForm: FormGroup;
+
+  constructor(private api: ApiProvider, public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
+    this.signupForm = formBuilder.group({
+        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        username: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        password: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+      });
+
     if (navParams.get('test')== true){
       //console.log("login test is true");
       this.createSignup();
@@ -21,11 +31,34 @@ export class SignupPage {
       this.signup();
 
     }
+    this.submitAttempt = false;
   }
 
 
   signup(){
-    let response = this.api.apiPost('auth/create', this.userData)
+    this.submitAttempt = true; 
+
+    if(!this.signupForm.valid)
+    {
+      console.log("invalid details. Please re-enter details");
+      //let alert = this.util.doAlert("Error", "Username not available", "Ok");
+      //this.navCtrl.present(alert);
+      this.submitAttempt = false; 
+    } else if(  this.signupForm.value.name === this.signupForm.value.username
+             || this.signupForm.value.username === this.signupForm.value.password
+             || this.signupForm.value.name === this.signupForm.value.password ){
+      console.log("INVALID details: name, username, password should all be unique");
+            // can later replace the log with an alert
+            //let alert = this.util.doAlert("Error", "Username not available", "Ok");
+            //this.navCtrl.present(alert);
+            this.submitAttempt = false; 
+    } else {
+      console.log(this.signupForm.value);
+      this.userData.name = this.signupForm.value.name;
+      this.userData.username = this.signupForm.value.username;
+      this.userData.password = this.signupForm.value.password;
+      
+      let response = this.api.apiPost('auth/create', this.userData)
       .then(data => {
         console.log(data);
         let parsed = JSON.parse(data.toString());
@@ -39,9 +72,7 @@ export class SignupPage {
           this.navCtrl.push(TestingPage, this.params);
         }
       });
-
-
-
+    }   
   }
 
   createSignup(){
