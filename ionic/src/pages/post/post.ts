@@ -23,7 +23,7 @@ export class PostPage {
     this.api.setToken(navParams.get('token'));
 
     this.postForm = this.formBuilder.group({
-      text: ['', Validators.required],
+      text: ['', Validators.compose([Validators.maxLength(280), Validators.required])]
     });
   }
 
@@ -95,6 +95,5 @@ export class PostPage {
         document.getElementById("post-text").nodeValue = val;
      });
   }    
-
 
 }

@@ -37,8 +37,13 @@
         <ion-label>Quotes:</ion-label>
         <ion-input type="text" formControlName="quotes" [class.invalid]="!settingsForm?.controls.quotes.valid && (settingsForm?.controls.quotes.dirty || submitAttempt)"></ion-input>
       </ion-item>
+
+      <ion-item *ngIf="!settingsForm?.controls.quotes.valid  && (settingsForm?.controls.quotes.dirty || submitAttempt)">
+          <p>Quote invalid. Keep quotes length 60 chars.</p>
+      </ion-item>
     </ion-card>
       
+
       
     </form>
 

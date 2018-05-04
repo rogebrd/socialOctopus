@@ -56,9 +56,9 @@ export class SettingsPage {
     this.twitter_sel = true;
     this.tumblr_sel = true;
     this.settingsForm = formBuilder.group({
-        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        name: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
         quotes: ['', Validators.compose([Validators.maxLength(60), Validators.required])],
-        propic: ['', Validators.compose([Validators.maxLength(60), Validators.required])],
+        propic: ['', Validators.compose([Validators.required])],
         viewPreference: [''],
         type: [''],
         visibility: ['']
