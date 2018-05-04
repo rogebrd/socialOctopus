@@ -21,6 +21,7 @@ import {TwitPostProvider} from "../providers/twit-post/twit-post";
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { ViewProfilePage } from '../pages/view-profile/view-profile';
 import { ErrorFeedPage } from '../pages/error-feed/error-feed';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ErrorFeedPage } from '../pages/error-feed/error-feed';
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

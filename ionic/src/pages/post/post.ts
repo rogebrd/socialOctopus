@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -17,7 +18,7 @@ export class PostPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               private api: ApiProvider, public toggleStatus: boolean, private toastCtrl: ToastController,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, public storage: Storage) {
 
     this.api.setToken(navParams.get('token'));
 
@@ -38,6 +39,7 @@ export class PostPage {
       console.log(data);
       this.success();
       console.log('Posted status as' + this.input.status);
+      this.storage.clear();
       }, error => {
       this.showError(error);
     });
@@ -52,6 +54,7 @@ export class PostPage {
       console.log(data);
       this.success();
       console.log('Posted status as' + this.input.status);
+      this.storage.clear();
       }, error => {
       this.showError(error);
     });
@@ -79,6 +82,19 @@ export class PostPage {
     this.postToTumblr();
     
   }
-     
+
+  ionViewDidLeave(){
+    this.storage.set('post', this.postForm.value.text);
+    console.log("Leaving post page, here is the draft" + document.getElementById("post-text"));
+  }
+
+  ionViewWillEnter(){
+     this.storage.get('post').then((val) => {
+        console.log('Your post is', val);
+        this.input.status = val;
+        document.getElementById("post-text").nodeValue = val;
+     });
+  }    
+
 
 }

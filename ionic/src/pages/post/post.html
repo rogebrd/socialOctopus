@@ -9,39 +9,43 @@
 
 <ion-content padding (swipeRight) ="swipeRightEvent($event)">
     <form id="login-form4">
+
         <ion-item id="login-input7" class="user_name">
           <ion-label floating>
             Title
           </ion-label>
           <ion-input type="text" [(ngModel)]="input.title" name = "Title"></ion-input>
-        </ion-item>
-        
+        </ion-item>       
       </form>
-  <ion-list>
-      
+
+  <ion-list>  
     <ion-item no-lines>
           
-            <form [formGroup]="postForm">
-        <ion-item>
-           
-          <ion-textarea rows="10" maxLength="280" placeholder="Write something..." clearInput formControlName="text">
-          </ion-textarea>
-        </ion-item>
-        <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="postToTwitter()">
-          <ion-icon name="logo-twitter"></ion-icon>
-          Share on Twitter
-        </button>
-        <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="postToTumblr()">
-          <ion-icon name="logo-tumblr"></ion-icon>
-          Share on Tumblr
-        </button>
-        <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="superPost()">
-            <ion-icon name="bicycle"></ion-icon>
-            Super Post
-          </button>
-      </form>
-    </ion-item>
+      <form [formGroup]="postForm">
 
+          <ion-item id="post-text">           
+            <ion-textarea rows="10" maxLength="280" placeholder="Write something..." clearInput [(ngModel)]="input.status" formControlName="text">
+            </ion-textarea>
+          </ion-item>
+
+          <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="postToTwitter()">
+            <ion-icon name="logo-twitter"></ion-icon>
+            Share on Twitter
+          </button>
+
+          <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="postToTumblr()">
+            <ion-icon name="logo-tumblr"></ion-icon>
+            Share on Tumblr
+          </button>
+
+          <button icon-start ion-button color="coral" full round type="submit" [disabled]="!postForm.valid" (click)="superPost()">
+              <ion-icon name="bicycle"></ion-icon>
+              Super Post
+            </button>
+
+      </form>
+
+    </ion-item>
   </ion-list>
 
 
